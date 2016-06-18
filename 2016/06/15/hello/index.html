@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://codeforgod.github.io/2016/06/15/hello/index.html">
 <meta property="og:site_name" content="为上帝而编程">
 <meta property="og:description" content="This article is just for testing ~">
-<meta property="og:updated_time" content="2016-06-18T04:20:20.169Z">
+<meta property="og:updated_time" content="2016-06-18T04:53:28.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hello">
 <meta name="twitter:description" content="This article is just for testing ~">
@@ -515,15 +515,7 @@
 
       
         <p>This article is just for testing ~<br><a id="more"></a></p>
-<h1 id="First-title"><a href="#First-title" class="headerlink" title="First title"></a>First title</h1><ul>
-<li>this is an item!<ul>
-<li>xxx</li>
-</ul>
-</li>
-<li>this is another item!<ul>
-<li>xxx<h1 id="Second-title"><a href="#Second-title" class="headerlink" title="Second title"></a>Second title</h1></li>
-</ul>
-</li>
+<h1 id="First"><a href="#First" class="headerlink" title="First"></a>First</h1><ul>
 <li>this is an item!<ul>
 <li>xxx</li>
 </ul>
@@ -533,6 +525,23 @@
 </ul>
 </li>
 </ul>
+<h1 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h1><ul>
+<li>this is an item!<ul>
+<li>xxx</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>this is another item!<ul>
+<li>xxx</li>
+</ul>
+</li>
+</ul>
+<h1 id="Third"><a href="#Third" class="headerlink" title="Third"></a>Third</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Demo &#123;</span><br><span class="line">	public static void main(String[] args) throws Exception &#123;</span><br><span class="line">		String str = new String(&quot;Hello HeiMa!&quot;);				//建立一个String对象</span><br><span class="line">		ArrayList&lt;Integer&gt; list = new ArrayList&lt;Integer&gt;();			//建立一个ArrayList&lt;Integer&gt;对象</span><br><span class="line">		Method m = list.getClass().getMethod(&quot;add&quot;, Object.class);		//通过list类对象获取add(Object e)方法</span><br><span class="line">		m.invoke(list, str);							//让list调用反射的add方法添加一个String对象即str</span><br><span class="line">		System.out.println(list.get(0));					//打印输出</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="测试结果显示"><a href="#测试结果显示" class="headerlink" title="测试结果显示"></a>测试结果显示</h2><ol>
+<li>无序列表显示不尽人意</li>
+<li>代码无高亮</li>
+</ol>
 
       
     </div>
@@ -716,7 +725,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#First-title"><span class="nav-number">1.</span> <span class="nav-text">First title</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Second-title"><span class="nav-number">2.</span> <span class="nav-text">Second title</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#First"><span class="nav-number">1.</span> <span class="nav-text">First</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Second"><span class="nav-number">2.</span> <span class="nav-text">Second</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Third"><span class="nav-number">3.</span> <span class="nav-text">Third</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#测试结果显示"><span class="nav-number">3.1.</span> <span class="nav-text">测试结果显示</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
