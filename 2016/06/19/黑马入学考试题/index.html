@@ -1,0 +1,1328 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|console:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Java笔试,编程题," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="为上帝而编程" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="通过题目也可以学习很多。
+不断总结，不断提升，刷新自己的知识库。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="黑马入学考试题">
+<meta property="og:url" content="http://codeforgod.github.io/2016/06/19/黑马入学考试题/index.html">
+<meta property="og:site_name" content="为上帝而编程">
+<meta property="og:description" content="通过题目也可以学习很多。
+不断总结，不断提升，刷新自己的知识库。">
+<meta property="og:image" content="http://codeforgod.github.io/upload/20160619.png">
+<meta property="og:updated_time" content="2016-06-21T09:51:30.564Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="黑马入学考试题">
+<meta name="twitter:description" content="通过题目也可以学习很多。
+不断总结，不断提升，刷新自己的知识库。">
+<meta name="twitter:image" content="http://codeforgod.github.io/upload/20160619.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codeforgod.github.io/2016/06/19/黑马入学考试题/"/>
+
+  <title> 黑马入学考试题 | 为上帝而编程 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">为上帝而编程</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一人一生一信仰</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+	  
+	  <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'eePJWPEw6AZxg-LM_ZC7','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                黑马入学考试题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-19T22:14:21+08:00" content="2016-06-19">
+              2016-06-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java笔试/" itemprop="url" rel="index">
+                    <span itemprop="name">Java笔试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/19/黑马入学考试题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/19/黑马入学考试题/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/06/19/黑马入学考试题/" class="leancloud_visitors" data-flag-title="黑马入学考试题">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="upload/20160619.png" alt="20160619"></p>
+<p>通过题目也可以学习很多。</p>
+<p>不断总结，不断提升，刷新自己的知识库。<br><a id="more"></a></p>
+<h2 id="方法中的内部类能不能访问方法中的局部变量，为什么？"><a href="#方法中的内部类能不能访问方法中的局部变量，为什么？" class="headerlink" title="方法中的内部类能不能访问方法中的局部变量，为什么？"></a>方法中的内部类能不能访问方法中的局部变量，为什么？</h2><h3 id="Java中的内部类分四种：成员内部类、局部内部类、静态内部类和匿名内部类。"><a href="#Java中的内部类分四种：成员内部类、局部内部类、静态内部类和匿名内部类。" class="headerlink" title="Java中的内部类分四种：成员内部类、局部内部类、静态内部类和匿名内部类。"></a>Java中的内部类分四种：成员内部类、局部内部类、静态内部类和匿名内部类。</h3><h3 id="局部内部类：-即在方法中定义的内部类，与局部变量类似，在局部内部类前不加修饰符public或private，其范围为定义它的代码块。"><a href="#局部内部类：-即在方法中定义的内部类，与局部变量类似，在局部内部类前不加修饰符public或private，其范围为定义它的代码块。" class="headerlink" title="局部内部类： 即在方法中定义的内部类，与局部变量类似，在局部内部类前不加修饰符public或private，其范围为定义它的代码块。"></a>局部内部类： 即在方法中定义的内部类，与局部变量类似，在局部内部类前不加修饰符public或private，其范围为定义它的代码块。</h3><h3 id="注意：局部内部类中不可定义静态变量，可以访问外部类的局部变量-即方法内的变量-，但是变量必须是final的。"><a href="#注意：局部内部类中不可定义静态变量，可以访问外部类的局部变量-即方法内的变量-，但是变量必须是final的。" class="headerlink" title="注意：局部内部类中不可定义静态变量，可以访问外部类的局部变量(即方法内的变量)，但是变量必须是final的。"></a>注意：局部内部类中不可定义静态变量，可以访问外部类的局部变量(即方法内的变量)，但是变量必须是final的。</h3><p>先看一段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> s = <span class="number">100</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> out_i = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">final</span> <span class="keyword">int</span> s = <span class="number">200</span>;</span><br><span class="line">		<span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">final</span> <span class="keyword">int</span> j = <span class="number">10</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;		<span class="comment">// 定义在方法内部</span></span><br><span class="line">			<span class="keyword">int</span> s = <span class="number">300</span>;	<span class="comment">// 可以定义与外部类同名的变量</span></span><br><span class="line">			<span class="keyword">int</span> inner_i = <span class="number">100</span>;</span><br><span class="line">			<span class="comment">//static int m = 20;						//不可以定义静态变量</span></span><br><span class="line">			</span><br><span class="line">			Inner(<span class="keyword">int</span> k) &#123;</span><br><span class="line">				inner_f(k);</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="function"><span class="keyword">void</span> <span class="title">inner_f</span><span class="params">(<span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">				System.out.println(out_i);			<span class="comment">// 如果内部类没有与外部类同名的变量，在内部类中可以直接访问外部类的实例变量</span></span><br><span class="line">				System.out.println(k);				<span class="comment">// *****可以访问外部类的局部变量(即方法内的变量)，但是变量必须是final的*****</span></span><br><span class="line">				<span class="comment">//System.out.println(i);</span></span><br><span class="line">				System.out.println(s);				<span class="comment">// 如果内部类中有与外部类同名的变量，直接用变量名访问的是内部类的变量</span></span><br><span class="line">				System.out.println(<span class="keyword">this</span>.s);			<span class="comment">// 用"this.变量名" 访问的也是内部类变量</span></span><br><span class="line">				System.out.println(<span class="keyword">this</span>.s);			<span class="comment">// 用外部"外部类类名.this.变量名"访问的是外部类变量</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">new</span> Inner(k);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Test1 out = <span class="keyword">new</span> Test1();					<span class="comment">// 访问局部内部类必须先有外部类对象</span></span><br><span class="line">		out.f(<span class="number">3</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h3><p>在类外不可直接生成局部内部类（保证局部内部类对外是不可见的）。<br>要想使用局部内部类时需要生成对象，对象调用方法，在方法中才能调用其局部内部类。<br>通过内部类和接口达到一个强制的弱耦合，用局部内部类来实现接口，并在方法中返回接口类型，使局部内部类不可见，屏蔽实现类的可见性。</p>
+<h3 id="综上所述，再重新看待这道题："><a href="#综上所述，再重新看待这道题：" class="headerlink" title="综上所述，再重新看待这道题："></a>综上所述，再重新看待这道题：</h3><p>所谓“局部内部类”就是在对象的方法成员内部定义的类。</p>
+<p>而方法中的类，访问同一个方法中的局部变量，是天经地义的。(即方法中的内部类能访问方法中的局部变量，然而还有一个条件那就是方法中的局部变量得被final修饰)</p>
+<p>那么为什么要加final的局部变量才可以被访问呢？</p>
+<h4 id="从生命周期的角度看："><a href="#从生命周期的角度看：" class="headerlink" title="从生命周期的角度看："></a>从生命周期的角度看：</h4><p>内部类的生命周期和方法中的局部变量是不一样的，内部类是也是一个类，是存储在堆中，也只有当对该类的引用消失时，内部类才会消亡。</p>
+<p>而方法的局部变量是存储在栈中的，当调用结束时就会退栈，即在内存中这个属性就消失了。<br>也就是说，内部类的生命周期超过了方法中局部变量的生命周期，内部类可能会调用到已经消失的属性，因此内部类不能访问方法中的局部变量。</p>
+<p>那么为什么要加final的局部变量才可以被访问呢？</p>
+<p>通过将生成的class文件反编译可以知道：如果局部变量的值在编译期间就可以确定，则直接在局部内部类里面创建一个拷贝。</p>
+<p>如果局部变量的值无法在编译期间确定，则通过构造器传参的方式来对拷贝进行初始化赋值。</p>
+<p>那么新的问题来了，在方法中的内部类访问到的方法中的变量和实际方法中的变量是不是同一个变量？</p>
+<p>对，会造成数据不一致性，这样就达不到原本的意图和要求。</p>
+<p>为了解决这个问题，java编译器就限定必须将方法中的变量设置为final变量，不允许对此变量进行更改（对于引用类型的变量，是不允许指向新的对象），这样数据不一致性的问题就得以解决了。</p>
+<h4 id="归纳上述回答的真正核心是：局部内部类对象中包含有要访问的final型局部变量的一个拷贝，成为它的数据成员。"><a href="#归纳上述回答的真正核心是：局部内部类对象中包含有要访问的final型局部变量的一个拷贝，成为它的数据成员。" class="headerlink" title="归纳上述回答的真正核心是：局部内部类对象中包含有要访问的final型局部变量的一个拷贝，成为它的数据成员。"></a>归纳上述回答的真正核心是：局部内部类对象中包含有要访问的final型局部变量的一个拷贝，成为它的数据成员。</h4><p>因此，正是在这个意义上，final型局部变量的生命期，超过其方法的一次调用。</p>
+<p>严格来说，方法调用结束，所有的局部变量（含final）全死亡了。</p>
+<p>但局部内部类对象中有final型局部变量的拷贝。(由于该变量由final修饰，所以一致性的问题也被解决了）</p>
+<h2 id="ArrayList-list-new-ArrayList-在这个泛型为Integer的ArrayList中存放一个String类型的对象。"><a href="#ArrayList-list-new-ArrayList-在这个泛型为Integer的ArrayList中存放一个String类型的对象。" class="headerlink" title="ArrayList list = new ArrayList(); 在这个泛型为Integer的ArrayList中存放一个String类型的对象。"></a>ArrayList<integer> list = new ArrayList<integer>(); 在这个泛型为Integer的ArrayList中存放一个String类型的对象。</integer></integer></h2><p>编译器编译带参数类型说明的集合时会去去除掉“类型”信息，使程序运行不受影响。</p>
+<p>对于参数化的泛型类型，getClass()方法的返回值和原始类型完全一样。</p>
+<p>由于编译生成的字节码会去掉泛型的类型信息，因此只要能跳过编译器，就可以往某个泛型集合中加入其他类型的数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">//建立一个String对象</span></span><br><span class="line">		String str = <span class="keyword">new</span> String(<span class="string">"Hello HeiMa!"</span>);</span><br><span class="line">		<span class="comment">//建立一个ArrayList&lt;Integer&gt;对象</span></span><br><span class="line">		ArrayList&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">		<span class="comment">//通过list类对象获取add(Object e)方法</span></span><br><span class="line">		Method m = list.getClass().getMethod(<span class="string">"add"</span>, Object.class);</span><br><span class="line">		<span class="comment">//让list调用反射的add方法添加一个String对象即str</span></span><br><span class="line">		m.invoke(list, str);</span><br><span class="line">		<span class="comment">//打印输出</span></span><br><span class="line">		System.out.println(list.get(<span class="number">0</span>));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="请说明Java中字符’-’的含义，有什么作用？"><a href="#请说明Java中字符’-’的含义，有什么作用？" class="headerlink" title="请说明Java中字符’\’的含义，有什么作用？"></a>请说明Java中字符’\’的含义，有什么作用？</h2><h3 id="在Java中反斜杠’-’代表的是转义字符。"><a href="#在Java中反斜杠’-’代表的是转义字符。" class="headerlink" title="在Java中反斜杠’\’代表的是转义字符。"></a>在Java中反斜杠’\’代表的是转义字符。</h3><h3 id="转义字符：通过’-’来转变后面字母或符号的含义。"><a href="#转义字符：通过’-’来转变后面字母或符号的含义。" class="headerlink" title="转义字符：通过’\’来转变后面字母或符号的含义。"></a>转义字符：通过’\’来转变后面字母或符号的含义。</h3><p>它用于描述一些无法用单个字符描述的特殊符号，如换行符，退格符，制表符等等（他们在window中分别是\n,\b,\t）。</p>
+<p>当遇到一些java语法中被占用的特殊字符的时候，要想原样的输出，就需要在这些特殊的字符前面加入反斜杠。</p>
+<p>比如反斜杠本身,单引号,双引号,小括号等，因为语法已经占用，所以要想原样的输出，只有在前面在加一个反斜杠。</p>
+<p>这点在读取windows中文件的字符串路径时体现的特别明显，要想路径有效就要在单个反斜杠前在加一个反斜杠用于转义。</p>
+<h3 id="常用转义字符："><a href="#常用转义字符：" class="headerlink" title="常用转义字符："></a>常用转义字符：</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">\b：退格</span><br><span class="line">\n：换行</span><br><span class="line">\t：制表符，相当于tab键</span><br><span class="line">\r：回车</span><br><span class="line">\\：表示反斜杠</span><br><span class="line">\'：表示单引号 </span><br><span class="line">\"：表示双引号</span><br></pre></td></tr></table></figure>
+<h3 id="API上如下描述："><a href="#API上如下描述：" class="headerlink" title="API上如下描述："></a>API上如下描述：</h3><p>反斜线字符 (‘\’) 用于引用转义构造，如上表所定义的，同时还用于引用其他将被解释为非转义构造的字符。因此，表达式 \ 与单个反斜线匹配，而 { 与左括号匹配。 </p>
+<h2 id="假如我们在开发一个系统时需要对员工进行建模，员工包含-3-个属性：姓名、工号以及工资。经理也是员工，除了含有员工的属性外，另为还有一个奖金属性。请使用继承的思想设计出员工类和经理类。要求类中提供必要的方法进行属性访问。"><a href="#假如我们在开发一个系统时需要对员工进行建模，员工包含-3-个属性：姓名、工号以及工资。经理也是员工，除了含有员工的属性外，另为还有一个奖金属性。请使用继承的思想设计出员工类和经理类。要求类中提供必要的方法进行属性访问。" class="headerlink" title="假如我们在开发一个系统时需要对员工进行建模，员工包含 3 个属性：姓名、工号以及工资。经理也是员工，除了含有员工的属性外，另为还有一个奖金属性。请使用继承的思想设计出员工类和经理类。要求类中提供必要的方法进行属性访问。"></a>假如我们在开发一个系统时需要对员工进行建模，员工包含 3 个属性：姓名、工号以及工资。经理也是员工，除了含有员工的属性外，另为还有一个奖金属性。请使用继承的思想设计出员工类和经理类。要求类中提供必要的方法进行属性访问。</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 员工类</span><br><span class="line"> * <span class="doctag">@author</span> WuPeng</span><br><span class="line"> *</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;		<span class="comment">//姓名</span></span><br><span class="line">	<span class="keyword">private</span> String id;		<span class="comment">//工号</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> salary;		<span class="comment">//工资</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">(String name, String id, <span class="keyword">double</span> salary)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">		<span class="keyword">this</span>.salary = salary;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Employee</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"@"</span>+getClass().getName()+<span class="string">":name="</span>+name+<span class="string">",id="</span>+id+<span class="string">",salary="</span>+salary;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> salary;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSalary</span><span class="params">(<span class="keyword">double</span> salary)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.salary = salary;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 经理类</span><br><span class="line"> * <span class="doctag">@author</span> WuPeng</span><br><span class="line"> *</span><br><span class="line"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Manager</span> <span class="keyword">extends</span> <span class="title">Employee</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">double</span> bonus;		<span class="comment">//奖金</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Manager</span><span class="params">(String name, String id, <span class="keyword">double</span> salary, <span class="keyword">double</span> bonus)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>(name,id,salary);</span><br><span class="line">		<span class="keyword">this</span>.bonus = bonus;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Manager</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"Manager work!"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"@"</span>+getClass().getName()+<span class="string">"="</span>+getName()+<span class="string">",id="</span>+getId()+<span class="string">",salary"</span>+getSalary()+<span class="string">",bonus="</span>+getBonus();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getBonus</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> bonus;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBonus</span><span class="params">(<span class="keyword">double</span> bonus)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.bonus = bonus;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * 4、假如我们在开发一个系统时需要对员工进行建模，员工包含 3 个属性：姓名、工号以及工资。经理也是员工，除了含有员工的属性外，另为还有一个奖金属性。</span><br><span class="line"> * 请使用继承的思想设计出员工类和经理类。</span><br><span class="line"> * 要求类中提供必要的方法进行属性访问。</span><br><span class="line"> * <span class="doctag">@author</span> WuPeng</span><br><span class="line"> *</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test4</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建一个员工的匿名内部类</span></span><br><span class="line">		Employee e = <span class="keyword">new</span> Employee(<span class="string">"关羽"</span>,<span class="string">"001"</span>,<span class="number">1000</span>d) &#123;</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">work</span><span class="params">()</span> </span>&#123;</span><br><span class="line">				System.out.println(<span class="string">"Employee work!"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		Manager m = <span class="keyword">new</span> Manager(<span class="string">"刘备"</span>,<span class="string">"002"</span>,<span class="number">1200</span>d,<span class="number">100</span>d);</span><br><span class="line">		System.out.println(e.toString());</span><br><span class="line">		e.work();</span><br><span class="line">		System.out.println(m.toString());</span><br><span class="line">		m.work();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="定义一个文件输入流，调用read-byte-b-方法将exercise-txt文件中的所有内容打印出来-byte数组的大小限制为5-。"><a href="#定义一个文件输入流，调用read-byte-b-方法将exercise-txt文件中的所有内容打印出来-byte数组的大小限制为5-。" class="headerlink" title="定义一个文件输入流，调用read(byte[] b)方法将exercise.txt文件中的所有内容打印出来(byte数组的大小限制为5)。"></a>定义一个文件输入流，调用read(byte[] b)方法将exercise.txt文件中的所有内容打印出来(byte数组的大小限制为5)。</h2><p>汉字在国标码中的存储为1个字为2个字节。<br>用普通方法会出现乱码问题<br>解决办法：ByteArrayOutputStream：可以捕获内存缓冲区的数据，转换成字节数组。<br>此类实现了一个输出流，其中的数据被写入一个 byte 数组。<br>缓冲区会随着数据的不断写入而自动增长。<br>可使用 toByteArray()和 toString()获取数据。<br>关闭 ByteArrayOutputStream 无效。此类中的方法在关闭此流后仍可被调用，而不会产生任何IOException。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test5</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		BufferedInputStream bis = <span class="keyword">null</span>;	<span class="comment">//创建带缓冲区的输入流，提高效率</span></span><br><span class="line">		ByteArrayOutputStream baos = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">byte</span> b[] = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">5</span>];		<span class="comment">//创建大小为5的byte数组</span></span><br><span class="line">		<span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			bis = <span class="keyword">new</span> BufferedInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">"exercise.txt"</span>));</span><br><span class="line">			baos = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">			<span class="keyword">while</span>((num=bis.read(b))!=-<span class="number">1</span>)&#123;	<span class="comment">//调用read(byte[] b)方法将exercise.txt文件中的所有内容打印出来</span></span><br><span class="line">				baos.write(b, <span class="number">0</span>, num);</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.println(baos.toString(<span class="string">"utf8"</span>));</span><br><span class="line">		&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					<span class="keyword">if</span>(bis != <span class="keyword">null</span>)</span><br><span class="line">						bis.close();</span><br><span class="line">				&#125; <span class="keyword">catch</span> (IOException e1) &#123;</span><br><span class="line">					<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">					e1.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					<span class="keyword">if</span>(baos != <span class="keyword">null</span>)</span><br><span class="line">						baos.close();</span><br><span class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">					<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="把以下IP存入一个txt文件，编写程序把这些IP按数值大小，从小到大排序并打印出来。"><a href="#把以下IP存入一个txt文件，编写程序把这些IP按数值大小，从小到大排序并打印出来。" class="headerlink" title="把以下IP存入一个txt文件，编写程序把这些IP按数值大小，从小到大排序并打印出来。"></a>把以下IP存入一个txt文件，编写程序把这些IP按数值大小，从小到大排序并打印出来。</h2><p>61.54.231.245<br>61.54.231.9<br>61.54.231.246<br>61.54.231.48<br>61.53.231.249</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test6</span> </span>&#123;</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 获取ip数值</span><br><span class="line">	 * <span class="doctag">@param</span> ip</span><br><span class="line">	 * <span class="doctag">@return</span></span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNum</span><span class="params">(String ip)</span></span>&#123;</span><br><span class="line">			String[] s = ip.split(<span class="string">"\\."</span>);</span><br><span class="line">			<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">					sum = sum*<span class="number">256</span>+Integer.parseInt(s[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">			BufferedWriter bw = <span class="keyword">null</span>;	<span class="comment">//创建带缓冲区的字符输入流，提高效率</span></span><br><span class="line">			BufferedReader br = <span class="keyword">null</span>;	<span class="comment">//创建带缓冲区的字符输出流</span></span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="comment">//将ip存入ip.txt</span></span><br><span class="line">				bw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(<span class="string">"ip.txt"</span>));</span><br><span class="line">				bw.write(<span class="string">"61.54.231.245"</span>);</span><br><span class="line">				bw.newLine();</span><br><span class="line">				bw.write(<span class="string">"61.54.231.9"</span>);</span><br><span class="line">				bw.newLine();</span><br><span class="line">				bw.write(<span class="string">"61.54.231.246"</span>);</span><br><span class="line">				bw.newLine();</span><br><span class="line">				bw.write(<span class="string">"61.54.231.48"</span>);</span><br><span class="line">				bw.newLine();</span><br><span class="line">				bw.write(<span class="string">"61.53.231.249"</span>);</span><br><span class="line">				bw.flush();</span><br><span class="line"></span><br><span class="line">				<span class="comment">//从ip.txt中读取数据并存入ArrayList</span></span><br><span class="line">				br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"ip.txt"</span>));</span><br><span class="line">				ArrayList&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">				String str = <span class="keyword">null</span>;</span><br><span class="line">				<span class="keyword">while</span> ((str=br.readLine())!=<span class="keyword">null</span>) &#123;</span><br><span class="line">					list.add(str);</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.println(<span class="string">"原始数据："</span>);</span><br><span class="line">				<span class="keyword">for</span> (String s : list) &#123;</span><br><span class="line">					System.out.println(s);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="comment">//冒泡排序</span></span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size()-<span class="number">1</span>; i++) &#123;</span><br><span class="line">						<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; i + j &lt; list.size()-<span class="number">1</span>; j++) &#123;</span><br><span class="line">								String ip1 = list.get(j);</span><br><span class="line">								String ip2 = list.get(j+<span class="number">1</span>);</span><br><span class="line">								<span class="keyword">if</span>(Test6.getNum(ip1) &gt; Test6.getNum(ip2)) &#123;</span><br><span class="line">									list.set(j, ip2);</span><br><span class="line">									list.set(j+<span class="number">1</span>, ip1);	                            	</span><br><span class="line">								&#125;</span><br><span class="line">						&#125;</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.println(<span class="string">"排序后数据："</span>);</span><br><span class="line">				<span class="keyword">for</span> (String s : list) &#123;</span><br><span class="line">						System.out.println(s);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">				<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					<span class="keyword">if</span>(bw!=<span class="keyword">null</span>)</span><br><span class="line">						bw.close();</span><br><span class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">					<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">try</span> &#123;</span><br><span class="line">					<span class="keyword">if</span>(br!=<span class="keyword">null</span>)</span><br><span class="line">						br.close();</span><br><span class="line">				&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">					<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">					e.printStackTrace();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="写一方法，打印等长的二维数组，要求从1开始的自然数由方阵的最外圈向内螺旋方式地顺序排列。-如：-n-4-则打印："><a href="#写一方法，打印等长的二维数组，要求从1开始的自然数由方阵的最外圈向内螺旋方式地顺序排列。-如：-n-4-则打印：" class="headerlink" title="写一方法，打印等长的二维数组，要求从1开始的自然数由方阵的最外圈向内螺旋方式地顺序排列。 如： n = 4 则打印："></a>写一方法，打印等长的二维数组，要求从1开始的自然数由方阵的最外圈向内螺旋方式地顺序排列。 如： n = 4 则打印：</h2><p>|| 1 || 2 || 3 || 4 ||<br>|| 12 || 13 || 14 || 5 ||<br>|| 11 || 16 || 15 || 6 ||<br>|| 10 || 9 || 8 || 7 ||</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test7</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> a[][],<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> i,j,k=<span class="number">0</span>,m;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">0</span>)				<span class="comment">//m=⌈n/2⌉</span></span><br><span class="line">			m = n/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			m = n/<span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;m; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span>(j=i; j&lt;n-i; j++) &#123;		<span class="comment">//产生该圈上横行的数字</span></span><br><span class="line">				k++;</span><br><span class="line">				a[i][j] = k;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(j=i+<span class="number">1</span>; j&lt;n-i; j++) &#123;	<span class="comment">//产生该圈右竖行的数字</span></span><br><span class="line">				k++;</span><br><span class="line">				a[j][n-i-<span class="number">1</span>] = k;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(j=n-i-<span class="number">2</span>; j&gt;=i; j--) &#123;	<span class="comment">//产生该圈下横行的数字产生该圈的左竖行的数字</span></span><br><span class="line">				k++;</span><br><span class="line">				a[n-i-<span class="number">1</span>][j] = k;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(j=n-i-<span class="number">2</span>; j&gt;=i+<span class="number">1</span>; j--) &#123;	<span class="comment">//产生该圈的左竖行的数字</span></span><br><span class="line">				k++;</span><br><span class="line">				a[j][i] = k;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//打印输出</span></span><br><span class="line">		System.out.println(n+<span class="string">"阶螺旋方阵如下："</span>);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">			<span class="keyword">for</span>(j=<span class="number">0</span>; j&lt;n; j++)</span><br><span class="line">				System.out.printf(<span class="string">"%-3d "</span>,a[i][j]);</span><br><span class="line">			System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> n = <span class="number">4</span>;</span><br><span class="line">		fun(<span class="keyword">new</span> <span class="keyword">int</span>[n][n], n);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="编写一个程序，它先将键盘上输入的一个字符串转换成十进制整数，然后打印出这个十进制整数对应的二进制形式。这个程序要考虑输入的字符串不能转换成一个十进制整数的情况，并对转换失败的原因要区分出是数字太大，还是其中包含有非数字字符的情况。提示：十进制数转二进制数的方式是用这个数除以2，余数就是二进制数的最低位，接着再用得到的商作为被除数去除以2，这次得到的余数就是次低位，如此循环，直到被除数为0为止。其实，只要明白了打印出一个十进制数的每一位的方式（不断除以10，得到的余数就分别是个位，十位，百位），就很容易理解十进制数转二进制数的这种方式。"><a href="#编写一个程序，它先将键盘上输入的一个字符串转换成十进制整数，然后打印出这个十进制整数对应的二进制形式。这个程序要考虑输入的字符串不能转换成一个十进制整数的情况，并对转换失败的原因要区分出是数字太大，还是其中包含有非数字字符的情况。提示：十进制数转二进制数的方式是用这个数除以2，余数就是二进制数的最低位，接着再用得到的商作为被除数去除以2，这次得到的余数就是次低位，如此循环，直到被除数为0为止。其实，只要明白了打印出一个十进制数的每一位的方式（不断除以10，得到的余数就分别是个位，十位，百位），就很容易理解十进制数转二进制数的这种方式。" class="headerlink" title="编写一个程序，它先将键盘上输入的一个字符串转换成十进制整数，然后打印出这个十进制整数对应的二进制形式。这个程序要考虑输入的字符串不能转换成一个十进制整数的情况，并对转换失败的原因要区分出是数字太大，还是其中包含有非数字字符的情况。提示：十进制数转二进制数的方式是用这个数除以2，余数就是二进制数的最低位，接着再用得到的商作为被除数去除以2，这次得到的余数就是次低位，如此循环，直到被除数为0为止。其实，只要明白了打印出一个十进制数的每一位的方式（不断除以10，得到的余数就分别是个位，十位，百位），就很容易理解十进制数转二进制数的这种方式。"></a>编写一个程序，它先将键盘上输入的一个字符串转换成十进制整数，然后打印出这个十进制整数对应的二进制形式。这个程序要考虑输入的字符串不能转换成一个十进制整数的情况，并对转换失败的原因要区分出是数字太大，还是其中包含有非数字字符的情况。提示：十进制数转二进制数的方式是用这个数除以2，余数就是二进制数的最低位，接着再用得到的商作为被除数去除以2，这次得到的余数就是次低位，如此循环，直到被除数为0为止。其实，只要明白了打印出一个十进制数的每一位的方式（不断除以10，得到的余数就分别是个位，十位，百位），就很容易理解十进制数转二进制数的这种方式。</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test8</span> </span>&#123;</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 将一个十进制整数转换为二进制整数</span><br><span class="line">	 * <span class="doctag">@param</span> decimal</span><br><span class="line">	 * <span class="doctag">@return</span></span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">toBinary</span><span class="params">(Integer decimal)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">boolean</span> negtive = <span class="keyword">false</span>;			<span class="comment">//负数标志，初始化为假</span></span><br><span class="line">		<span class="keyword">if</span>(decimal &lt; <span class="number">0</span>) &#123;				<span class="comment">//如果该数是负数，将其变为正数进行后续操作，并置负数标志为真</span></span><br><span class="line">			<span class="comment">/*由于边界问题，-2147483648~-2147483647，所以不能这么做！*/</span></span><br><span class="line">			<span class="comment">//decimal = -decimal;</span></span><br><span class="line">			negtive = <span class="keyword">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();		<span class="comment">//创建一个StringBuffer用来存放余数</span></span><br><span class="line">		Integer n = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span> (decimal != <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="comment">/*  由于边界问题，-2147483648~2147483647，所以采用以下解决办法:</span><br><span class="line">			 *  如果为负数，将得到的余数加绝对值。</span><br><span class="line">			 *  由于Math.abs(int a)的实现如下</span><br><span class="line">			 *  return (a &lt; 0) ? -a : a;</span><br><span class="line">			 *  即CPU会进行一次比较和赋值运算，为了降低时间复杂度采用如下方案。</span><br><span class="line">			 */</span></span><br><span class="line">			<span class="keyword">if</span>(negtive)</span><br><span class="line">				n = -decimal % <span class="number">2</span>;</span><br><span class="line">			n = decimal % <span class="number">2</span>;</span><br><span class="line">			decimal = decimal / <span class="number">2</span>;</span><br><span class="line">			sb.append(n);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(negtive)					<span class="comment">//如果为负数，将StringBuffer末尾添加负号</span></span><br><span class="line">			sb.append(<span class="string">"-"</span>);</span><br><span class="line">		sb.reverse();					<span class="comment">//将StringBuffer反转得到二进制数对应的StringBuffer类型</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> String(sb);				<span class="comment">//根据StringBuffer创建String对象并返回</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 通过键盘输入的字符获取字符串，以回车键结束</span><br><span class="line">	 * <span class="doctag">@return</span></span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		Scanner s = <span class="keyword">new</span> Scanner(System.in);		<span class="comment">//通过Scanner对象读取键盘输入数据</span></span><br><span class="line">		<span class="keyword">return</span> s.nextLine();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 通过正则表达式判断String是否可以表示整数</span><br><span class="line">	 * <span class="doctag">@param</span> str</span><br><span class="line">	 * <span class="doctag">@return</span></span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isNumber</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> str.matches(<span class="string">"^-?\\d+$"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * Main方法，程序的入口</span><br><span class="line">	 * <span class="doctag">@param</span> args</span><br><span class="line">	 * <span class="doctag">@throws</span> Exception</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"请输入一个十进制整数："</span>);</span><br><span class="line">		</span><br><span class="line">		String str = getString();</span><br><span class="line">		<span class="keyword">if</span>(!Test8.isNumber(str)) &#123;</span><br><span class="line">			<span class="comment">//整数包括负整数，负号不属于数字字符，所以此处不能提示输入包含非数字字符。</span></span><br><span class="line">			System.out.println(<span class="string">"您输入的整数不正确！"</span>);</span><br><span class="line">			System.exit(<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			Integer decimal = <span class="keyword">new</span> Integer(str);</span><br><span class="line">			System.out.println(str + <span class="string">" 的二进制格式为："</span> + Test8.toBinary(decimal));</span><br><span class="line">		&#125; <span class="keyword">catch</span>(NumberFormatException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"您输入的整数超过了Integer的范围(-2147483648~2147483647)！"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="28人买可乐喝，3个可乐瓶盖可以换一瓶可乐，那么要买多少瓶可乐，够28人喝？假如是50人，又需要买多少瓶可乐？（需写出分析思路）"><a href="#28人买可乐喝，3个可乐瓶盖可以换一瓶可乐，那么要买多少瓶可乐，够28人喝？假如是50人，又需要买多少瓶可乐？（需写出分析思路）" class="headerlink" title="28人买可乐喝，3个可乐瓶盖可以换一瓶可乐，那么要买多少瓶可乐，够28人喝？假如是50人，又需要买多少瓶可乐？（需写出分析思路）"></a>28人买可乐喝，3个可乐瓶盖可以换一瓶可乐，那么要买多少瓶可乐，够28人喝？假如是50人，又需要买多少瓶可乐？（需写出分析思路）</h2><p>由题设3个瓶盖可以换一瓶可乐知即3瓶可以换1瓶。<br>    解：设需要买x瓶可乐够28人喝。<br>        x/3 + x = 28<br>        (4/3)x = 28<br>          x = 28*3/4<br>          x = 21(瓶）<br>    答：要买21瓶可乐够28人喝。</p>
+<pre><code>解：设需要买x瓶可乐够50人喝。
+    x/3 + x = 50
+    (4/3)x = 50
+      x = 50*3/4
+      x = 37(瓶）...2(瓶盖)
+答：买37瓶的时候还差2个瓶盖才够50人喝，所以需要买38瓶。
+</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test9</span> </span>&#123;</span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * n代表人数</span><br><span class="line">	 * <span class="doctag">@param</span> n</span><br><span class="line">	 * <span class="doctag">@return</span> 需要购买的可乐数</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">		<span class="comment">//是3的整数倍,不能全部兑换,只能兑换n/3-1瓶</span></span><br><span class="line">		<span class="keyword">if</span>(n%<span class="number">3</span> == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> n-(n/<span class="number">3</span>-<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/* </span><br><span class="line">		 * 不是3的整数倍,只能兑换floor(n/3)瓶</span><br><span class="line">		 * ps:由于向下取整符号有点难输，所以采用floor代替</span><br><span class="line">		 * 因为被除数和除数都为int类型所以返回int的向下取整		 * </span><br><span class="line">		 */</span></span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> n-(n/<span class="number">3</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"需要买"</span>+fun(<span class="number">50</span>)+<span class="string">"瓶可乐"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="金额转换，阿拉伯数字转换成中国传统形式。例如：101000001010-转换为-壹仟零壹拾亿零壹仟零壹拾圆整"><a href="#金额转换，阿拉伯数字转换成中国传统形式。例如：101000001010-转换为-壹仟零壹拾亿零壹仟零壹拾圆整" class="headerlink" title="金额转换，阿拉伯数字转换成中国传统形式。例如：101000001010   转换为   壹仟零壹拾亿零壹仟零壹拾圆整"></a>金额转换，阿拉伯数字转换成中国传统形式。例如：101000001010   转换为   壹仟零壹拾亿零壹仟零壹拾圆整</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test10</span> </span>&#123;</span><br><span class="line">	<span class="comment">//num寸放基本数字对应汉字</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">char</span>[] num = &#123; <span class="string">'零'</span>, <span class="string">'壹'</span>, <span class="string">'贰'</span>, <span class="string">'叁'</span>, <span class="string">'肆'</span>, <span class="string">'伍'</span>, <span class="string">'陆'</span>, <span class="string">'柒'</span>, <span class="string">'捌'</span>, <span class="string">'玖'</span> &#125;;</span><br><span class="line">	<span class="comment">//lv1对应十/百/千</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">char</span>[] lv1 = &#123; <span class="string">'拾'</span>, <span class="string">'佰'</span>, <span class="string">'仟'</span> &#125;;</span><br><span class="line">	<span class="comment">//lv2对应万/亿/万亿</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> String[] lv2 = &#123; <span class="string">"万"</span>, <span class="string">"億"</span>, <span class="string">"万億"</span>&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 功能：从键盘读取一行字符串</span><br><span class="line">	 * </span><br><span class="line">	 * <span class="doctag">@return</span></span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> String <span class="title">getString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> Scanner(System.in).nextLine();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 功能：判断一个字符串是否为可以表示人民币的数字</span><br><span class="line">	 * </span><br><span class="line">	 * <span class="doctag">@param</span> str</span><br><span class="line">	 * <span class="doctag">@return</span> 如果是返回true,否则返回false</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isMoneyNumber</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//以1-9开头中间出现0或多个数字末尾出现0或1次.xx(x代表0-9)</span></span><br><span class="line">		<span class="keyword">return</span> str.matches(<span class="string">"^[1-9]\\d*(\\.\\d&#123;2&#125;)?$"</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 功能：将一个阿拉伯数字表示的货币字符串转换成汉字表示的货币字符串</span><br><span class="line">	 * </span><br><span class="line">	 * <span class="doctag">@param</span> str</span><br><span class="line">	 * <span class="doctag">@return</span></span><br><span class="line">	 * <span class="doctag">@throws</span> Exception</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">static</span> String <span class="title">transferToChineseMoney</span><span class="params">(String str)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="comment">/*</span><br><span class="line">		 * 100		-&gt; 壹佰元整 </span><br><span class="line">		 * 100.00	-&gt; 一百元整 </span><br><span class="line">		 * 3 		-&gt; 叁元整</span><br><span class="line">		 * 12.10 	-&gt; 十二元壹角零分 </span><br><span class="line">		 * 23.04 	-&gt; 贰拾叁元零角肆分</span><br><span class="line">		 * 据此，需要考虑到角和分的处理。</span><br><span class="line">		 */</span></span><br><span class="line">		</span><br><span class="line">		String headStr = <span class="keyword">null</span>;	<span class="comment">// 小数点前面部分</span></span><br><span class="line">		String endStr = <span class="keyword">null</span>;	<span class="comment">// 小数点后面部分</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//单独处理以0开头的数据</span></span><br><span class="line">		<span class="keyword">if</span>(str.startsWith(<span class="string">"0"</span>)) &#123;</span><br><span class="line">			<span class="comment">//符合0.xx(x代表0-9)</span></span><br><span class="line">			<span class="keyword">if</span>(str.matches(<span class="string">"^[0](\\.\\d&#123;2&#125;)?$"</span>)) &#123;</span><br><span class="line">				<span class="keyword">if</span>(str.contains(<span class="string">"."</span>)) &#123;</span><br><span class="line">					endStr = str.split(<span class="string">"\\."</span>)[<span class="number">1</span>];</span><br><span class="line">					<span class="comment">//0.00</span></span><br><span class="line">					<span class="keyword">if</span>(endStr.equals(<span class="string">"00"</span>)) &#123;</span><br><span class="line">						<span class="keyword">return</span> <span class="string">"零圆"</span>;</span><br><span class="line">					&#125;</span><br><span class="line">					<span class="keyword">return</span> <span class="string">"零圆"</span> + handleEnd(endStr);</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> <span class="string">"零圆"</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"输入数据有误，请输入能表示货币的阿拉伯数字！"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (!Test10.isMoneyNumber(str)) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"输入数据有误，请输入能表示货币的阿拉伯数字！"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span> (str.contains(<span class="string">"."</span>)) &#123;</span><br><span class="line">			String[] ss = str.split(<span class="string">"\\."</span>);</span><br><span class="line">			headStr = ss[<span class="number">0</span>];</span><br><span class="line">			endStr = ss[<span class="number">1</span>];</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			headStr = str;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/*</span><br><span class="line">		 * 金额达到10000000000000000（1兆）以上,向外抛出运行异常</span><br><span class="line">		 */</span></span><br><span class="line">		<span class="keyword">if</span> (headStr.length() &gt;= <span class="number">16</span>) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"您输入的金额已经达到1兆以上了，天啊，您确定输入正确么？！"</span>);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		String head = handleHead(headStr);</span><br><span class="line">		String end = handleEnd(endStr);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> head + end;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 处理xx圆</span><br><span class="line">	 * </span><br><span class="line">	 * <span class="doctag">@param</span> head</span><br><span class="line">	 * <span class="doctag">@return</span></span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">handleHead</span><span class="params">(String headStr)</span> </span>&#123;</span><br><span class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">char</span>[] headArray = headStr.toCharArray();</span><br><span class="line">		<span class="keyword">boolean</span> preZero = <span class="keyword">false</span>;	<span class="comment">//判断前一位是否的0</span></span><br><span class="line">		<span class="keyword">int</span> zeroCount = <span class="number">0</span>;			<span class="comment">//判断前面相邻的有几个0</span></span><br><span class="line">		<span class="comment">/*循环从左到右处理每个数字*/</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; headArray.length; i++) &#123;</span><br><span class="line">			<span class="comment">//拾、佰、仟</span></span><br><span class="line">			<span class="keyword">int</span> lv1Index = (headArray.length-<span class="number">1</span> - i) % <span class="number">4</span>;</span><br><span class="line">			<span class="comment">//万、億</span></span><br><span class="line">			<span class="keyword">int</span> lv2Index = (headArray.length-<span class="number">1</span> - i) / <span class="number">4</span>;</span><br><span class="line">			</span><br><span class="line">			<span class="comment">/* 当前位为0，则使得preZero置为真，zeroCount++，</span><br><span class="line">			 * 需要处理'万'和'億'（因为没有零万、零亿）</span><br><span class="line">			 */</span></span><br><span class="line">			<span class="keyword">if</span> (headArray[i] == <span class="string">'0'</span>)&#123;	</span><br><span class="line">				preZero = <span class="keyword">true</span>;</span><br><span class="line">				zeroCount++;</span><br><span class="line">				<span class="comment">/* 处理'万'和'億'：当前位处于万位或亿位（lv1Index == 0 &amp;&amp; lv2Index &gt; 0）</span><br><span class="line">				 * 且前面的相邻的零小于4位输出该位的'万'或'億'或‘万億’</span><br><span class="line">				 * 如果超过4位，则不需要输出</span><br><span class="line">				 * 例如：100000010壹億零拾，在万位时发现zeroCount=4[万位为0，前面3个0，共4个零]即万位到亿位上都没有数字则万为不输出，</span><br><span class="line">				 * 亿也是同理，它们都是逢4位相间出现一次）</span><br><span class="line">				 */</span></span><br><span class="line">				<span class="keyword">if</span> (lv1Index == <span class="number">0</span> &amp;&amp; lv2Index &gt; <span class="number">0</span> &amp;&amp; zeroCount &lt; <span class="number">4</span>)&#123;</span><br><span class="line">					sb.append(lv2[ lv2Index-<span class="number">1</span> ]);</span><br><span class="line">					preZero = <span class="keyword">false</span>;</span><br><span class="line">				&#125;				</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="comment">/* </span><br><span class="line">			 * 当前位不为0，则使得preCount置为0</span><br><span class="line">			 * 如果前一个数为0，则输出[零 + XXX]</span><br><span class="line">			 * 如果当前位处于十百千（十/百/千/十万/百万/千万...），则输出[XXX + 拾/佰/仟]</span><br><span class="line">			 * 如果当前位处于万亿（万/亿/万亿...），则输出[XXX + 万/億]</span><br><span class="line">			 */</span></span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				zeroCount = <span class="number">0</span>;</span><br><span class="line">				<span class="keyword">if</span> (preZero)&#123;</span><br><span class="line">					sb.append(num[<span class="number">0</span>]);</span><br><span class="line">					preZero = <span class="keyword">false</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">				sb.append(num[Integer.parseInt(headArray[i]+<span class="string">""</span>)]);</span><br><span class="line">				<span class="keyword">if</span> (lv1Index &gt; <span class="number">0</span>)&#123;</span><br><span class="line">					sb.append(lv1[Integer.parseInt((lv1Index-<span class="number">1</span>)+<span class="string">""</span>)]);</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span> (lv1Index == <span class="number">0</span> &amp;&amp; lv2Index &gt;<span class="number">0</span>)&#123;</span><br><span class="line">					sb.append(lv2 [Integer.parseInt((lv2Index-<span class="number">1</span>)+<span class="string">""</span>)]);		</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//末尾添加人民币单位'圆'</span></span><br><span class="line">		sb.append(<span class="string">'圆'</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> sb.toString();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span><br><span class="line">	 * 处理xx角xx分的问题</span><br><span class="line">	 * </span><br><span class="line">	 * <span class="doctag">@param</span> endStr</span><br><span class="line">	 * <span class="doctag">@return</span></span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">handleEnd</span><span class="params">(String endStr)</span> </span>&#123;</span><br><span class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">		<span class="keyword">if</span>(endStr == <span class="keyword">null</span>)</span><br><span class="line">			sb.append(<span class="string">"整"</span>);</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span> (endStr.equals(<span class="string">"00"</span>) ) &#123;</span><br><span class="line">				sb.append(<span class="string">"整"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				sb.append(num[Integer.parseInt(endStr.charAt(<span class="number">0</span>) + <span class="string">""</span>)] + <span class="string">"角"</span></span><br><span class="line">						+ num[Integer.parseInt(endStr.charAt(<span class="number">1</span>) + <span class="string">""</span>)] + <span class="string">"分"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">		<span class="keyword">return</span> sb.toString();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		System.out.print(<span class="string">"请输入能表示货币的阿拉伯数字（1兆以内，如果有小数请保留2位）:"</span>);</span><br><span class="line">		String str = Test10.getString();</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			System.out.println(str + <span class="string">" 对应的汉字货币格式为："</span></span><br><span class="line">					+ Test10.transferToChineseMoney(str));</span><br><span class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">			<span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="CodeForGod Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java笔试/" rel="tag">#Java笔试</a>
+          
+            <a href="/tags/编程题/" rel="tag">#编程题</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/15/hello/" rel="next" title="hello">
+                <i class="fa fa-chevron-left"></i> hello
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/20/黑马就业班入学面试1/" rel="prev" title="黑马就业班入学面试1">
+                黑马就业班入学面试1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/19/黑马入学考试题/"
+           data-title="黑马入学考试题" data-url="http://codeforgod.github.io/2016/06/19/黑马入学考试题/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar1.jpg"
+               alt="CodeForGod" />
+          <p class="site-author-name" itemprop="name">CodeForGod</p>
+          <p class="site-description motion-element" itemprop="description">记录生活点滴</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/codeforgod" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/codeforgod" target="_blank" title="新浪微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  新浪微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imooc.com/" title="慕课网" target="_blank">慕课网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.shiyanlou.com/" title="实验楼" target="_blank">实验楼</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dvd.boxuegu.com/" title="博学谷视频库" target="_blank">博学谷视频库</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.atguigu.com/" title="尚硅谷" target="_blank">尚硅谷</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.java1234.com/" title="java知识分享网" target="_blank">java知识分享网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://so.baiduyun.me/" title="百度云资源搜索" target="_blank">百度云资源搜索</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cmsblogs.com/" title="cmblog" target="_blank">cmblog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net" title="csdn博客" target="_blank">csdn博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn" title="新浪博客" target="_blank">新浪博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://edu.51cto.com/" title="51CTO学院" target="_blank">51CTO学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/" title="博客园" target="_blank">博客园</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法中的内部类能不能访问方法中的局部变量，为什么？"><span class="nav-number">1.</span> <span class="nav-text">方法中的内部类能不能访问方法中的局部变量，为什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java中的内部类分四种：成员内部类、局部内部类、静态内部类和匿名内部类。"><span class="nav-number">1.1.</span> <span class="nav-text">Java中的内部类分四种：成员内部类、局部内部类、静态内部类和匿名内部类。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部内部类：-即在方法中定义的内部类，与局部变量类似，在局部内部类前不加修饰符public或private，其范围为定义它的代码块。"><span class="nav-number">1.2.</span> <span class="nav-text">局部内部类： 即在方法中定义的内部类，与局部变量类似，在局部内部类前不加修饰符public或private，其范围为定义它的代码块。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意：局部内部类中不可定义静态变量，可以访问外部类的局部变量-即方法内的变量-，但是变量必须是final的。"><span class="nav-number">1.3.</span> <span class="nav-text">注意：局部内部类中不可定义静态变量，可以访问外部类的局部变量(即方法内的变量)，但是变量必须是final的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意："><span class="nav-number">1.4.</span> <span class="nav-text">注意：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综上所述，再重新看待这道题："><span class="nav-number">1.5.</span> <span class="nav-text">综上所述，再重新看待这道题：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从生命周期的角度看："><span class="nav-number">1.5.1.</span> <span class="nav-text">从生命周期的角度看：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#归纳上述回答的真正核心是：局部内部类对象中包含有要访问的final型局部变量的一个拷贝，成为它的数据成员。"><span class="nav-number">1.5.2.</span> <span class="nav-text">归纳上述回答的真正核心是：局部内部类对象中包含有要访问的final型局部变量的一个拷贝，成为它的数据成员。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList-list-new-ArrayList-在这个泛型为Integer的ArrayList中存放一个String类型的对象。"><span class="nav-number">2.</span> <span class="nav-text">ArrayList list = new ArrayList(); 在这个泛型为Integer的ArrayList中存放一个String类型的对象。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请说明Java中字符’-’的含义，有什么作用？"><span class="nav-number">3.</span> <span class="nav-text">请说明Java中字符’\’的含义，有什么作用？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在Java中反斜杠’-’代表的是转义字符。"><span class="nav-number">3.1.</span> <span class="nav-text">在Java中反斜杠’\’代表的是转义字符。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转义字符：通过’-’来转变后面字母或符号的含义。"><span class="nav-number">3.2.</span> <span class="nav-text">转义字符：通过’\’来转变后面字母或符号的含义。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用转义字符："><span class="nav-number">3.3.</span> <span class="nav-text">常用转义字符：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API上如下描述："><span class="nav-number">3.4.</span> <span class="nav-text">API上如下描述：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#假如我们在开发一个系统时需要对员工进行建模，员工包含-3-个属性：姓名、工号以及工资。经理也是员工，除了含有员工的属性外，另为还有一个奖金属性。请使用继承的思想设计出员工类和经理类。要求类中提供必要的方法进行属性访问。"><span class="nav-number">4.</span> <span class="nav-text">假如我们在开发一个系统时需要对员工进行建模，员工包含 3 个属性：姓名、工号以及工资。经理也是员工，除了含有员工的属性外，另为还有一个奖金属性。请使用继承的思想设计出员工类和经理类。要求类中提供必要的方法进行属性访问。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义一个文件输入流，调用read-byte-b-方法将exercise-txt文件中的所有内容打印出来-byte数组的大小限制为5-。"><span class="nav-number">5.</span> <span class="nav-text">定义一个文件输入流，调用read(byte[] b)方法将exercise.txt文件中的所有内容打印出来(byte数组的大小限制为5)。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把以下IP存入一个txt文件，编写程序把这些IP按数值大小，从小到大排序并打印出来。"><span class="nav-number">6.</span> <span class="nav-text">把以下IP存入一个txt文件，编写程序把这些IP按数值大小，从小到大排序并打印出来。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写一方法，打印等长的二维数组，要求从1开始的自然数由方阵的最外圈向内螺旋方式地顺序排列。-如：-n-4-则打印："><span class="nav-number">7.</span> <span class="nav-text">写一方法，打印等长的二维数组，要求从1开始的自然数由方阵的最外圈向内螺旋方式地顺序排列。 如： n = 4 则打印：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写一个程序，它先将键盘上输入的一个字符串转换成十进制整数，然后打印出这个十进制整数对应的二进制形式。这个程序要考虑输入的字符串不能转换成一个十进制整数的情况，并对转换失败的原因要区分出是数字太大，还是其中包含有非数字字符的情况。提示：十进制数转二进制数的方式是用这个数除以2，余数就是二进制数的最低位，接着再用得到的商作为被除数去除以2，这次得到的余数就是次低位，如此循环，直到被除数为0为止。其实，只要明白了打印出一个十进制数的每一位的方式（不断除以10，得到的余数就分别是个位，十位，百位），就很容易理解十进制数转二进制数的这种方式。"><span class="nav-number">8.</span> <span class="nav-text">编写一个程序，它先将键盘上输入的一个字符串转换成十进制整数，然后打印出这个十进制整数对应的二进制形式。这个程序要考虑输入的字符串不能转换成一个十进制整数的情况，并对转换失败的原因要区分出是数字太大，还是其中包含有非数字字符的情况。提示：十进制数转二进制数的方式是用这个数除以2，余数就是二进制数的最低位，接着再用得到的商作为被除数去除以2，这次得到的余数就是次低位，如此循环，直到被除数为0为止。其实，只要明白了打印出一个十进制数的每一位的方式（不断除以10，得到的余数就分别是个位，十位，百位），就很容易理解十进制数转二进制数的这种方式。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28人买可乐喝，3个可乐瓶盖可以换一瓶可乐，那么要买多少瓶可乐，够28人喝？假如是50人，又需要买多少瓶可乐？（需写出分析思路）"><span class="nav-number">9.</span> <span class="nav-text">28人买可乐喝，3个可乐瓶盖可以换一瓶可乐，那么要买多少瓶可乐，够28人喝？假如是50人，又需要买多少瓶可乐？（需写出分析思路）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#金额转换，阿拉伯数字转换成中国传统形式。例如：101000001010-转换为-壹仟零壹拾亿零壹仟零壹拾圆整"><span class="nav-number">10.</span> <span class="nav-text">金额转换，阿拉伯数字转换成中国传统形式。例如：101000001010   转换为   壹仟零壹拾亿零壹仟零壹拾圆整</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CodeForGod</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeforgod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+</body>
+</html>
