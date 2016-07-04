@@ -1,0 +1,1278 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|console:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="String," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="为上帝而编程" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="终于忙完了学校的事情，接下来就是要好好准备面试了，如题，走起……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入Java之String">
+<meta property="og:url" content="http://codeforgod.github.io/2016/07/03/深入Java之String/index.html">
+<meta property="og:site_name" content="为上帝而编程">
+<meta property="og:description" content="终于忙完了学校的事情，接下来就是要好好准备面试了，如题，走起……">
+<meta property="og:image" content="http://codeforgod.github.io/upload/String.png">
+<meta property="og:updated_time" content="2016-07-04T09:17:41.238Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入Java之String">
+<meta name="twitter:description" content="终于忙完了学校的事情，接下来就是要好好准备面试了，如题，走起……">
+<meta name="twitter:image" content="http://codeforgod.github.io/upload/String.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codeforgod.github.io/2016/07/03/深入Java之String/"/>
+
+  <title> 深入Java之String | 为上帝而编程 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">为上帝而编程</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一人一生一信仰</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+	  
+	  <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'eePJWPEw6AZxg-LM_ZC7','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                深入Java之String
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-03T23:16:28+08:00" content="2016-07-03">
+              2016-07-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java基础提升/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础提升</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/03/深入Java之String/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/03/深入Java之String/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/03/深入Java之String/" class="leancloud_visitors" data-flag-title="深入Java之String">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/upload/String.png" alt="String"><br>终于忙完了学校的事情，接下来就是要好好准备面试了，如题，走起……</p>
+<a id="more"></a>
+<h2 id="第一阶段"><a href="#第一阶段" class="headerlink" title="第一阶段"></a>第一阶段</h2><p>这个阶段主要是了解String的主要使用方法并能够熟练使用。此阶段主要是多动手，多思考。<br>下面是这一阶段的总结：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> string;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * String类是对字符串的封装。</span><br><span class="line"> * 那么它就提供了对字符串进行操作的方法。</span><br><span class="line"> * </span><br><span class="line"> * 常见的操作有哪些？</span><br><span class="line"> * 1. 获取</span><br><span class="line"> *     1.1 字符串的长度。</span><br><span class="line"> *         int length()</span><br><span class="line"> *     1.2 根据位置获取位置上的某个字符（从0开始），如果不存在则出现StringIndexOutOfBoundsException。</span><br><span class="line"> *         char charAt(int index)</span><br><span class="line"> *     1.3 根据字符获取该字符在字符串中的位置（从0开始）。</span><br><span class="line"> *         int indexOf(int ch):返回ch在字符串中第一次出现的位置,如果不存在则返回-1</span><br><span class="line"> *         int indexOf(int ch, int fromIndex):从fromIndex开始，获取ch在字符串中出现的位置</span><br><span class="line"> *         </span><br><span class="line"> *         int indexOf(String str):返回str在字符串中第一次出现的位置</span><br><span class="line"> *         int indexOf(String str, int fromIndex):从fromIndex开始，获取str在字符串中出现的位置</span><br><span class="line"> *         </span><br><span class="line"> *         int lastIndexOf(int ch)</span><br><span class="line"> *         int lastIndexOf(int ch, int fromIndex)</span><br><span class="line"> *         int lastIndexOf(String str)</span><br><span class="line"> *         int lastIndexOf(String str, int fromIndex)</span><br><span class="line"> *     1.4 获取子串</span><br><span class="line"> *         CharSequence subSequence(int beginIndex, int endIndex)：返回一个新的字符序列，它是此序列的一个子序列。 </span><br><span class="line"> *         String substring(int beginIndex)：返回一个新的字符串，它是此字符串的一个子字符串。 </span><br><span class="line"> *         String substring(int beginIndex, int endIndex)：返回一个新字符串，它是此字符串的一个子字符串，包含头，不包含尾。 </span><br><span class="line"> * </span><br><span class="line"> * 2. 判断</span><br><span class="line"> *     2.1 字符串是否为空</span><br><span class="line"> *         boolean isEmpty():原理就是判断该字符串的length()是否为0</span><br><span class="line"> *         </span><br><span class="line"> *     2.2 字符串是否包含一个子串</span><br><span class="line"> *         boolean contains(CharSequence s)</span><br><span class="line"> *         * indexOf(str)可以索引子串第一次出现的位置，如果不存在则返回-1，所以也可以判断是否包含</span><br><span class="line"> *         </span><br><span class="line"> *         * public interface CharSequence</span><br><span class="line"> *         * 所有已知实现类： CharBuffer, Segment, String, StringBuffer, StringBuilder </span><br><span class="line"> *         * CharSequence 是 char 值的一个可读序列。此接口对许多不同种类的 char 序列提供统一的只读访问。char 值表示 Basic Multilingual Plane (BMP) 或代理项中的一个字符。有关详细信息，请参阅 Unicode 字符表示形式。</span><br><span class="line"> *         * 此接口不修改 equals 和 hashCode 方法的常规协定。因此，通常未定义比较实现 CharSequence 的两个对象的结果。每个对象都可以通过一个不同的类实现，而且不能保证每个类能够测试其实例与其他类的实例的相等性。</span><br><span class="line"> *         * 因此，使用任意 CharSequence 实例作为集合中的元素或映射中的键是不合适的。</span><br><span class="line"></span><br><span class="line"> *     2.3 字符串是否以某个子串开头</span><br><span class="line"> *         boolean startsWith(String str)</span><br><span class="line"> *     2.4 字符串是否以某个子串结尾</span><br><span class="line"> *         boolean endsWith(String str)</span><br><span class="line"> *     </span><br><span class="line"> *     2.5 判断字符串的内容是否相同，复写了Object中的equals方法</span><br><span class="line"> *         boolean equals(Object obj):将此字符串与指定的对象比较。当且仅当该参数不为 null，并且是与此对象表示相同字符序列的 String 对象时，结果才为 true。 </span><br><span class="line"> *         boolean equals(CharSequence cs):将此字符串与指定的 CharSequence 比较。当且仅当此 String 与指定序列表示相同的 char 值序列时，结果才为 true。 </span><br><span class="line"> *         boolean equalsIgnoreCase(String str):忽略大小写进行内容比较</span><br><span class="line"> *         </span><br><span class="line"> *     2.6 判断字符串是否符合给定的规则</span><br><span class="line"> *         boolean matches(String regex):告知此字符串是否匹配给定的正则表达式。 </span><br><span class="line"> *         </span><br><span class="line"> *     2.7 对两个字符串进行比较</span><br><span class="line"> *         int compareTo(String anotherString)：按字典顺序比较两个字符串。主要用于String排序，更多： http://blog.csdn.net/scyatcs/article/details/16974893</span><br><span class="line"> *         int compareToIgnoreCase(String str)：按字典顺序比较两个字符串，不考虑大小写。</span><br><span class="line"> * </span><br><span class="line"> * 3. 转换</span><br><span class="line"> *     3.1 将字符数组转换成字符串</span><br><span class="line"> *         构造函数： String(char[] value)</span><br><span class="line"> *                    String(char[] value, int offset, int count):将字符数组的一部分转换成字符串</span><br><span class="line"> *         </span><br><span class="line"> *         静态方法： static copyValueOf(char[] data)</span><br><span class="line"> *                    static copyValueOf(char[] data, int offset, int count)</span><br><span class="line"> *                    </span><br><span class="line"> *                    static valueOf(char[] data)</span><br><span class="line"> *                    static valueOf(char[] data, int offset, int count)</span><br><span class="line"> *     3.2 将字符串转成字符数组</span><br><span class="line"> *         char[] toCharArray() </span><br><span class="line"> *          </span><br><span class="line"> *     3.3 将字节数组转换成字符串</span><br><span class="line"> *         String(byte[] bytes) </span><br><span class="line"> *         String(byte[] bytes, Charset charset)</span><br><span class="line"> *         String(byte[] bytes, String charsetName) </span><br><span class="line"> *         </span><br><span class="line"> *         String(byte[] bytes, int offset, int length) </span><br><span class="line"> *         String(byte[] bytes, int offset, int length, Charset charset)</span><br><span class="line"> *         String(byte[] bytes, int offset, int length, String charsetName) </span><br><span class="line"> *         </span><br><span class="line"> *     3.4 将字符串转换成字节数组</span><br><span class="line"> *         byte[] getBytes()  </span><br><span class="line"> *         byte[] getBytes(Charset charset)</span><br><span class="line"> *         byte[] getBytes(String charsetName)</span><br><span class="line"> *     </span><br><span class="line"> *     3.5 将基本数据类型转换成字符串</span><br><span class="line"> *         static String valueOf(boolean b)</span><br><span class="line"> *         static String valueOf(char c)</span><br><span class="line"> *         static String valueOf(double d)</span><br><span class="line"> *         static String valueOf(float f) </span><br><span class="line"> *         static String valueOf(int i) 		//3+"";String.valueOf(3);</span><br><span class="line"> *         static String valueOf(long l) </span><br><span class="line"> *         static String valueOf(Object obj)	//由obj的toString方法实现</span><br><span class="line"> *         </span><br><span class="line"> *     3.6 分割字符串成字符串数组</span><br><span class="line"> *         String[] split(String regex)：根据给定正则表达式的匹配拆分此字符串。</span><br><span class="line"> *         String[] split(String regex, int limit)：根据匹配给定的正则表达式来拆分此字符串。</span><br><span class="line"> *         例如，字符串 "boo:and:foo" 使用这些参数可生成以下结果：</span><br><span class="line"> *         Regex Limit 结果 </span><br><span class="line"> *			: 	2 	&#123; "boo", "and:foo" &#125; </span><br><span class="line"> *			: 	5 	&#123; "boo", "and", "foo" &#125; </span><br><span class="line"> *			: 	-2 	&#123; "boo", "and", "foo" &#125; </span><br><span class="line"> *			o 	5 	&#123; "b", "", ":and:f", "", "" &#125; </span><br><span class="line"> *			o 	-2 	&#123; "b", "", ":and:f", "", "" &#125; </span><br><span class="line"> *			o 	0 	&#123; "b", "", ":and:f" &#125;</span><br><span class="line"> *</span><br><span class="line"> *    3.7 转换大小写</span><br><span class="line"> *        String toLowerCase()：使用默认语言环境的规则将此 String 中的所有字符都转换为小写。</span><br><span class="line"> *        String toLowerCase(Locale locale)：使用给定 Locale 的规则将此 String 中的所有字符都转换为小写。</span><br><span class="line"> *        String toUpperCase()</span><br><span class="line"> *        String toUpperCase(Locale locale)</span><br><span class="line"> *    </span><br><span class="line"> *    3.8 去除空格</span><br><span class="line"> *        String trim()：返回字符串的副本，忽略前导空白和尾部空白。</span><br><span class="line"> *        </span><br><span class="line"> *    3.9 格式化</span><br><span class="line"> *    static String format(Locale l, String format, Object... args)：使用指定的语言环境、格式字符串和参数返回一个格式化字符串。</span><br><span class="line"> *    static String format(String format, Object... args)：使用指定的格式字符串和参数返回一个格式化字符串。 </span><br><span class="line"> *    更多关于format()的使用：http://blog.csdn.net/lonely_fireworks/article/details/7962171/</span><br><span class="line"> *</span><br><span class="line"> * 4. 替换</span><br><span class="line"> *        String replace(char oldChar, char newChar) </span><br><span class="line"> *        返回一个新的字符串，它是通过用 newChar 替换此字符串中出现的所有 oldChar 得到的。 </span><br><span class="line"> *        String replace(CharSequence target, CharSequence replacement) </span><br><span class="line"> *        使用指定的字面值替换序列替换此字符串所有匹配字面值目标序列的子字符串。 </span><br><span class="line"> *        String replaceAll(String regex, String replacement) </span><br><span class="line"> *        使用给定的 replacement 替换此字符串所有匹配给定的正则表达式的子字符串。 </span><br><span class="line"> *        String replaceFirst(String regex, String replacement) </span><br><span class="line"> *        使用给定的 replacement 替换此字符串匹配给定的正则表达式的第一个子字符串。 </span><br><span class="line"> *        </span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringMethodDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method_replace</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String s = <span class="string">"Hello Java"</span>;</span><br><span class="line">		String s1 = s.replace(<span class="string">'a'</span>, <span class="string">'b'</span>);<span class="comment">//如果要替换的字符不存在则返回原字符串</span></span><br><span class="line">		</span><br><span class="line">		sop(<span class="string">"s="</span>+s);<span class="comment">//字符串一旦被初始化就不会改变</span></span><br><span class="line">		sop(<span class="string">"s1="</span>+s1);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method_trans</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">char</span>[] arr = &#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>,<span class="string">'g'</span>&#125;;</span><br><span class="line">		String str = <span class="keyword">new</span> String(arr,<span class="number">1</span>,<span class="number">3</span>);<span class="comment">//bcd,1为下标（从0开始），3为个数</span></span><br><span class="line">		sop(<span class="string">"str="</span>+str);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">char</span>[] chs = str.toCharArray();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">char</span> c : chs) &#123;</span><br><span class="line">			sop(c);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method_is</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String str = <span class="string">"ArrayDemo.java"</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//判断文件名称是否是以"Array"开头</span></span><br><span class="line">		sop(str.startsWith(<span class="string">"Array"</span>));</span><br><span class="line">		<span class="comment">//判断文件类型是否是java文件</span></span><br><span class="line">		sop(str.endsWith(<span class="string">".java"</span>));</span><br><span class="line">		<span class="comment">//判断文件名是否包含"Demo"</span></span><br><span class="line">		sop(str.contains(<span class="string">"Demo"</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//判断内容是否相同</span></span><br><span class="line">		sop(str.equals(<span class="keyword">new</span> StringBuilder(<span class="string">"ArrayDemo.java"</span>)));<span class="comment">//参数必须为String类型，false</span></span><br><span class="line">		sop(str.contentEquals(<span class="keyword">new</span> StringBuilder(<span class="string">"ArrayDemo.java"</span>)));<span class="comment">//参数为CharSequence接口，true</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">method_get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String str = <span class="string">"abcdefabss"</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//长度</span></span><br><span class="line">		sop(str.length());</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//根据索引获取字符</span></span><br><span class="line">		sop(str.charAt(<span class="number">4</span>));<span class="comment">//当访问到字符串中的下标不存在时会出现StringIndexOutOfBoundsException</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//根据字符获取索引</span></span><br><span class="line">		sop(str.indexOf(<span class="string">'a'</span>));</span><br><span class="line">		sop(str.indexOf(<span class="string">'a'</span>,<span class="number">3</span>));<span class="comment">//如果没有找到则返回-1</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//反向索引一个字符出现的位置，返回该字符在String中的下标。</span></span><br><span class="line">		sop(str.lastIndexOf(<span class="string">'a'</span>));</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//子串</span></span><br><span class="line">		sop(str.substring(<span class="number">2</span>));</span><br><span class="line">		sop(str.substring(<span class="number">2</span>,<span class="number">4</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"><span class="comment">//		method_get();</span></span><br><span class="line"><span class="comment">//		method_is();</span></span><br><span class="line"><span class="comment">//		sop(reverse(str));</span></span><br><span class="line"><span class="comment">//		sop(reverse(str,2,6));</span></span><br><span class="line">		sop(getMaxSubString(<span class="string">"dsalkjflksdfj"</span>,<span class="string">"rrueuiorsaxcmvm"</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		System.out.println(obj);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	 * 模拟一个trim方法，去除字符串两端的空格。</span><br><span class="line">	 * 思路：</span><br><span class="line">	 *     1.获取字符串第一个不为空格字符的下标（分别从左到右和从右到左）</span><br><span class="line">	 *     2.将左右两边第一个不为字符的下标的中间部分截取出来就是trim后的字符串</span><br><span class="line">	 * </span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">myTrim</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> start=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> end=str.length()-<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(start&lt;=end &amp;&amp; str.charAt(start) == <span class="string">' '</span>)</span><br><span class="line">			start++;</span><br><span class="line">		<span class="keyword">while</span>(start&lt;=end &amp;&amp; str.charAt(end) == <span class="string">' '</span>)</span><br><span class="line">			end--;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> str.substring(start,end+<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	 * 将一个字符串进行反转。</span><br><span class="line">	 * 思路：</span><br><span class="line">	 *     1.将字符串转换成字符数组</span><br><span class="line">	 *     2.将字符数组进行反转</span><br><span class="line">	 *     3.将反转后的字符数组转换成字符串</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">reverse</span><span class="params">(String str)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//方法一</span></span><br><span class="line"><span class="comment">//		StringBuilder sb = new StringBuilder(str);</span></span><br><span class="line"><span class="comment">//		sb.reverse();</span></span><br><span class="line"><span class="comment">//		return sb.toString();</span></span><br><span class="line">		<span class="comment">//方法二</span></span><br><span class="line">		<span class="keyword">char</span>[] chs = str.toCharArray();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> start=<span class="number">0</span>,end=chs.length-<span class="number">1</span>; start &lt; end; start++,end--)</span><br><span class="line">			swap(chs,start,end);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> String.valueOf(chs);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">char</span>[] chs, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">char</span> temp = chs[start];</span><br><span class="line">		chs[start] = chs[end];</span><br><span class="line">		chs[end] = temp;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//将字符串中指定部分进行反转。</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">reverse</span><span class="params">(String str, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">char</span>[] chs = str.toCharArray();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> left=start,right=end-<span class="number">1</span>; left&lt;right; left++,right--)</span><br><span class="line">			swap(chs,left,right);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> String.copyValueOf(chs);		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	 * 获取一个字符串在另一个字符串中出现的次数</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">subCount</span><span class="params">(String str,String key)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>((index=str.indexOf(key,index))!=-<span class="number">1</span>) &#123;</span><br><span class="line">			count++;</span><br><span class="line">			index+=key.length();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> count;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	 * 获取两个字符串中最大相同子串</span><br><span class="line">	 * 思路：</span><br><span class="line">	 *     1.将短的字符串依次缩减在长的字符串中进行匹配</span><br><span class="line">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getMaxSubString</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">		String max = s1.length()&gt;s2.length()?s1:s2;</span><br><span class="line">		String min = max==s1?s2:s1;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> x=<span class="number">0</span>; x&lt;min.length(); x++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> y=<span class="number">0</span>,z=min.length()-x; z&lt;=min.length(); y++,z++) &#123;</span><br><span class="line">				String temp = min.substring(y, z);</span><br><span class="line">				<span class="keyword">if</span>(max.contains(temp))</span><br><span class="line">					<span class="keyword">return</span> temp;</span><br><span class="line">			&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="第二阶段"><a href="#第二阶段" class="headerlink" title="第二阶段"></a>第二阶段</h2><p>对String的深入理解，从JVM的角度或更高的角度去审视String对象的原理与实现。从网上看到了一篇写的很好的博客：<a href="http://www.cnblogs.com/ITtangtang/p/3976820.html" target="_blank" rel="external">深入理解Java：String </a> </p>
+<h2 id="第三阶段"><a href="#第三阶段" class="headerlink" title="第三阶段"></a>第三阶段</h2><p>通过一些面试题来检测自己的掌握情况，这部分以后再来添加</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="CodeForGod Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/String/" rel="tag">#String</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/20/黑马就业班入学面试1/" rel="next" title="黑马就业班入学面试1">
+                <i class="fa fa-chevron-left"></i> 黑马就业班入学面试1
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/03/深入Java之String/"
+           data-title="深入Java之String" data-url="http://codeforgod.github.io/2016/07/03/深入Java之String/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar1.jpg"
+               alt="CodeForGod" />
+          <p class="site-author-name" itemprop="name">CodeForGod</p>
+          <p class="site-description motion-element" itemprop="description">记录生活点滴</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/codeforgod" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/codeforgod" target="_blank" title="新浪微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  新浪微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imooc.com/" title="慕课网" target="_blank">慕课网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.shiyanlou.com/" title="实验楼" target="_blank">实验楼</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dvd.boxuegu.com/" title="博学谷视频库" target="_blank">博学谷视频库</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.atguigu.com/" title="尚硅谷" target="_blank">尚硅谷</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.java1234.com/" title="java知识分享网" target="_blank">java知识分享网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://so.baiduyun.me/" title="百度云资源搜索" target="_blank">百度云资源搜索</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cmsblogs.com/" title="cmblog" target="_blank">cmblog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net" title="csdn博客" target="_blank">csdn博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn" title="新浪博客" target="_blank">新浪博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://edu.51cto.com/" title="51CTO学院" target="_blank">51CTO学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/" title="博客园" target="_blank">博客园</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一阶段"><span class="nav-number">1.</span> <span class="nav-text">第一阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二阶段"><span class="nav-number">2.</span> <span class="nav-text">第二阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三阶段"><span class="nav-number">3.</span> <span class="nav-text">第三阶段</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CodeForGod</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeforgod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+</body>
+</html>
