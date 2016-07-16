@@ -100,7 +100,7 @@
 <meta property="og:description" content="深入虚拟机去看待Java语法">
 <meta property="og:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
 <meta property="og:image" content="http://codeforgod.github.io/upload/float.png">
-<meta property="og:updated_time" content="2016-07-15T16:53:53.961Z">
+<meta property="og:updated_time" content="2016-07-16T05:20:55.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类型、变量与运算符">
 <meta name="twitter:description" content="深入虚拟机去看待Java语法">
@@ -524,11 +524,12 @@
 
       
         <p><img src="/upload/hardwork.jpg" alt="hardwork"><br>深入虚拟机去看待Java语法<br><a id="more"></a></p>
-<h2 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h2><p>此文的编写参考了较多经典：《Java Rules》、<br>《Java Language Specification》（Java语言规范）等，所以比较权威，不过鄙人才疏学浅，出错在所难免，望指出。</p>
+<h2 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h2><p>此文的编写参考了较多经典文献：《Java Rules》、《Java Language Specification 7》、《Java Virtual Machine Specification 7》、《Core Java》、《Java JDK8学习笔记》等，所以比较权威，不过鄙人才疏学浅，出错在所难免，望指出。</p>
 <ul>
 <li>JVM：Java虚拟机</li>
 </ul>
-<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>JVM可以操作的数据类型可分为两类：</p>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><p>Java是强类型编程语言，有助于在编译时检测错误。</p>
+<p>JVM可以操作的数据类型可分为两类：</p>
 <ul>
 <li>原始类型（Primitive Types）</li>
 <li>引用类型（Reference Types）</li>
@@ -606,7 +607,7 @@
 <h4 id="类常量"><a href="#类常量" class="headerlink" title="类常量"></a>类常量</h4><p>Java中，经常希望某个常量可以在一个类中的多个方法中使用，通常将这些常量称为类常量。<br>可以使用static final设置一个类常量，示例如下：</p>
 <pre><code>public class Constants2
 ｛
-    public `static final` CM_PER_INCH = 2.45;
+    public static final CM_PER_INCH = 2.45;
     public static main(String[] args)
     {
         double paperWidth = 8.5;
@@ -616,7 +617,15 @@
             paperHeight * CM_PER_INCH);
     }
 }
-</code></pre><h4 id="字面常量"><a href="#字面常量" class="headerlink" title="字面常量"></a>字面常量</h4><p>在Java中写下一个值，该值称为字面常数（Literal Constant）</p>
+</code></pre><h4 id="字面常量"><a href="#字面常量" class="headerlink" title="字面常量"></a>字面常量</h4><p>字面常量（Literal Constant）是原始类型、String类型或空类型的值的源代码表示。<br>包括如下：</p>
+<ul>
+<li>IntegerLiteral</li>
+<li>FloatingLiteral</li>
+<li>BooleanLiteral</li>
+<li>CharacterLiteral</li>
+<li>StringLiteral</li>
+<li>NullLiteral</li>
+</ul>
 <p><strong>整数字面常量表示：</strong></p>
 <pre><code>int n1 = 1;     //十进制
 int n2 = 0b1;    //二进制（Java7 later）
@@ -630,8 +639,172 @@ double d = 1.23e-3;
 char c2 = &apos;\&quot;&apos;;
 char c3 = &apos;\u0000&apos;;
 </code></pre><h4 id="数字常量表示法"><a href="#数字常量表示法" class="headerlink" title="数字常量表示法"></a>数字常量表示法</h4><p>Java7之后，撰写整数或浮点数常量时可以使用下划线更清楚地表示某些数字。</p>
-<p>如：<br>    int n1 = 1234_5678;<br>    int n2 = 0b1010_1010_1010;<br>    double d = 3.141_592_653;</p>
-<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2>
+<p>如：</p>
+<pre><code>int n1 = 1234_5678;
+int n2 = 0b1010_1010_1010;
+double d = 3.141_592_653;
+</code></pre><h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="整数运算"><a href="#整数运算" class="headerlink" title="整数运算"></a>整数运算</h3><p>Java编程语言提供了很多作用于整数的运算符：</p>
+<ul>
+<li><em>比较运算符，产生boolean类型的值：</em><ul>
+<li><em>数值比较运算符：<code>&lt;</code> 、 <code>&lt;=</code> 、 <code>&gt;</code> 和 <code>&gt;=</code></em></li>
+<li><em>数值相等性运算符：<code>==</code> 和 <code>！=</code></em></li>
+</ul>
+</li>
+<li><em>数值运算符，产生int或long类型的值：</em><ul>
+<li><em>一元加、减运算符：<code>+</code> 和 <code>-</code></em></li>
+<li><em>乘法运算符：`</em><code>、</code>/<code>和</code>%`*</li>
+<li><em>加法运算符：<code>+</code> 和 <code>-</code></em></li>
+<li><em>递增运算符：<code>++</code> ,同为前缀和后缀</em></li>
+<li><em>递减运算符：<code>--</code> ,同为前缀和后缀</em></li>
+<li><em>带符号和无符号移位运算符：<code>&lt;&lt;</code> 、<code>&gt;&gt;</code> 和 <code>&gt;&gt;&gt;</code></em></li>
+<li><em>逐位求补运算符：<code>~</code></em></li>
+<li><em>整数逐位运算符：<code>&amp;</code> 、 <code>|</code> 和 <code>^</code></em></li>
+</ul>
+</li>
+<li><em>条件运算符：<code>?:</code></em></li>
+<li><em>强制转换运算符，可以把一个整形值转换成任何指定数值类型的值</em></li>
+<li><em>字符串串接运算符：<code>+</code> 当给定一个String操作数和一个整型操作数时，该运算符将把整型操作数转换成以十进制形式表示其值的String，然后产生一个最新创建的String，它是两个字符串的串接。</em></li>
+<li><em>类Byte、Short、Integer、Long和Character中预定义了其它有用的构造函数、方法和常量</em></li>
+</ul>
+<p><strong>数值提升</strong></p>
+<p>如果一个二元运算符（而不是一个移位运算符）具有至少一个long类型的操作数，那么，将使用64位精度执行计算，并且数值运算符的结果是long类型。</p>
+<p>如果另一个操作数不是long类型，则首先会通过数值提升将其加宽到类型long。否则将使用32位的精度执行运算，并且数值运算符的结果是int类型。</p>
+<p>如果任一个操作数不是int类型，则首先会通过数值提升将其加宽到int类型。</p>
+<p><strong>数值溢出与计算异常</strong></p>
+<p>内置的整型运算符不会以任何方式指示上溢或下溢。</p>
+<p>如果需要空引用的拆箱转换，则整型运算符会抛出NullPointerException。</p>
+<p>此外，可以抛出一个异常的惟一整型运算符是：整型除法运算符<code>/</code>和整型求余运算符<code>%</code>，如果右边的操作数为0，那么它们会抛出一个ArithmeticException</p>
+<p>递增和递减运算符<code>++</code>和<code>--</code>，如果需要装箱转换且没有足够内存可用于该转换，那么它们将会抛出一个OutOfMemoryError。</p>
+<p>示例：</p>
+<pre><code>public class Test {
+    public static void main(String[] args) {
+        int i = 1000000;
+        System.out.println(i * i);
+        long l = i;
+        System.out.println(l * l);
+        System.out.println(20296 / (l - i));
+    }
+}
+</code></pre><p>产生如下输出：</p>
+<pre><code>-727379968
+1000000000000
+</code></pre><p>并且随后会由于l-i而在除法运算中遇到一个ArithmeticException，因为l-i等于0。第一个乘法是以32位精度执行的，而第二个乘法是一个long乘法。值-727379968是数学结果1000000000000的低32位十进制，1000000000000对于int是一个过大的值，出现上溢。</p>
+<p>任何整型的任何值都可以被强制转换成任何数值类型，反之亦然。在整型和boolean型之间没有强制转换。</p>
+<h3 id="浮点运算"><a href="#浮点运算" class="headerlink" title="浮点运算"></a>浮点运算</h3><p>Java编程语言提供了很多作用于浮点数的运算符：</p>
+<ul>
+<li><em>比较运算符，产生boolean类型的值：</em><ul>
+<li><em>数值比较运算符：<code>&lt;</code> 、 <code>&lt;=</code> 、 <code>&gt;</code> 和 <code>&gt;=</code></em></li>
+<li><em>数值相等性运算符：<code>==</code> 和 <code>！=</code></em></li>
+</ul>
+</li>
+<li><em>数值运算符，产生float或double类型的值：</em><ul>
+<li><em>一元加、减运算符：<code>+</code> 和 <code>-</code></em></li>
+<li><em>乘法运算符：`</em><code>、</code>/<code>和</code>%`*</li>
+<li><em>加法运算符：<code>+</code> 和 <code>-</code></em></li>
+<li><em>递增运算符：<code>++</code> ,同为前缀和后缀</em></li>
+<li><em>递减运算符：<code>--</code> ,同为前缀和后缀</em></li>
+<li><em>带符号和无符号移位运算符：<code>&lt;&lt;</code> 、<code>&gt;&gt;</code> 和 <code>&gt;&gt;&gt;</code></em></li>
+<li><em>逐位求补运算符：<code>~</code></em></li>
+<li><em>整数逐位运算符：<code>&amp;</code> 、 <code>|</code> 和 <code>^</code></em></li>
+</ul>
+</li>
+<li><em>条件运算符：<code>?:</code></em></li>
+<li><em>强制转换运算符，可以把一个整形值转换成任何指定数值类型的值</em></li>
+<li><em>字符串串接运算符：<code>+</code> 当给定一个String操作数和一个浮点操作数时，该运算符将把浮点操作数转换成以十进制形式表示其值的String（不会丢失信息），然后产生一个最新创建的String，它是两个字符串的串接。</em></li>
+<li><em>类Float、Double和Math中预定义了其它有用的构造函数、方法和常量</em></li>
+</ul>
+<p><strong>数值提升</strong></p>
+<p>如果一个二元运算符（而不是一个移位运算符）至少有一个操作数时浮点型，那么该运算就是一个浮点运算，即使另一个操作数是整数也是如此。</p>
+<p>如果数值运算符两侧的操作数至少有一个是double类型，那么将使用64位浮点运算执行该运算，并且数值运算符的结果是double类型的值（如果另一个数不是double类型，则首先会通过数值提升将其加宽到double类型。否则，将使用32位浮点运算执行该运算，并且数值运算符的结果是float类型。如果另一个操作符不是float类型，则会首先通过数值提升将其加宽到float类型。</p>
+<p>如果需要空引用的拆箱转换，则浮点运算符会抛出NullPointerException。递增和递减运算符<code>++</code>和<code>--</code>，如果需要装箱转换且没有足够内存可用于该转换，那么它们将会抛出一个OutOfMemoryError。</p>
+<p>上溢运算会产生一个带符号的无穷大，下溢运算会产生一个非规范的值或者一个带符号的0，不具有数学限定的结果会产生一个NaN。把NaN作为一个操作数的所有数值运算都会产生一个NaN的结果。</p>
+<p>Java需要支持<code>IEEE 754</code>非规范化的浮点数和逐渐下溢（gradual underflow），这使得证明人们期待的特殊值算法的性质变得更容易，如果计算结果是一个非规范数，则浮点运算不会刷新为0（flush to zero）。Java要求浮点运算按如下方式工作：就像每个浮点运算符将其浮点运算结果四舍五入为结果精度一样。不精确的结果必须被四舍五入为最接近无限精确结果的有代表性的值；如果两个最接近的有代表性的值近似相等，那么将会选择其最低有效位为0的那个值。这是IEEE 754标准默认的四舍五入方式，称为四舍五入至最接近的值。当把浮点值转换为整数时，Java使用四舍五入到0，在这种情况下就好像把数截断一样，丢弃尾数位。选择四舍五入到0，可以使用这种格式的值在数量上最接近于并且不大于无限精确的结果。</p>
+<p>示例：</p>
+<pre><code>public class Test {
+    public static void main(String[] args) {
+        // An example of overflow:
+        double d = 1e308;
+        System.out.print(&quot;overflow produces infinity:&quot;);
+        System.out.println(d + &quot;*10==&quot; + d*10);
+        // an example of gradual underflow:
+        d = 1e-305 * Math.PI;
+        System.out.println(&quot;gradual underflow:&quot; + d);
+        for (int i = 0; i &lt; 4; i++) {
+            System.out.print(&quot;  &quot; + (d /= 100000));
+        }
+        System.out.println();
+        // An example of NaN:
+        System.out.println(&quot;0.0 / 0.0 == &quot; + 0.0/0.0);
+        // An example of inexact results and rounding:
+        System.out.println(&quot;inexact results with float:&quot;);
+        for (int i = 0; i &lt; 100; i++) {
+            float z = 1.0f / i;
+            if (z * i != 1.0f) {
+                System.out.print(&quot;  &quot; + i);
+            }
+        }
+        System.out.println();
+        // Another example of inexact result and rounding:
+        System.out.println(&quot;inexact result with double:&quot;);
+        for (int i = 0; i &lt; 100; i++) {
+            double z = 1.0 / i;
+            if (z * i != 1.0)
+                System.out.print(&quot;  &quot; +i);
+        }
+        System.out.println();
+        //An example of cast to integer rounding:
+        System.out.print(&quot;cast to int rounds toward 0:&quot;);
+        d = 12345.6;
+        System.out.println((int)d + &quot; &quot; + (int)-d);
+    }
+}
+</code></pre><p>产生结果如下：</p>
+<pre><code>overflow produces infinity:1.0E308*10==Infinity
+gradual underflow:3.141592653589793E-305
+  3.1415926535898E-310  3.141592653E-315  3.142E-320  0.0
+0.0 / 0.0 == NaN
+inexact results with float:
+  0  41  47  55  61  82  83  94  97
+inexact result with double:
+  0  49  98
+cast to int rounds toward 0:12345 -12345
+</code></pre><p>值得一提的是，这个示例证实逐渐下溢可能导致精度逐渐损失。<br>当i为0时，结果涉及到除以0，因此z变为正无穷大，并且z*0是NaN，它不等于1.0。</p>
+<p><strong>strictfp关键字</strong></p>
+<p>可移植性是Java的设计目标之一。无论在哪个虚拟机上运行，同一运算应该得到同样的结果。对于浮点数的算数运算，实现这样的可移植性是相当困难的。double类型使用64位存储一个double数值，而有些处理器使用80位浮点寄存器。这些寄存器增加了中间过程的计算精度。例如，下列运算：</p>
+<pre><code>double w = x * y / z;
+</code></pre><p>很多Intel处理器计算x * y，并且将结果存储在80位寄存器中，再<br>除以z并将结果截断为64位。这样可以得到一个更加精确的计算结果，并且还能够避免产生指数溢出。但是，这个结果可能与始终在64位机器上计算的结果不一样。因此JVM的最初规范规定所有中间计算都必须进行截断。这种行为遭到了数值计算团体的反对。截断计算不仅可能导致溢出，而且由于阶段操作需要消耗时间，所以在计算速度上要比精确计算慢。为此Java承认了最优性能和理想结果之间存在的冲突，并给予了改进。在默认情况下，虚拟机设计者允许将中间结果采用扩展的精度。但是，对于使用<code>strictfp</code>关键字标记的方法必须使用严格的浮点计算来产生理想的结果。例如，可以把main方法标记为</p>
+<pre><code>public static strictfp void main(String[] args)
+</code></pre><p>于是，在main方法中的所有指令都将使用严格的浮点计算。如果将一个类标记为strictfp，这个类中所有方法都要使用严格的浮点计算。</p>
+<p>实际的计算方式将取决于Intel处理器。在默认情况下，中间结果允许使用扩展的指数，但不允许使用扩展的尾数（Intel芯片在截断尾数时并不损失性能）。因此这两种方式的区别仅仅在于采用默认的方式不会产生溢出，而采用严格的计算有可能产生溢出。</p>
+<h3 id="布尔类型的运算符"><a href="#布尔类型的运算符" class="headerlink" title="布尔类型的运算符"></a>布尔类型的运算符</h3><p>布尔运算符有：</p>
+<ul>
+<li><em>关系运算符<code>==</code>和<code>!=</code></em></li>
+<li><em>逻辑求补运算符<code>!</code></em></li>
+<li><em>逻辑运算符<code>&amp;</code>、<code>^</code>和<code>!</code></em></li>
+<li><em>“条件与”运算符<code>&amp;&amp;</code>和“条件或”运算符<code>||</code></em></li>
+<li><em>条件运算符<code>?:</code></em></li>
+<li><em>字符串串接运算符<code>+</code>，当给定一个String操作数和一个布尔操作数时，该运算符将把布尔操作数转换成String（“”或“”），然后产生一个最新创建的String，它是两个字符串的串接</em></li>
+</ul>
+<p>布尔表达式确定了多种语句的控制流程：</p>
+<ul>
+<li><em>if语句</em></li>
+<li><em>while语句</em></li>
+<li><em>do语句</em></li>
+<li><em>for语句</em></li>
+</ul>
+<p>boolean表达式还确定了哪个子表达式是通过<em>?:</em>运算符求值的。<br>只有boolean或Boolean表达式可以用于流程控制语句中，并且作为条件运算符<em>?:</em>的第一个操作数。依据C语言的约定，任何非0值都是true，通过表达式<em>x!=0</em>，可以把整数x转换成一个boolean。依据C语言的约定，不同于null的任何引用都是true，通过表达式obj!=null，可以把对象引用obj转换成一个boolean。</p>
+<p>允许把boolean值强制转换成类型boolean或Boolean；不允许在类型boolean上执行其它强制转换。可以通过字符串转换把boolean转换成一个字符串。</p>
+<h3 id="引用类型的运算符"><a href="#引用类型的运算符" class="headerlink" title="引用类型的运算符"></a>引用类型的运算符</h3><p>引用对象的运算符有：</p>
+<ul>
+<li><em>字段访问，使用限定名称或字段访问表达式</em></li>
+<li><em>方法调用</em></li>
+<li><em>强制类型转换运算符</em></li>
+<li><em>字符串串接运算符<code>+</code></em></li>
+<li><em><code>instanceof</code>运算符</em></li>
+<li><em>引用相等性运算符<code>==</code>和<code>!=</code></em></li>
+<li><em>条件运算符<code>?:</code></em></li>
+</ul>
+
       
     </div>
 
@@ -886,7 +1059,7 @@ char c3 = &apos;\u0000&apos;;
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型"><span class="nav-number">2.</span> <span class="nav-text">类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始类型与值"><span class="nav-number">2.1.</span> <span class="nav-text">原始类型与值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型和值"><span class="nav-number">2.2.</span> <span class="nav-text">引用类型和值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">3.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">3.1.</span> <span class="nav-text">常量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类常量"><span class="nav-number">3.1.1.</span> <span class="nav-text">类常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字面常量"><span class="nav-number">3.1.2.</span> <span class="nav-text">字面常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字常量表示法"><span class="nav-number">3.1.3.</span> <span class="nav-text">数字常量表示法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">4.</span> <span class="nav-text">运算符</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型"><span class="nav-number">2.</span> <span class="nav-text">类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原始类型与值"><span class="nav-number">2.1.</span> <span class="nav-text">原始类型与值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型和值"><span class="nav-number">2.2.</span> <span class="nav-text">引用类型和值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">3.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">3.1.</span> <span class="nav-text">常量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类常量"><span class="nav-number">3.1.1.</span> <span class="nav-text">类常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字面常量"><span class="nav-number">3.1.2.</span> <span class="nav-text">字面常量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数字常量表示法"><span class="nav-number">3.1.3.</span> <span class="nav-text">数字常量表示法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">4.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整数运算"><span class="nav-number">4.1.</span> <span class="nav-text">整数运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮点运算"><span class="nav-number">4.2.</span> <span class="nav-text">浮点运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔类型的运算符"><span class="nav-number">4.3.</span> <span class="nav-text">布尔类型的运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用类型的运算符"><span class="nav-number">4.4.</span> <span class="nav-text">引用类型的运算符</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
