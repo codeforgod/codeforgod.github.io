@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="为上帝而编程">
 <meta property="og:description" content="喝杯Java提提神~">
 <meta property="og:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
-<meta property="og:updated_time" content="2016-07-15T17:10:16.244Z">
+<meta property="og:updated_time" content="2016-07-16T14:35:08.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java程序设计概述">
 <meta name="twitter:description" content="喝杯Java提提神~">
@@ -526,7 +526,7 @@
 <h2 id="Java程序设计平台"><a href="#Java程序设计平台" class="headerlink" title="Java程序设计平台"></a>Java程序设计平台</h2><p>Java并不只是一种程序设计语言，Java是一个完整的平台。它有一个庞大的库，其中包含了很多可重用的代码和一个提供诸如安全性、跨操作系统的可移植性以及自动垃圾收集等服务的执行环境。（这种说法你是否听说过）</p>
 <h2 id="Java“白皮书”的关键术语"><a href="#Java“白皮书”的关键术语" class="headerlink" title="Java“白皮书”的关键术语"></a>Java“白皮书”的关键术语</h2><h3 id="简单性"><a href="#简单性" class="headerlink" title="简单性"></a>简单性</h3><p>Java语法是C++语法的一个“纯净”版本。这里没有头文件、指针运算（甚至指针语法）、结构体、联合体、操作符重载、虚基类、友元函数等。<br>简单的另一方面是小，如JavaME。</p>
 <h3 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h3><p>简单来说，面向对象是一种程序设计技术。它将重点放在数据（即对象）和对象的接口上。<br>Java的面向对象特性和C++旗鼓相当。Java与C++的主要不同点在于多继承，在Java中，取而代之的是简单接口的概念，以及Java的元类（Meta Class）模型。</p>
-<h3 id="网络技能（Network-Savvy）"><a href="#网络技能（Network-Savvy）" class="headerlink" title="网络技能（Network-Savvy）"></a>网络技能（Network-Savvy）</h3><p>Java有一个扩展的例程库，用于处理像HTTP和FTP之类的TCP/IP协议。Java Application能够通过URL打开和访问网络上的对象，其便捷程度就好像访问本地文件一样。另外RMI(Remote Method Invocation)使得分布式对象之间可以进行通信。<br>关于RMI请参阅：<br><a href="http://lavasoft.blog.51cto.com/62575/91679/" target="_blank" rel="external">Java RMI之HelloWorld篇</a> </p>
+<h3 id="分布式的（Network-Savvy）"><a href="#分布式的（Network-Savvy）" class="headerlink" title="分布式的（Network-Savvy）"></a>分布式的（Network-Savvy）</h3><p>Java有一个扩展的例程库，用于处理像HTTP和FTP之类的TCP/IP协议。Java Application能够通过URL打开和访问网络上的对象，其便捷程度就好像访问本地文件一样。另外RMI(Remote Method Invocation)使得分布式对象之间可以进行通信。<br>关于RMI请参阅：<br><a href="http://lavasoft.blog.51cto.com/62575/91679/" target="_blank" rel="external">Java RMI之HelloWorld篇</a> </p>
 <h3 id="健壮性"><a href="#健壮性" class="headerlink" title="健壮性"></a>健壮性</h3><p>Java的设计目标之在于使得Java编写的程序具有多方面的可靠性。Java投入了大量的精力进行早期的问题检测、后期动态的（运行时）检测，并消除了有出错倾向的状态……<br>Java与C++最大的区别在于Java采用的指针模型可以消除重写内存和损坏数据的可能性。</p>
 <h3 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h3><p>Java适用于网络/分布式系统。为了达到这一目标，在安全方面投入了很大精力。使用Java可以构建防病毒、防篡改的系统。<br>从一开始，Java就设计成能够防范各种攻击，其中包括：</p>
 <ul>
@@ -539,7 +539,7 @@
 <h3 id="解释型"><a href="#解释型" class="headerlink" title="解释型"></a>解释型</h3><p>Java解释器可以在任何移植了解释器的机器上执行Java字节码。由于链接是一个增量式且轻量级的过程，所以，开发过程也变得更加便捷，更加具有探索性。<br>增量式链接有其优势，但给开发过程带来的好处显然是言过其实了。事实上，早期的Java开发工具的速度相当慢。现在，使用即时编译器将字节码翻译成机器码。</p>
 <h3 id="高性能"><a href="#高性能" class="headerlink" title="高性能"></a>高性能</h3><p>字节码可以在（运行时）快速地翻译成运行这个应用程序的特定CPU的机器码。<br>现在的即时编译器已经非常出色，在某些情况下甚至超越了传统的编译器，原因是它们含有更多的可用信息。例如，即时编译器可以监控经常执行哪些代码并优化这些代码以提高速度。<br>更为复杂的优化是内嵌函数。即时编译器知道哪些类已经加载，如果基于当前已经加载的类集，且特定的函数不被覆盖的话就可以内嵌。必要时，还可以撤销优化。</p>
 <h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><p>多线程可以带来更好的交互响应和实时行为。<br>只要操作系统支持，Java中的线程就可以利用多个处理器。在底层，主流平台的线程实现机制各不相同，Java并没有花费太大的力气对此实现平台无关性。在不同的机器上，只是调用多线程的代码完全相同；Java把多线程的实现交给了底层的操作系统或线程库来完成。尽管如此，多线程编译的简单性是Java成为颇具魅力的服务器端开发语言的主要原因之一。</p>
-<h3 id="动态性"><a href="#动态性" class="headerlink" title="动态性"></a>动态性</h3><p>Java与C、C++相比更加具有动态性。它能够适应不断发展的环境。库中可以自由地添加新方法和实例变量，而对客户端却没有任何影响。在Java中找出运行时类型信息十分简单。<br>Java的当前版本允许程序员指导对象的结构和行为。这对于必须在运行时分析对象的系统来说非常有用。这些系统有：Java GUI构建器、只能调试器、可插拔组件以及对象数据库。</p>
+<h3 id="动态性"><a href="#动态性" class="headerlink" title="动态性"></a>动态性</h3><p>Java与C、C++相比更加具有动态性。它能够适应不断发展的环境。库中可以自由地添加新方法和实例变量，而对客户端却没有任何影响。在Java中找出运行时类型信息十分简单。<br>Java的当前版本允许程序员指导对象的结构和行为。这对于必须在运行时分析对象的系统来说非常有用。这些系统有：Java GUI构建器、智能调试器、可插拔组件以及对象数据库。</p>
 <h2 id="Java-applet-与-Internet"><a href="#Java-applet-与-Internet" class="headerlink" title="Java applet 与 Internet"></a>Java applet 与 Internet</h2><p>applet 已死，取而代之的是Java Script 和 Flash。</p>
 <h2 id="Java发展史"><a href="#Java发展史" class="headerlink" title="Java发展史"></a>Java发展史</h2><p>这部分其实还是蛮重要的，我打算等我什么时候有时间，好好研究下关于Java的历史，以及与之相关的故事等，预知详情如何，请听下回分解。</p>
 
@@ -670,7 +670,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -678,7 +678,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -687,7 +687,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -801,7 +801,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java程序设计平台"><span class="nav-number">1.</span> <span class="nav-text">Java程序设计平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java“白皮书”的关键术语"><span class="nav-number">2.</span> <span class="nav-text">Java“白皮书”的关键术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单性"><span class="nav-number">2.1.</span> <span class="nav-text">简单性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象"><span class="nav-number">2.2.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络技能（Network-Savvy）"><span class="nav-number">2.3.</span> <span class="nav-text">网络技能（Network-Savvy）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#健壮性"><span class="nav-number">2.4.</span> <span class="nav-text">健壮性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全性"><span class="nav-number">2.5.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#体系结构中立"><span class="nav-number">2.6.</span> <span class="nav-text">体系结构中立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可移植性"><span class="nav-number">2.7.</span> <span class="nav-text">可移植性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释型"><span class="nav-number">2.8.</span> <span class="nav-text">解释型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高性能"><span class="nav-number">2.9.</span> <span class="nav-text">高性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">2.10.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态性"><span class="nav-number">2.11.</span> <span class="nav-text">动态性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-applet-与-Internet"><span class="nav-number">3.</span> <span class="nav-text">Java applet 与 Internet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java发展史"><span class="nav-number">4.</span> <span class="nav-text">Java发展史</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java程序设计平台"><span class="nav-number">1.</span> <span class="nav-text">Java程序设计平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java“白皮书”的关键术语"><span class="nav-number">2.</span> <span class="nav-text">Java“白皮书”的关键术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单性"><span class="nav-number">2.1.</span> <span class="nav-text">简单性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#面向对象"><span class="nav-number">2.2.</span> <span class="nav-text">面向对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式的（Network-Savvy）"><span class="nav-number">2.3.</span> <span class="nav-text">分布式的（Network-Savvy）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#健壮性"><span class="nav-number">2.4.</span> <span class="nav-text">健壮性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全性"><span class="nav-number">2.5.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#体系结构中立"><span class="nav-number">2.6.</span> <span class="nav-text">体系结构中立</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可移植性"><span class="nav-number">2.7.</span> <span class="nav-text">可移植性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释型"><span class="nav-number">2.8.</span> <span class="nav-text">解释型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高性能"><span class="nav-number">2.9.</span> <span class="nav-text">高性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">2.10.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态性"><span class="nav-number">2.11.</span> <span class="nav-text">动态性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-applet-与-Internet"><span class="nav-number">3.</span> <span class="nav-text">Java applet 与 Internet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java发展史"><span class="nav-number">4.</span> <span class="nav-text">Java发展史</span></a></li></ol></div>
             
           </div>
         </section>
