@@ -1,0 +1,1367 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|console:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hibernate4Step4," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="为上帝而编程" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本着应用的目的快速学习Hibernate4框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hibernate4Step4">
+<meta property="og:url" content="http://codeforgod.github.io/2016/07/30/Hibernate4Step4/index.html">
+<meta property="og:site_name" content="为上帝而编程">
+<meta property="og:description" content="本着应用的目的快速学习Hibernate4框架">
+<meta property="og:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/basicDataTypeMapping.png">
+<meta property="og:image" content="http://codeforgod.github.io/upload/Paul.png">
+<meta property="og:updated_time" content="2016-07-30T15:52:29.881Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hibernate4Step4">
+<meta name="twitter:description" content="本着应用的目的快速学习Hibernate4框架">
+<meta name="twitter:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codeforgod.github.io/2016/07/30/Hibernate4Step4/"/>
+
+  <title> Hibernate4Step4 | 为上帝而编程 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">为上帝而编程</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一人一生一信仰</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+	  
+	  <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'eePJWPEw6AZxg-LM_ZC7','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hibernate4Step4
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-30T23:00:55+08:00" content="2016-07-30">
+              2016-07-30
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Hibernate4/" itemprop="url" rel="index">
+                    <span itemprop="name">Hibernate4</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/30/Hibernate4Step4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/30/Hibernate4Step4/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/30/Hibernate4Step4/" class="leancloud_visitors" data-flag-title="Hibernate4Step4">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/upload/hardwork.jpg" alt="hardwork"><br>本着应用的目的快速学习Hibernate4框架<br><a id="more"></a></p>
+<h2 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h2><p><strong>本节主要介绍：</strong></p>
+<p>本文主要讲解Hibernate4的类型映射，主要包括如下：</p>
+<ol>
+<li><em>基本类型映射</em></li>
+<li><em>集合类型映射</em></li>
+</ol>
+<h2 id="基本类型映射"><a href="#基本类型映射" class="headerlink" title="基本类型映射"></a>基本类型映射</h2><p><img src="/upload/basicDataTypeMapping.png" alt="basicDataTypeMapping"></p>
+<p>据此编写一个图书的Demo，以了解常用基本类型映射的应用：1.编写Book类；2.编写映射文件；3.编写测试类（测试类只写了保存图书的方法)。</p>
+<h2 id="编写Book类"><a href="#编写Book类" class="headerlink" title="编写Book类"></a>编写Book类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.codeforgod.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.Blob;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Book</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">	<span class="keyword">private</span> String bookName;	<span class="comment">// 图书名称</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">float</span> price;	<span class="comment">// 图书价格</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> specialPrice;	<span class="comment">// 是否是特价</span></span><br><span class="line">	<span class="keyword">private</span> Date publishDate;	<span class="comment">// 发布日期</span></span><br><span class="line">	<span class="keyword">private</span> String author;	<span class="comment">// 作者</span></span><br><span class="line">	<span class="keyword">private</span> String introduction;	<span class="comment">// 简介</span></span><br><span class="line">	<span class="keyword">private</span> Blob bookPic;	<span class="comment">// 图书图片</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getBookName</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> bookName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBookName</span><span class="params">(String bookName)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.bookName = bookName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">float</span> <span class="title">getPrice</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> price;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPrice</span><span class="params">(<span class="keyword">float</span> price)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.price = price;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isSpecialPrice</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> specialPrice;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSpecialPrice</span><span class="params">(<span class="keyword">boolean</span> specialPrice)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.specialPrice = specialPrice;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">getPublishDate</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> publishDate;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPublishDate</span><span class="params">(Date publishDate)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.publishDate = publishDate;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getAuthor</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> author;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAuthor</span><span class="params">(String author)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.author = author;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getIntroduction</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> introduction;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIntroduction</span><span class="params">(String introduction)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.introduction = introduction;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Blob <span class="title">getBookPic</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> bookPic;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBookPic</span><span class="params">(Blob bookPic)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.bookPic = bookPic;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="编写Book-hbm-xml"><a href="#编写Book-hbm-xml" class="headerlink" title="编写Book.hbm.xml"></a>编写Book.hbm.xml</h2><pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC
+        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;
+
+&lt;hibernate-mapping package=&quot;cn.codeforgod.model&quot;&gt;
+
+    &lt;class name=&quot;Book&quot; table=&quot;t_book&quot;&gt;
+        &lt;id name=&quot;id&quot; column=&quot;bookId&quot;&gt;
+            &lt;generator class=&quot;native&quot;&gt;&lt;/generator&gt;
+        &lt;/id&gt;
+
+        &lt;property name=&quot;bookName&quot; column=&quot;bookName&quot; type=&quot;string&quot;
+            length=&quot;40&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;price&quot; column=&quot;price&quot; type=&quot;float&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;specialPrice&quot; column=&quot;specialPrice&quot; type=&quot;boolean&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;publishDate&quot; column=&quot;publishDate&quot; type=&quot;date&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;introduction&quot; column=&quot;introduction&quot; type=&quot;text&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;author&quot; column=&quot;author&quot; type=&quot;string&quot; length=&quot;20&quot;&gt;&lt;/property&gt;
+        &lt;property name=&quot;bookPic&quot; column=&quot;bookPic&quot; type=&quot;blob&quot;&gt;&lt;/property&gt;
+
+    &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt;
+</code></pre><h2 id="编写BookTest"><a href="#编写BookTest" class="headerlink" title="编写BookTest"></a>编写BookTest</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.codeforgod.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"><span class="keyword">import</span> java.sql.Blob;</span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.hibernate.LobHelper;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.Session;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.SessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.Transaction;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.codeforgod.model.Book;</span><br><span class="line"><span class="keyword">import</span> cn.codeforgod.util.HibernateUtil;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookTest</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException, IOException</span><br><span class="line">	</span>&#123;</span><br><span class="line">		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();</span><br><span class="line">		Session session = sessionFactory.openSession();</span><br><span class="line">		Transaction transaction = session.beginTransaction();</span><br><span class="line">		</span><br><span class="line">		Book book = <span class="keyword">new</span> Book();</span><br><span class="line">		book.setBookName(<span class="string">"java编程思想"</span>);</span><br><span class="line">		book.setPrice(<span class="number">100</span>);</span><br><span class="line">		book.setSpecialPrice(<span class="keyword">true</span>);</span><br><span class="line">		book.setPublishDate(<span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>).parse(<span class="string">"2012-1-1"</span>));</span><br><span class="line">		book.setAuthor(<span class="string">"埃克尔"</span>);</span><br><span class="line">		book.setIntroduction(<span class="string">"简介..."</span>);</span><br><span class="line">		LobHelper lobHelper = session.getLobHelper();</span><br><span class="line">		InputStream in = <span class="keyword">new</span> FileInputStream(<span class="string">"image/java编程思想.jpg"</span>);</span><br><span class="line">		Blob bookPic = lobHelper.createBlob(in, in.available());</span><br><span class="line">		book.setBookPic(bookPic);</span><br><span class="line">		</span><br><span class="line">		session.save(book);</span><br><span class="line">		transaction.commit();</span><br><span class="line">		session.close();</span><br><span class="line">		sessionFactory.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Tips:</strong>别忘了在hibernate.cfg.xml配置<code>&lt;mapping resource=&quot;cn/codeforgod/model/Book.hbm.xml&quot;/&gt;</code></p>
+<h2 id="集合类型映射"><a href="#集合类型映射" class="headerlink" title="集合类型映射"></a>集合类型映射</h2><p>集合类型映射包括4种，分别如下：</p>
+<ol>
+<li>Set 无序 元素不可重复</li>
+<li>List 有序 元素可重复</li>
+<li>Map 无序 键值对 键不可重复</li>
+<li>Bag 无序 元素可重复</li>
+</ol>
+<p><strong>Tips：</strong>这里的有序无序是相对于数据获取而言，如List，在数据库中必须有一个可以表示顺序的字段与之对应顺序，则称为有序。</p>
+<p>这里也写了个Demo，以了解集合类型映射的应用：1.编写Student类，Student对象中有4个集合属性，分别对应不同的集合类型映射；2.编写映射文件；3.编写测试类（测试时，别忘了在hibernate.cfg.xml中配置）</p>
+<h2 id="Student类"><a href="#Student类" class="headerlink" title="Student类"></a>Student类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.codeforgod.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> Set&lt;String&gt; images1;	<span class="comment">// Set 无序 元素不可重复</span></span><br><span class="line">	<span class="keyword">private</span> List&lt;String&gt; images2;	<span class="comment">// List 有序 元素可重复</span></span><br><span class="line">	<span class="keyword">private</span> Map&lt;String, String&gt; images3;	<span class="comment">// Map 无序 键值对 键不可重复</span></span><br><span class="line">	<span class="keyword">private</span> List&lt;String&gt; images4;	<span class="comment">// Bag 无序 元素可重复</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">long</span> id)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Set&lt;String&gt; <span class="title">getImages1</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> images1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImages1</span><span class="params">(Set&lt;String&gt; images1)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.images1 = images1;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getImages2</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> images2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImages2</span><span class="params">(List&lt;String&gt; images2)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.images2 = images2;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Map&lt;String, String&gt; <span class="title">getImages3</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> images3;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImages3</span><span class="params">(Map&lt;String, String&gt; images3)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.images3 = images3;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">getImages4</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> images4;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setImages4</span><span class="params">(List&lt;String&gt; images4)</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.images4 = images4;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Student-hbm-xml"><a href="#Student-hbm-xml" class="headerlink" title="Student.hbm.xml"></a>Student.hbm.xml</h2><pre><code>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE hibernate-mapping PUBLIC
+        &quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;
+        &quot;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&quot;&gt;
+
+&lt;hibernate-mapping package=&quot;cn.codeforgod.model&quot;&gt;
+
+    &lt;class name=&quot;Student&quot; table=&quot;t_student&quot;&gt;
+        &lt;id name=&quot;id&quot; column=&quot;studentId&quot;&gt;
+            &lt;generator class=&quot;native&quot;&gt;&lt;/generator&gt;
+        &lt;/id&gt;
+
+        &lt;property name=&quot;name&quot; column=&quot;studentName&quot;&gt;&lt;/property&gt;
+
+        &lt;set name=&quot;images1&quot; table=&quot;t_image1&quot;&gt;
+            &lt;key column=&quot;studentId&quot;&gt;&lt;/key&gt;
+            &lt;element column=&quot;imageName&quot; type=&quot;string&quot;&gt;&lt;/element&gt;
+        &lt;/set&gt;
+
+        &lt;list name=&quot;images2&quot; table=&quot;t_image2&quot;&gt;
+            &lt;key column=&quot;studentId&quot;&gt;&lt;/key&gt;
+            &lt;!-- list需要索引 --&gt;
+            &lt;index column=&quot;imageIndex&quot;&gt;&lt;/index&gt;
+            &lt;element column=&quot;imageName&quot; type=&quot;string&quot;&gt;&lt;/element&gt;
+        &lt;/list&gt;
+
+        &lt;map name=&quot;images3&quot; table=&quot;t_image3&quot;&gt;
+            &lt;key column=&quot;studentId&quot;&gt;&lt;/key&gt;
+            &lt;map-key column=&quot;imageKey&quot; type=&quot;string&quot;&gt;&lt;/map-key&gt;
+            &lt;element column=&quot;imageName&quot; type=&quot;string&quot;&gt;&lt;/element&gt;
+        &lt;/map&gt;
+
+        &lt;idbag name=&quot;images4&quot; table=&quot;t_image4&quot;&gt;
+            &lt;collection-id column=&quot;imageId&quot; type=&quot;long&quot;&gt;
+                &lt;generator class=&quot;increment&quot;&gt;&lt;/generator&gt;
+            &lt;/collection-id&gt;
+            &lt;key column=&quot;studentId&quot;&gt;&lt;/key&gt;
+            &lt;element column=&quot;imageName&quot; type=&quot;string&quot;&gt;&lt;/element&gt;
+        &lt;/idbag&gt;
+    &lt;/class&gt;
+
+&lt;/hibernate-mapping&gt;
+</code></pre><h2 id="StudentTest"><a href="#StudentTest" class="headerlink" title="StudentTest"></a>StudentTest</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.codeforgod.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Map.Entry;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.hibernate.Session;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.SessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.hibernate.Transaction;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.codeforgod.model.Student;</span><br><span class="line"><span class="keyword">import</span> cn.codeforgod.util.HibernateUtil;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StudentTest</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException, IOException</span><br><span class="line">	</span>&#123;</span><br><span class="line">		testStudent();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testStudent</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		SessionFactory sessionFactory = HibernateUtil.getSessionFactory();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 存</span></span><br><span class="line">		Session session1 = sessionFactory.openSession();</span><br><span class="line">		Transaction transaction1 = session1.beginTransaction();</span><br><span class="line">		</span><br><span class="line">		Set&lt;String&gt; images1 = <span class="keyword">new</span> HashSet&lt;String&gt;();</span><br><span class="line">		images1.add(<span class="string">"image1.png"</span>);</span><br><span class="line">		images1.add(<span class="string">"image2.png"</span>);</span><br><span class="line">		images1.add(<span class="string">"image3.png"</span>);</span><br><span class="line">		</span><br><span class="line">		List&lt;String&gt; images2 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		images2.add(<span class="string">"image1.png"</span>);</span><br><span class="line">		images2.add(<span class="string">"image2.png"</span>);</span><br><span class="line">		images2.add(<span class="string">"image3.png"</span>);</span><br><span class="line">		<span class="comment">// 重复</span></span><br><span class="line">		images2.add(<span class="string">"image3.png"</span>);</span><br><span class="line">		</span><br><span class="line">		Map&lt;String, String&gt; images3 = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">		images3.put(<span class="string">"key1"</span>, <span class="string">"image1.png"</span>);</span><br><span class="line">		images3.put(<span class="string">"key2"</span>, <span class="string">"image2.png"</span>);</span><br><span class="line">		images3.put(<span class="string">"key3"</span>, <span class="string">"image3.png"</span>);</span><br><span class="line">		</span><br><span class="line">		List&lt;String&gt; images4 = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">		images4.add(<span class="string">"image1.png"</span>);</span><br><span class="line">		images4.add(<span class="string">"image2.png"</span>);</span><br><span class="line">		images4.add(<span class="string">"image3.png"</span>);</span><br><span class="line">		images4.add(<span class="string">"image4.png"</span>);</span><br><span class="line">		images4.add(<span class="string">"image5.png"</span>);</span><br><span class="line">		images4.add(<span class="string">"image6.png"</span>);</span><br><span class="line">		images4.add(<span class="string">"image7.png"</span>);</span><br><span class="line">		images4.add(<span class="string">"image8.png"</span>);</span><br><span class="line">		images4.add(<span class="string">"image9.png"</span>);</span><br><span class="line">		<span class="comment">// 重复</span></span><br><span class="line">		images4.add(<span class="string">"image9.png"</span>);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		Student s1 = <span class="keyword">new</span> Student();</span><br><span class="line">		s1.setImages1(images1);</span><br><span class="line">		s1.setImages2(images2);</span><br><span class="line">		s1.setImages3(images3);</span><br><span class="line">		s1.setImages4(images4);</span><br><span class="line">		</span><br><span class="line">		session1.save(s1);</span><br><span class="line">		transaction1.commit();</span><br><span class="line">		session1.close();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">// 取</span></span><br><span class="line">		Session session2 = sessionFactory.openSession();</span><br><span class="line">		Transaction transaction2 = session2.beginTransaction();</span><br><span class="line">		</span><br><span class="line">		Student student = (Student) session2.get(Student.class, Long.valueOf(<span class="number">1</span>));</span><br><span class="line">		</span><br><span class="line">		Set&lt;String&gt; imgs1 = student.getImages1();</span><br><span class="line">		System.out.println(<span class="string">"set,images1"</span>);</span><br><span class="line">		<span class="keyword">for</span>(String imgStr : images1)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(imgStr);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		List&lt;String&gt; imgs2 = student.getImages2();</span><br><span class="line">		System.out.println(<span class="string">"list,images2"</span>);</span><br><span class="line">		<span class="keyword">for</span>(String imgStr : images2)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(imgStr);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		Map&lt;String, String&gt; imgs3 = student.getImages3();</span><br><span class="line">		System.out.println(<span class="string">"map,images3"</span>);</span><br><span class="line">		<span class="keyword">for</span>(Entry entry : imgs3.entrySet())</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(entry.getKey() + <span class="string">":"</span> + entry.getValue());</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		List&lt;String&gt; imgs4 = student.getImages4();</span><br><span class="line">		System.out.println(<span class="string">"list,images4"</span>);</span><br><span class="line">		<span class="keyword">for</span>(String imgStr : images4)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.println(imgStr);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		transaction2.commit();</span><br><span class="line">		session2.close();</span><br><span class="line">		</span><br><span class="line">		sessionFactory.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码写的好，话不用多说，还是啰嗦一句，根据OID获取对象后获取集合元素时，除了list是根据设置的索引的顺序的字段，其余的都是根据id，当你看到有序时，请不要见怪，因为插入的记录多了，根据id来，不就没有顺序了么。</p>
+<p><img src="/upload/Paul.png" alt="Paul"></p>
+<p><strong>人最宝贵的东西是生命,生命属于人只有一次.一个人的一生应该是这样度过的：当他回首往事的时候，他不会因为虚度年华而悔恨，也不会因为碌碌无为而羞耻；这样，在临死的时候，他就能够说：“我的整个生命和全部精力，都已经献给世界上最壮丽的事业——为人类的解放而斗争。”</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="CodeForGod Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hibernate4Step4/" rel="tag">#Hibernate4Step4</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/29/Hibernate4Step3/" rel="next" title="Hibernate4Step3">
+                <i class="fa fa-chevron-left"></i> Hibernate4Step3
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/30/Hibernate4Step4/"
+           data-title="Hibernate4Step4" data-url="http://codeforgod.github.io/2016/07/30/Hibernate4Step4/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar1.jpg"
+               alt="CodeForGod" />
+          <p class="site-author-name" itemprop="name">CodeForGod</p>
+          <p class="site-description motion-element" itemprop="description">记录生活点滴</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/codeforgod" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/codeforgod" target="_blank" title="新浪微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  新浪微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imooc.com/" title="慕课网" target="_blank">慕课网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.shiyanlou.com/" title="实验楼" target="_blank">实验楼</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dvd.boxuegu.com/" title="博学谷视频库" target="_blank">博学谷视频库</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.atguigu.com/" title="尚硅谷" target="_blank">尚硅谷</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.java1234.com/" title="java知识分享网" target="_blank">java知识分享网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://so.baiduyun.me/" title="百度云资源搜索" target="_blank">百度云资源搜索</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cmsblogs.com/" title="cmblog" target="_blank">cmblog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net" title="csdn博客" target="_blank">csdn博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn" title="新浪博客" target="_blank">新浪博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://edu.51cto.com/" title="51CTO学院" target="_blank">51CTO学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/" title="博客园" target="_blank">博客园</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本类型映射"><span class="nav-number">2.</span> <span class="nav-text">基本类型映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写Book类"><span class="nav-number">3.</span> <span class="nav-text">编写Book类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写Book-hbm-xml"><span class="nav-number">4.</span> <span class="nav-text">编写Book.hbm.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写BookTest"><span class="nav-number">5.</span> <span class="nav-text">编写BookTest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#集合类型映射"><span class="nav-number">6.</span> <span class="nav-text">集合类型映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Student类"><span class="nav-number">7.</span> <span class="nav-text">Student类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Student-hbm-xml"><span class="nav-number">8.</span> <span class="nav-text">Student.hbm.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StudentTest"><span class="nav-number">9.</span> <span class="nav-text">StudentTest</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CodeForGod</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeforgod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+</body>
+</html>
