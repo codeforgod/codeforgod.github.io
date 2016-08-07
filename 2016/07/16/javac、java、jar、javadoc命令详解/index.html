@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="标签/[xx,xx,xx]," />
+  <meta name="keywords" content="命令详解," />
 
 
 
@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="很多教程都是一开是简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。">
+<meta name="description" content="很多教程都是一开始简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javac、java、jar、javadoc命令详解">
 <meta property="og:url" content="http://codeforgod.github.io/2016/07/16/javac、java、jar、javadoc命令详解/index.html">
 <meta property="og:site_name" content="为上帝而编程">
-<meta property="og:description" content="很多教程都是一开是简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。">
+<meta property="og:description" content="很多教程都是一开始简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。">
 <meta property="og:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
-<meta property="og:updated_time" content="2016-08-04T17:11:54.267Z">
+<meta property="og:updated_time" content="2016-08-05T08:25:57.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javac、java、jar、javadoc命令详解">
-<meta name="twitter:description" content="很多教程都是一开是简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。">
+<meta name="twitter:description" content="很多教程都是一开始简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。">
 <meta name="twitter:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
 
 
@@ -473,20 +473,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/一级目录/" itemprop="url" rel="index">
-                    <span itemprop="name">一级目录</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/一级目录/二级目录/" itemprop="url" rel="index">
-                    <span itemprop="name">二级目录</span>
+                  <a href="/categories/Java基础提升/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础提升</span>
                   </a>
                 </span>
 
@@ -534,9 +522,130 @@
       
 
       
-        <p><img src="/upload/hardwork.jpg" alt="hardwork"><br>很多教程都是一开是简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。<br><a id="more"></a></p>
+        <p><img src="/upload/hardwork.jpg" alt="hardwork"><br>很多教程都是一开始简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。<br><a id="more"></a></p>
 <h2 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h2><p>IDE各有不同，也各有优点，但背后的原理只有一个—那就是JDK。本文深度讲解了JDK基本命令的用法，让你不借助于任何IDE也完全可以完成开发的工作，这样，对于IDE的使用和JDK的原理有了更进一步的理解也会是将来使用任何一款IDE能够得心应手和底气十足的保证。</p>
-<h2 id="javac"><a href="#javac" class="headerlink" title="javac"></a>javac</h2>
+<h2 id="编译类文件——javac命令"><a href="#编译类文件——javac命令" class="headerlink" title="编译类文件——javac命令"></a>编译类文件——javac命令</h2><p>一、javac命令的语法结构</p>
+<p><code>javac [options] [sourcefiles] [@files]</code></p>
+<ul>
+<li>options: 命令行选项</li>
+<li>sourcefiles: 一个或多个要编译的源文件</li>
+<li>@files: 一个或多个对源文件进行列表的文件</li>
+</ul>
+<p>二、传递源文件名的两种方法</p>
+<ul>
+<li>使用[sourcefiles]: 如果源文件数量少，在命令行上列出文件名即可。</li>
+</ul>
+<p>例如：<code>javac MyClass1.java MyClass2.java</code></p>
+<p>也可以使用通配符：<code>javac MyClass*.java</code></p>
+<ul>
+<li>使用[@files]: 如果源文件数量多，则将源文件名列在一个文件中，名称间用空格或回车行来进行分割。然后在javac命令行中使用该列表文件名，文件名前需加@字符。</li>
+</ul>
+<p>例如：建立一个文件并命名为”@list.txt”,其中的内容如下：</p>
+<pre><code>MyClass1.java
+MyClass2.java
+MyClass3.java
+</code></pre><p>执行<code>javac @list.txt</code></p>
+<p>三、传递带包名的源文件的方法</p>
+<p>对于有包路径的类，可以用相对路径来表示，比如com下的Demo.java，可以使用如下命令编译：<code>javac com\demo.java</code></p>
+<p>四、命令选项</p>
+<p>编译器有一批标准选项，目前的开发环境支持这些标准选项，将来的版本也将支持它。还有一批附加的非标准选项是目前的虚拟机实现所特有的，将来可能要变化。非标准选项以<code>-X</code>打头。<br>以下3个是设置路径的选项：</p>
+<ul>
+<li><p>-classpath （类路径）：设置用户类路径，它将覆盖CLASSPATH环境变量中的用户类路径。若既未指定CLASSPATH又未指定-classpath，则用户类路径由当前目录构成。</p>
+</li>
+<li><p>-d （编译生成文件目标目录）：设置类文件的目标目录。如果某个类是一个包的组成部分，则javac将把该类文件放入反映包名的子目录中，必要时[需手工]创建目录。<br>  例如：如果指定-d c:\demo 并且该类名叫com.Demo，那么类文件就叫C:\demo\mypackage\HelloWorld.class。若为指定-d选项，则javac将把类文件放到与源文件相同的目录中。</p>
+</li>
+<li><p>-sourcepath （源路径）：指定用以查找类或接口定义的源代码路径。与用户类路径一样，源路径选项用分号进行分割，它们可以是目录、jar归档文件或zip归档文件。如果使用包，那么目录或归档文件中的本地路径名必须反映包名。</p>
+</li>
+</ul>
+<blockquote>
+<p>Tip：通过classpath(类路径)查找类，如果找到了其源文件，则可能会自动被重新编译。</p>
+</blockquote>
+<p>例如，我们可以使用这3个属性来将源码、classpath和目标路径分开</p>
+<p><code>javac -d classes -sourcepath src -classpath classes;lib\Banners.jar \src\farewells\GoodBye.java</code></p>
+<p>这样，就会把src目录下的代码编译到classes目录下，并引用classpath中的类。</p>
+<p>以下5个是设置编译属性和性能的选项：</p>
+<ul>
+<li>-deprecation：显示每种不鼓励使用的成员或类的使用或覆盖的说明。如果没有给出-deprecation选项的话，javac将显示这类源文件的名称，这些源文件使用或覆盖不鼓励使用的成员或类。</li>
+<li>-encoding：设置源文件指定的编码，例如EUCJIS/SJIS。若未指定-encoding选项，则使用平台默认的转换器。</li>
+<li>-g：生成所有的调试信息，包括局部变量。在默认情况下，只生成行号和源文件信息。</li>
+<li>-nowarn：禁用警告信息。</li>
+<li>-verbose：冗长输出。它包括了每个所加载的类和每个所编译的源文件的有关信息。</li>
+</ul>
+<blockquote>
+<p>除了以上几个常用的选项之外，还有一些联编选项和非标准选项（以<code>-X</code>开头的选项），这些选项不太常用，需要的读者可以查阅Java文档。</p>
+</blockquote>
+<p>更多内容请参考如下链接：</p>
+<ul>
+<li><a href="http://blog.csdn.net/caesarzou/article/details/5462189" target="_blank" rel="external">javac参数（-classpath，-sourcepath）详解</a></li>
+<li><a href="http://blog.csdn.net/yxpjx/article/details/6187207" target="_blank" rel="external">java -verbose命令</a></li>
+<li><a href="http://bravecs.iteye.com/blog/1781968" target="_blank" rel="external">了解javac编译器</a></li>
+<li><a href="http://my.oschina.net/liangzhenghui/blog/352442" target="_blank" rel="external">JVM -verbose参数详解(转）</a></li>
+</ul>
+<h2 id="运行类文件——java命令"><a href="#运行类文件——java命令" class="headerlink" title="运行类文件——java命令"></a>运行类文件——java命令</h2><p>下面分5个方面来讲解java命令的使用</p>
+<p>一、java命令的语法结构</p>
+<p><code>java [options] class [argument]</code></p>
+<p><code>java [options] -jar file.jar [argument]</code></p>
+<ul>
+<li>options：命令行选项</li>
+<li>class：要调用的类名</li>
+<li>file.jar：要调用的jar文件名，只与-jar一起使用</li>
+<li>argument：传给main函数的参数</li>
+</ul>
+<p>二、执行一个类文件</p>
+<p>执行类文件时，只需要指定类文件的全名即可，全名中包含包名，包路径使用<code>.</code>表示。</p>
+<p>例如：编译package\HelloWorld.class类，执行的命令如下：<br><code>java mypackage.HelloWorld</code></p>
+<p>三、执行一个jar包</p>
+<p>执行jar包时，该包中的MENIFEST.MF文件中必须指定当前包中哪个类是主类，即指定执行入口类，使用属性为Main-Class。<br>执行方式如下：</p>
+<p><code>java -jar HelloWorld.jar</code></p>
+<p>四、命令选项</p>
+<p>java命令有一组标准选项，当前的运行时环境支持这些选项并且将来的版本也将支持它们。还有一组其它的非标准选项是特定于目前的虚拟机实现的，将来可能要有变化。非标准选项以<code>-X</code>开头。</p>
+<ul>
+<li>-classpath （类路径）：指定类的环境变量，同javac中的-classpath选项。</li>
+<li><p>-cp （类路径）：指定一个用于查找类文件的列表，它由目录、jar归档文件和zip归档文件组成。类路径用分号<code>;</code>分割。指定-classpath或-cp将覆盖CLASSPATH环境变量的所有设置。</p>
+<blockquote>
+<p>Tips：如果不使用-classpath和-cp，且没有设定CLASSPATH，则用户类路径由当前目录<code>.</code>构成。</p>
+</blockquote>
+</li>
+<li><p>-D （属性=值）：设置系统属性的值。例如：<code>-D hello=world</code>，这样在Java类中就可以取得系统属性hello的值world。</p>
+</li>
+<li>-jar：执行封装在jar归档文件中的程序。第一个参数是jar归档文件的名称而不是启动类名。启动类由Main-Class清单头指定。jar文件是所有用户类的源，其它的用户类路径设置将被忽略。</li>
+</ul>
+<p>除了以上的几个常用选项外，还有一些以<code>-X</code>开头的非标准选项，用以对执行时的环境进行设置。最常用的是对Java虚拟机的堆大小进行设置，以提高Java运行的内存和运行效率。例如<code>-Xms256m -Xmx256m -XX:NewSize=128m -XX:MaxNewSize=128m</code>,Xms代表默认启动大小，Xmx代表最大大小，NewSize是新建对象的大小，MaxNewSize是新建堆运行增长的最大值，它决定了何时将新的对象置为旧的对象。</p>
+<blockquote>
+<p>在进行Tomcat系统部署时，默认的内存大小为56MB，而通常我们可能需要更多的内存，此时就可以在Tomcat启动命令后使用该参数。Tomcat也是通过java命令来执行一个Java类来启动的。</p>
+</blockquote>
+<p>五、给类传递参数<br>在Java的命令中还有一个变量argument，该变量用于向目标类main()函数传递输入参数，多个参数用空格分隔。例如：</p>
+<p><code>java mypackage.HelloWorld AAA BBB</code><br>在mypackage.HelloWorld的main方法中就可以通过args变量来取得该参数：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> </span>&#123;</span><br><span class="line">	String str1 = args[<span class="number">0</span>];</span><br><span class="line">	String str2 = args[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类文件打包——jar命令"><a href="#类文件打包——jar命令" class="headerlink" title="类文件打包——jar命令"></a>类文件打包——jar命令</h2><p>JAR工具是一个Java应用程序，可将多个文件合并为单个JAR归档文件。JAR是个多用途的存档及压缩工具，它是基于ZIP和ZLIB压缩格式。然而，设计JAR的主要目的是便于将Java Applet或应用程序打包成单个归档文件。将Applet或应用程序的组件（.class文件、图像和声音）合并成单个归档文件时，可以用Java代理（如浏览器）在一次HTTP事务处理过程中对它们进行下载，而不是对每个组件都要求一个新连接，这大大缩短了下载时间。JAR还能压缩文件，从而进一步提高了下载速度。此外，它允许Applet作者对文件中的各个项进行签名，因而可认证其来源。</p>
+<p>一、jar命令的语法结构</p>
+<p><code>jar {ctxu}[vfm0M][jar-文件][manifest-文件][-C 目录] 文件名</code></p>
+<p>二、{ctxu}属性</p>
+<p>其中｛ctxu}是jar命令的子命令，每次jar命令只能包含ctxu中的一个，它们分别表示如下：</p>
+<ul>
+<li>-c：创建新的jar文件包</li>
+<li>-t：列出jar文件包的内容列表</li>
+<li>-x：展开jar文件包的指定文件或者所有文件</li>
+<li>-u：更新已存在的jar文件包（添加文件到jar文件包中）</li>
+</ul>
+<p>三、[vfm0M]选项</p>
+<p>[vfm0M]选项可以任选，也可以不选，它们是jar命令的选项参数。</p>
+<ul>
+<li>-v：生成详细报告并打印到标准输出</li>
+<li>-f：指定jar文件名，通常这个参数是必需的</li>
+<li>-m：指定需要包含的MANIFEST清单文件</li>
+<li>-0：只存储，不压缩，这样产生的jar文件包会比不用该参数产生的体积大，但速度更快</li>
+<li>-M：不产生所有项的清单（MANIFEST)文件，此参数会忽略-m参数</li>
+</ul>
+<p>四、参数</p>
+<p>其它参数的意义如下：</p>
+<ul>
+<li>[JAR文件]：即需要生成、查看、更新或者解开的JAR文件包，它是-f参数的附属参数</li>
+<li>[manifest 文件]：即MANIFEST清单文件，它是-m参数的附属参数。</li>
+<li>[-C 目录]：表示转到指定目录下去执行jar命令的操作。它相当于先使用cd命令转到该目录下再执行不带-C参数的jar命令，它只能在创建和更新JAR文件包的时候可用。</li>
+<li>文件名：指定一个文件/目录列表，这些文件/目录就是要添加到JAR文件包中的文件/目录。如果指定了目录，那么使用jar命令打包的时候会自动把该目录中的所有文件和子目录打入包中</li>
+</ul>
+
       
     </div>
 
@@ -573,7 +682,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/标签-xx-xx-xx/" rel="tag">#标签/[xx,xx,xx]</a>
+            <a href="/tags/命令详解/" rel="tag">#命令详解</a>
           
         </div>
       
@@ -664,7 +773,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -681,7 +790,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -795,7 +904,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#javac"><span class="nav-number">2.</span> <span class="nav-text">javac</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译类文件——javac命令"><span class="nav-number">2.</span> <span class="nav-text">编译类文件——javac命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行类文件——java命令"><span class="nav-number">3.</span> <span class="nav-text">运行类文件——java命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类文件打包——jar命令"><span class="nav-number">4.</span> <span class="nav-text">类文件打包——jar命令</span></a></li></ol></div>
             
           </div>
         </section>

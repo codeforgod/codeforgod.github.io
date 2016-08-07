@@ -79,8 +79,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="为上帝而编程" type="application/atom+xml" />
 
@@ -101,7 +99,9 @@
 <meta property="og:site_name" content="为上帝而编程">
 <meta property="og:description" content="本着应用的目的快速学习Hibernate4框架">
 <meta property="og:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
-<meta property="og:updated_time" content="2016-08-04T17:30:16.566Z">
+<meta property="og:image" content="http://codeforgod.github.io/upload/studentAndClass.mgc.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/studentAndClass.png">
+<meta property="og:updated_time" content="2016-08-06T03:48:04.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hibernate4Step6">
 <meta name="twitter:description" content="本着应用的目的快速学习Hibernate4框架">
@@ -543,20 +543,95 @@
 </li>
 <li><strong>Lazy:no-proxy</strong>&nbsp;无代理延迟检索；&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;many-to-one 多对一</li>
 </ul>
+<p>用一个Demo测试Lazy属性，Demo包括Student类和Class类，类图如下：</p>
+<p><img src="/upload/studentAndClass.mgc.jpg" alt="studentAndClass"></p>
+<p>Student.hbm.xml</p>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line">&lt;!DOCTYPE hibernate-mapping PUBLIC</span><br><span class="line">        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span><br><span class="line">        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;</span><br><span class="line"></span><br><span class="line">&lt;hibernate-mapping package="cn.codeforgod.model"&gt;</span><br><span class="line"></span><br><span class="line">	&lt;class name="Student" table="t_student"&gt;</span><br><span class="line">		&lt;id name="id" column="studentId"&gt;</span><br><span class="line">			&lt;generator class="native"&gt;&lt;/generator&gt;</span><br><span class="line">		&lt;/id&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;property name="name" column="studentName"&gt;&lt;/property&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;many-to-one name="c" column="classId" class="cn.codeforgod.model.Class" cascade="save-update"&gt;&lt;/many-to-one&gt;</span><br><span class="line">	&lt;/class&gt;</span><br><span class="line"></span><br><span class="line">&lt;/hibernate-mapping&gt;</span><br></pre></td></tr></table></figure>
+<p>Class.hbm.xml</p>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line">&lt;!DOCTYPE hibernate-mapping PUBLIC</span><br><span class="line">        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span><br><span class="line">        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"&gt;</span><br><span class="line"></span><br><span class="line">&lt;hibernate-mapping package="cn.codeforgod.model"&gt;</span><br><span class="line"></span><br><span class="line">	&lt;class name="Class" table="t_class"&gt;</span><br><span class="line">		&lt;id name="id" column="classId"&gt;</span><br><span class="line">			&lt;generator class="native"&gt;&lt;/generator&gt;</span><br><span class="line">		&lt;/id&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;property name="name" column="className"&gt;&lt;/property&gt;</span><br><span class="line">		</span><br><span class="line">		&lt;set name="students" inverse="true"&gt;</span><br><span class="line">			&lt;!-- 被参考的外键 --&gt;</span><br><span class="line">			&lt;key column="classId"&gt;&lt;/key&gt;</span><br><span class="line">			&lt;one-to-many class="cn.codeforgod.model.Student"/&gt;</span><br><span class="line">		&lt;/set&gt;</span><br><span class="line">	&lt;/class&gt;</span><br><span class="line"></span><br><span class="line">&lt;/hibernate-mapping&gt;</span><br></pre></td></tr></table></figure>
+<p>数据库中表之间的关系如下：</p>
+<p><img src="/upload/studentAndClass.png" alt="studentAndClass"></p>
+<p><strong>一、lazy=”true”</strong></p>
+<p>这是默认的方式，也可以在Class.hbm.xml显式配置如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;set name="students" inverse="true" lazy="true"&gt;</span><br><span class="line">	&lt;!-- 被参考的外键 --&gt;</span><br><span class="line">	&lt;key column="classId"&gt;&lt;/key&gt;</span><br><span class="line">	&lt;one-to-many class="cn.codeforgod.model.Student"/&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>JUnit测试：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLazy1</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">/* 获取Class对象时，并不立即获取Class对象中的students，</span><br><span class="line">	 * 当要使用到students时，Hibernate才会通过代理类去获取students</span><br><span class="line">	 */</span></span><br><span class="line">	Class c = (Class) session.get(Class.class, Long.valueOf(<span class="number">1</span>));</span><br><span class="line">	</span><br><span class="line">	Set&lt;Student&gt; studentList = (Set&lt;Student&gt;) c.getStudents();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 当Hibernate检测到操作Class中的students时才会去获取Class中的students</span></span><br><span class="line">	<span class="comment">// 这就是Hibernate的延迟检索策略</span></span><br><span class="line">	studentList.iterator();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>二、lazy=”false”</strong></p>
+<p>在Class.hbm.xml配置如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;set name="students" inverse="true" lazy="false"&gt;</span><br><span class="line">	&lt;!-- 被参考的外键 --&gt;</span><br><span class="line">	&lt;key column="classId"&gt;&lt;/key&gt;</span><br><span class="line">	&lt;one-to-many class="cn.codeforgod.model.Student"/&gt;</span><br><span class="line">&lt;/set&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>JUnit测试：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLazy2</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">// 当配置了lazy="false"时，便会立即检索出Class中的students，</span></span><br><span class="line">	<span class="comment">// 这一点可以通过Hibernate的SQL日志看出</span></span><br><span class="line">	Class c = (Class) session.get(Class.class, Long.valueOf(<span class="number">1</span>));</span><br><span class="line">	</span><br><span class="line"><span class="comment">//	Set&lt;Student&gt; studentList = (Set&lt;Student&gt;) c.getStudents();</span></span><br><span class="line"><span class="comment">//	studentList.iterator();</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>三、lazy=”extra”</strong></p>
+<p>当lazy=”true”时，执行如下语句：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLazy3</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	Class c = (Class) session.get(Class.class, Long.valueOf(<span class="number">1</span>));</span><br><span class="line">	Set&lt;Student&gt; studentList = (Set&lt;Student&gt;) c.getStudents();</span><br><span class="line">	<span class="comment">// 当只获取学生的数量时，Hibernate查询的是student所有信息</span></span><br><span class="line">	System.out.println(studentList.size());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>生成的SQL如下：</p>
+<p><code>Hibernate: select class0_.classId as classId1_0_0_, class0_.className as classNam2_0_0_ from t_class class0_ where class0_.classId=?</code></p>
+<p><code>Hibernate: select students0_.classId as classId3_0_0_, students0_.studentId as studentI1_1_0_, students0_.studentId as studentI1_1_1_, students0_.studentName as studentN2_1_1_, students0_.classId as classId3_1_1_ from t_student students0_ where students0_.classId=?</code></p>
+<p>当只需要查询students数量的时候，并没有对SQL进行优化，降低了效率和系统的性能。</p>
+<p>此时配置lazy=”extra”时，执行以上语句的生成的SQL如下：</p>
+<p><code>Hibernate: select count(studentId) from t_student where classId =?</code></p>
+<blockquote>
+<p>Tips：虽然优化归优化了，但是在实际开发中使用的比较少，因为实际开发基本上不可能只获取数量，一般是要获取数据的。</p>
+</blockquote>
+<p><strong>四、lazy=”proxy”</strong></p>
+<p>在Student.hbm.xml配置如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;many-to-one name="c" column="classId" class="cn.codeforgod.model.Class"</span><br><span class="line">			cascade="save-update" lazy="proxy"&gt;&lt;/many-to-one&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>JUnit测试：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testLazy4</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="comment">/*</span><br><span class="line">	 * 获取Student对象时，并不立即获取Student对象中的class，</span><br><span class="line">	 * 当要使用到class时，Hibernate才会通过代理类去获取class</span><br><span class="line">	 */</span></span><br><span class="line">	Student student = (Student) session.get(Student.class, Long.valueOf(<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 当Hibernate检测到操作Student中的class时才会去数据库中获取Student中的class</span></span><br><span class="line">	<span class="comment">// 这就是Hibernate的延迟检索策略</span></span><br><span class="line">	student.getC().getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代理类student中的c对象虽然不为空，但是也没有数据。</p>
+<blockquote>
+<p>Tips：在实际开发中常用的属性有<code>lazy=&quot;true&quot;</code>和<code>lazy=&quot;false&quot;</code>,其它用的非常少。</p>
+</blockquote>
+<p><strong>五、lazy=”no-proxy”</strong></p>
+<p>此属性需要编译时字节码增强。</p>
+<p>当执行完<code>Student student = (Student) session.get(Student.class, Long.valueOf(1));</code>时，student对象中的c为null，当执行<code>student.getC().getName();</code>时再去数据库中查询获取数据。</p>
 <h2 id="检索策略属性batch-size"><a href="#检索策略属性batch-size" class="headerlink" title="检索策略属性batch-size"></a>检索策略属性batch-size</h2><ol>
-<li><p><strong>批量延迟检索</strong></p>
-</li>
-<li><p><strong>批量立即检索</strong></p>
-</li>
+<li><strong>批量延迟检索</strong></li>
+<li><strong>批量立即检索</strong></li>
 </ol>
-<h2 id="检索策略属性Fetch"><a href="#检索策略属性Fetch" class="headerlink" title="检索策略属性Fetch"></a>检索策略属性Fetch</h2><ol>
+<p>一、批量延迟检索</p>
+<p>配置如下：</p>
+<pre><code>&lt;set name=&quot;students&quot; inverse=&quot;true&quot; lazy=&quot;true&quot; batch-size=&quot;3&quot;&gt;
+    &lt;!-- 被参考的外键 --&gt;
+    &lt;key column=&quot;classId&quot;&gt;&lt;/key&gt;
+    &lt;one-to-many class=&quot;cn.codeforgod.model.Student&quot;/&gt;
+&lt;/set&gt;
+</code></pre><p>二、批量立即检索</p>
+<p>配置如下：</p>
+<pre><code>&lt;set name=&quot;students&quot; inverse=&quot;true&quot; lazy=&quot;false&quot; batch-size=&quot;3&quot;&gt;
+    &lt;!-- 被参考的外键 --&gt;
+    &lt;key column=&quot;classId&quot;&gt;&lt;/key&gt;
+    &lt;one-to-many class=&quot;cn.codeforgod.model.Student&quot;/&gt;
+&lt;/set&gt;
+</code></pre><h2 id="检索策略属性Fetch"><a href="#检索策略属性Fetch" class="headerlink" title="检索策略属性Fetch"></a>检索策略属性Fetch</h2><ol>
 <li><p><strong>Fetch:select(默认） 查询方式</strong></p>
 </li>
-<li><p><strong>Fetch:select&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子查询方式</strong></p>
+<li><p><strong>Fetch:subselect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;子查询方式</strong></p>
 </li>
 <li><p><strong>Fetch:join 迫切做外连接查询方式</strong></p>
 </li>
 </ol>
+<p>一、Fetch:select(默认）</p>
+<p>因为是默认的，所以不做说明了。</p>
+<p>二、Fetch:subselect</p>
+<p>配置如下：</p>
+<pre><code>&lt;set name=&quot;students&quot; inverse=&quot;true&quot; lazy=&quot;false&quot; batch-size=&quot;3&quot;
+    fetch=&quot;subselect&quot;&gt;
+    &lt;!-- 被参考的外键 --&gt;
+    &lt;key column=&quot;classId&quot;&gt;&lt;/key&gt;
+    &lt;one-to-many class=&quot;cn.codeforgod.model.Student&quot; /&gt;
+&lt;/set&gt;
+</code></pre><p>三、Fetch:join</p>
+<p>配置如下：</p>
+<pre><code>&lt;set name=&quot;students&quot; inverse=&quot;true&quot; lazy=&quot;false&quot; batch-size=&quot;3&quot;
+    fetch=&quot;join&quot;&gt;
+    &lt;!-- 被参考的外键 --&gt;
+    &lt;key column=&quot;classId&quot;&gt;&lt;/key&gt;
+    &lt;one-to-many class=&quot;cn.codeforgod.model.Student&quot; /&gt;
+&lt;/set&gt;
+</code></pre><p>join一般用在get()方法中，所有的配置要视情况而定，调优性能。</p>
 
       
     </div>
@@ -610,6 +685,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/07/Hibernate4Step7/" rel="prev" title="Hibernate4Step7">
+                Hibernate4Step7 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -681,7 +760,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">18</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -698,7 +777,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
