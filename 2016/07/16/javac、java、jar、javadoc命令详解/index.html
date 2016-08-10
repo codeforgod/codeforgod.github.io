@@ -99,7 +99,7 @@
 <meta property="og:site_name" content="为上帝而编程">
 <meta property="og:description" content="很多教程都是一开始简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。">
 <meta property="og:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
-<meta property="og:updated_time" content="2016-08-05T08:25:57.045Z">
+<meta property="og:updated_time" content="2016-08-10T03:07:45.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javac、java、jar、javadoc命令详解">
 <meta name="twitter:description" content="很多教程都是一开始简单的说下用javac编译HelloWorld.java，紧接着就是Eclipse等IDE的使用，然而学习者并不了解IDE背后的原理究竟是什么，只有真正弄懂了这些基础命令时，那么任何一款IDE都会得心应手。">
@@ -643,8 +643,59 @@ MyClass3.java
 <li>[JAR文件]：即需要生成、查看、更新或者解开的JAR文件包，它是-f参数的附属参数</li>
 <li>[manifest 文件]：即MANIFEST清单文件，它是-m参数的附属参数。</li>
 <li>[-C 目录]：表示转到指定目录下去执行jar命令的操作。它相当于先使用cd命令转到该目录下再执行不带-C参数的jar命令，它只能在创建和更新JAR文件包的时候可用。</li>
-<li>文件名：指定一个文件/目录列表，这些文件/目录就是要添加到JAR文件包中的文件/目录。如果指定了目录，那么使用jar命令打包的时候会自动把该目录中的所有文件和子目录打入包中</li>
+<li>文件名：指定一个文件/目录列表，这些文件/目录就是要添加到JAR文件包中的文件/目录。如果指定了目录，那么使用jar命令打包的时候会自动把该目录中的所有文件和子目录打入包中。</li>
 </ul>
+<p>五、示例</p>
+<p>例1：<code>jar cf HelloWorld.jar mypackage</code></p>
+<p>该命令是将mypackage中的文件打包，没有执行过程的显示，执行结果是在当前目录生成了HelloWorld.jar 文件，如果当前目录已存在HelloWorld.jar ，那么该文件将会被覆盖。</p>
+<p>例2：<code>jar cvfm HelloWorld.jar manifest.mf mypackage</code></p>
+<p>根据当前目录中的manifest.mf 并将详细报告输出，其中manifest.mf中的内容如下：</p>
+<pre><code>Main-Class: mypackage.HelloWorld
+</code></pre><blockquote>
+<p>Tip：在冒号后需要有一个空格</p>
+</blockquote>
+<p>例3：<code>jar tf HelloWorld.jar</code></p>
+<p>在HelloWorld.jar 已经存在的情况下，可以查看HelloWorld.jar 中的内容。</p>
+<p>例4：<code>jar xvf HelloWorld.jar</code></p>
+<p>将HelloWorld.jar解压到当前目录并显示解压缩的详细信息。</p>
+<h2 id="生成API文档——javadoc命令"><a href="#生成API文档——javadoc命令" class="headerlink" title="生成API文档——javadoc命令"></a>生成API文档——javadoc命令</h2><p>一、javadoc命令的语法结构</p>
+<p><code>javadoc [命令选项][包名][源文件名][@files]</code></p>
+<p>其中：</p>
+<ul>
+<li>[包名]为用空格分隔的一系列包的名字，包名不允许使用通配符，如<code>*</code>。</li>
+<li>[源文件名]为用空格分隔的一系列的源文件名，源文件名可包括路径和通配符</li>
+<li>[@files]是以任何次序包含包名和源文件的一个或多个文件</li>
+</ul>
+<p>二、命令选项</p>
+<p>javadoc 命令选项包括如下几种可选属性</p>
+<ul>
+<li>-overview&lt;文件&gt; ：读取HTML文件的概述文档。</li>
+<li>-public ：仅显示公共类成员</li>
+<li>-protected ：显示受保护/公共类和成员(默认)</li>
+<li>-package ：显示软件包/受保护/公共类和成员</li>
+<li>-private ：显示所有类和成员</li>
+<li>-help ：显示命令行的选项并退出</li>
+<li>-doclet&lt;类&gt; ：通过替代doclet生成输出</li>
+<li>-docletpath&lt;路径&gt; ：指定查找doclet类文件位置</li>
+<li>-sourcepath&lt;路径列表&gt; ：指定查找源文件的位置</li>
+<li>-classpath&lt;路径列表&gt; ：指定查找用户类文件的位置</li>
+<li>-exclude&lt;软件包列表&gt; ：指定要排除的软件包的列表</li>
+<li>-subpackages&lt;子软件包列表&gt; ：指定要递归装入的子软件包</li>
+<li>-breakiterator ：使用BreakIterator计算第1句</li>
+<li>-bootclasspath&lt;路径列表&gt; ：覆盖引导类加载器所装入的类文件的位置</li>
+<li>-source&lt;版本&gt; ：提供与指定版本的源兼容性</li>
+<li>-extdirs&lt;目录列表&gt; ：覆盖安装的扩展目录的位置</li>
+<li>-verbose ：输出有关Javadoc正在执行的操作的消息</li>
+<li>-locale&lt;名称&gt; ：要使用的语言环境，例如en_US</li>
+<li>-encoding&lt;名称&gt; ：源文件编码名称</li>
+<li>-quiet ：不显示状态消息</li>
+<li>-J&lt;标志&gt;：直接将&lt;标志&gt;传递给运行时系统</li>
+</ul>
+<p>三、示例</p>
+<p>例1：</p>
+<pre><code>javadoc mypackage\*.java -d javadoc
+</code></pre><p>该命令用于将mypackage包下的类生成api文档，输出目录为javadoc，执行该命令后会输出一系列的执行记录。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>关于jdk基本命令用法还需要不断地应用和实践，谢谢！</p>
 
       
     </div>
@@ -904,7 +955,7 @@ MyClass3.java
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译类文件——javac命令"><span class="nav-number">2.</span> <span class="nav-text">编译类文件——javac命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行类文件——java命令"><span class="nav-number">3.</span> <span class="nav-text">运行类文件——java命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类文件打包——jar命令"><span class="nav-number">4.</span> <span class="nav-text">类文件打包——jar命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译类文件——javac命令"><span class="nav-number">2.</span> <span class="nav-text">编译类文件——javac命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行类文件——java命令"><span class="nav-number">3.</span> <span class="nav-text">运行类文件——java命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类文件打包——jar命令"><span class="nav-number">4.</span> <span class="nav-text">类文件打包——jar命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成API文档——javadoc命令"><span class="nav-number">5.</span> <span class="nav-text">生成API文档——javadoc命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">6.</span> <span class="nav-text">结束语</span></a></li></ol></div>
             
           </div>
         </section>
