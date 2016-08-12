@@ -1,0 +1,1516 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|console:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JVM内存结构及其调优," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="为上帝而编程" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这是关于JVM入门的一篇文章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM内存结构及其调优">
+<meta property="og:url" content="http://codeforgod.github.io/2016/08/10/JVM内存结构及其调优/index.html">
+<meta property="og:site_name" content="为上帝而编程">
+<meta property="og:description" content="这是关于JVM入门的一篇文章">
+<meta property="og:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/JVM内存结构.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/引用计数.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/引用遍历.jpg">
+<meta property="og:updated_time" content="2016-08-11T13:54:41.832Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM内存结构及其调优">
+<meta name="twitter:description" content="这是关于JVM入门的一篇文章">
+<meta name="twitter:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codeforgod.github.io/2016/08/10/JVM内存结构及其调优/"/>
+
+  <title> JVM内存结构及其调优 | 为上帝而编程 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">为上帝而编程</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一人一生一信仰</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+	  
+	  <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'eePJWPEw6AZxg-LM_ZC7','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JVM内存结构及其调优
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-10T11:19:48+08:00" content="2016-08-10">
+              2016-08-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Java基础提升/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础提升</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/10/JVM内存结构及其调优/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/JVM内存结构及其调优/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/10/JVM内存结构及其调优/" class="leancloud_visitors" data-flag-title="JVM内存结构及其调优">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/upload/hardwork.jpg" alt="hardwork"><br>这是关于JVM入门的一篇文章<br><a id="more"></a></p>
+<h2 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h2><p>本文主要内容如下（Java 6）：</p>
+<ul>
+<li>Java虚拟机结构</li>
+<li>JVM垃圾回收机制： 包括2种垃圾回收方法， 7种垃圾收集器。</li>
+<li>JVM内存区域配置： 包括堆区域、新域与旧域、永久区域、新域子空间</li>
+<li>JVM性能调优实战：调优配置参考和调优实战</li>
+</ul>
+<h2 id="Java虚拟机结构与属性"><a href="#Java虚拟机结构与属性" class="headerlink" title="Java虚拟机结构与属性"></a>Java虚拟机结构与属性</h2><p>JVM提供Java运行环境，内存区域保存的是Java类和Java对象，Java的内存区域称作堆（Heap）。</p>
+<h3 id="Java虚拟机内存结构"><a href="#Java虚拟机内存结构" class="headerlink" title="Java虚拟机内存结构"></a>Java虚拟机内存结构</h3><p>JVM的堆被分为3个域（Generation）分别为新域（Young Generation）、旧域（Tenured Generation）和永久域（Perm Generation），标记为Virtual的部分被保留，在必要时才实际分配出去。</p>
+<p><img src="/upload/JVM内存结构.jpg" alt="JVM内存结构"></p>
+<center><em>JVM内存结构图</em></center>
+
+<p>新域（Young Generation）由Eden和两个救助空间Survivor组成。新对象通常创建于Eden中。其中一个救助空间Survivor会随时被清空，并用作另一个救助空间Survivor的目的地。当进行垃圾收集时，所有来自Eden和救助空间Survivor的活动对象都被复制到另一个救助空间Survivor。对象在两个救助空间Survivor之间移动，直到它们足够“老”，能够被移入保存生存期较长对象的旧域（Tenured Generation）中。</p>
+<p>永久域（Perm Generation）保存那些在虚拟机的整个生存期都生存的对象。因此，该域（Generation）不需要被垃圾收集程序清空。</p>
+<h3 id="JVM配置选项"><a href="#JVM配置选项" class="headerlink" title="JVM配置选项"></a>JVM配置选项</h3><p>要对JVM的性能进行调优，其实就是对JVM的内存进行调整和控制，包括堆大小的调整、Generation大小的调整、垃圾收集程序的选择，以及以上各项的组合。</p>
+<ul>
+<li>-X 选项：以-X 开头的选项，这些选项在JDK升级时不会通知更改</li>
+<li>-XX 选项：以-XX 开头的选项，这些选项不够稳定，所以建议少用</li>
+<li>Boolean 值：即布尔型值，它用-XX:+&lt;option&gt;表示打开该属性，用-XX:-&lt;option&gt;表示关闭该选项</li>
+<li>Nemeric 值：即数字型值，形式为-XX:&lt;option&gt;=&lt;number&gt;,其中的数字可以包含表示字节数的字母，k和K表示KB，m和M表示MB，g和G表示GB，如果不加字母即为Byte，例如32k表示32768Bytes。</li>
+<li>String 值：即字符串型值，形式为-XX:&lt;option&gt;=&lt;string&gt;,通常用于指定一个文件名、路径名、命令列表等。</li>
+</ul>
+<p>本节列出了这些选项及一些值得注意的例外事项，其中粗体部分的属性是比较常用的属性</p>
+<p>一、<code>-X</code>属性列表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性列表及其默认值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-Xint</td>
+<td style="text-align:left">只在解释模式下运行虚拟机，如果使用这个选项，系统将不编译任何字节码</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xbatch</td>
+<td style="text-align:left">通常JVM会预编译代码，结束后再在JIT中执行，该属性用于禁止预编译，直接在JIT中执行编译和运行</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xdebug</td>
+<td style="text-align:left">启用JVMDI Debug支持，在J2SE 5.0中已经不再支持该属性</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xbootclasspath:bootclasspath</td>
+<td style="text-align:left">指定一个目录及JAR和ZIP档案的列表，作为搜索启动类的范围，列表中各项之间的分隔符为冒号<code>:</code></td>
+</tr>
+<tr>
+<td style="text-align:left">-Xfuture</td>
+<td style="text-align:left">对类文件执行严格的格式检查。这个选项强制Java对是否遵守类文件规范做更加严格的检查，而默认的检查只是基于Java 1.1.x 的标准。你应该使用这个选项来对代码进行测试，以便确保这些代码在未来的Java版本中能够工作，这些未来的版本可能强制进行更为严格的类文件格式检查</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xnoclassgc</td>
+<td style="text-align:left">禁用垃圾回收</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xincgc</td>
+<td style="text-align:left">启用增量垃圾收集器</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xmn</td>
+<td style="text-align:left">为Eden对象设定Java堆的大小，默认值为640KB</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xmsn</td>
+<td style="text-align:left">设定Java堆的初始大小，默认大小时2097152（2MB)。这个值必须是1024字节(1KB)的倍数，且比它大</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xmxn</td>
+<td style="text-align:left">设定Java堆的最大大小，默认值为64MB，最大的堆大小达到将近2GB(2048MB)<br><strong>请注意：</strong>很多垃圾收集器的选项依赖于堆大小的设定。请在微调垃圾收集器使用内存空间的方式之前，确认是否已经正确设定了堆的尺寸</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xprof</td>
+<td style="text-align:left">把运行程序详细的行为分析数据发送给标准输出。在产品级的代码中不能使用这个选项</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xrunhprof[:help]</td>
+<td style="text-align:left">启用CPU、内存和监视器记录</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xrs</td>
+<td style="text-align:left">降低JVM的系统信号使用率，JVM能够监视控制台事件，如果监控到CTRL_C_EVENT、CTRL_CLOSE_EVENT、CTRL_LOGOFF_EVENT、CTRL_SHUTDOWN_EVENT时，将停止JVM的运行</td>
+</tr>
+<tr>
+<td style="text-align:left">-Xssn</td>
+<td style="text-align:left">设置线程堆栈大小为n</td>
+</tr>
+</tbody>
+</table>
+<p>二、<code>-XX</code>属性列表</p>
+<p>-XX 属性可以分为三种类型：JVM行为控制属性、JVM性能调优属性、JVM Debug属性</p>
+<p>1）JVM行为控制属性</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">属性列表及其默认值</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-XX:-AllowUserSignalHandlers</td>
+<td style="text-align:left"><strong>仅与Solaris和Linux系统相关</strong>，启用信号处理器</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:-AltStackSize=16384</td>
+<td style="text-align:left"><strong>仅与Solaris和Linux系统相关</strong>，指定信号处理器堆栈大小</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:-DisableExplicitGC</td>
+<td style="text-align:left">忽略代码中对System.gc()的显示调用，虚拟机仍然按照正常的机制进行垃圾收集器。这个选项禁止在代码中强制执行垃圾收集</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+FailOverToOldVerifier</td>
+<td style="text-align:left">当新建类型检查失败时，转移到旧对象</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+HandlePromotionFailure</td>
+<td style="text-align:left">新域不需要为活动对象增大权限</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+MaxFDLimit</td>
+<td style="text-align:left"><strong>仅与Solaris系统相关</strong>，提高文件描述符的数量到最大</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:preBlockSpin=10</td>
+<td style="text-align:left">当使用-XX:+UseSpinning属性时，设置线程同步代码的最大数量</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:-RelaxAccessControlCheck</td>
+<td style="text-align:left">释放访问控制器的验证检查</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+ScavengeBeforeFullGC</td>
+<td style="text-align:left">设置新域的GC为优先</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+UseAltSigs</td>
+<td style="text-align:left"><strong>仅与Solaris系统相关</strong>，使用可选的信号代替SIGUSR1和SIGUSR2</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+UseBoundThreads</td>
+<td style="text-align:left"><strong>仅与Solaris系统相关</strong>，将用户级别与内核线程绑定</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+UseConcMarkSweepGC</td>
+<td style="text-align:left">激活标志和清除同时进行的垃圾收集活动，这个选项对多处理器的计算机有效</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+UseGCOverheadLimit</td>
+<td style="text-align:left">在OutOfMemory前，限制JVM的GC回收时间</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+UseLWPSynchronization</td>
+<td style="text-align:left"><strong>仅与Solaris系统相关</strong>，使用LWP代替线程同步机制</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:-UseParallelGC</td>
+<td style="text-align:left">激活并行的垃圾收集活动，这个选项只对多处理器的计算机有效</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:-UseParallelOldGC</td>
+<td style="text-align:left">使用并行垃圾收集器</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:-UseSerialGC</td>
+<td style="text-align:left">使用串行垃圾收集器</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:-UseSpinning</td>
+<td style="text-align:left">在进入操作系统的线程同步前，使用Java监视</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+UseTLAB</td>
+<td style="text-align:left">激活线程本地的分配缓存区。使用这个缓存区将使线程任务繁重的应用程序的内存分配更加具有可扩展性，大大提高内存分配的性能</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+UseSplitVerifier</td>
+<td style="text-align:left">使用对堆栈映射表的属性实行新对象检查</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+UseThreadPriorities</td>
+<td style="text-align:left">使用本地线程优先级</td>
+</tr>
+<tr>
+<td style="text-align:left">-XX:+UseVMInterruptibleIO</td>
+<td style="text-align:left"><strong>仅与Solaris系统相关</strong>，遇到系统IO操作的EINTR错误时终止线程</td>
+</tr>
+</tbody>
+</table>
+<p>2）JVM性能调优属性</p>
+<p>3）JVM Debug属性</p>
+<h2 id="Java垃圾回收机制"><a href="#Java垃圾回收机制" class="headerlink" title="Java垃圾回收机制"></a>Java垃圾回收机制</h2><ul>
+<li>垃圾回收的2种方法：引用计数、对象引用遍历。</li>
+<li>垃圾收集器的7中类型：标记——清除收集器、标记——压缩收集器、复制收集器、增量收集器、分代收集器、并发收集器、并行收集器。</li>
+</ul>
+<h3 id="垃圾回收的2种方法"><a href="#垃圾回收的2种方法" class="headerlink" title="垃圾回收的2种方法"></a>垃圾回收的2种方法</h3><p>垃圾收集机制（GC），是JVM用于释放哪些不再使用的对象所占用内存的程序与算法。并不是所有的JVM都有GC，因此GC没有一个规范的规定，它没有被Java语言制定成规范。通常大多数JVM都有GC，并且它们都使用类似的算法管理内存和执行收集操作。</p>
+<p>垃圾收集的目的在于清除不再使用的对象。因此，首先必须知道哪些对象不再使用，GC将会收集不再引用的对象。为了标志对象是否被引用，通常采用两种方法：引用计数和对象引用树。</p>
+<p><strong>1） 引用计数</strong></p>
+<p><img src="/upload/引用计数.jpg" alt="引用计数"></p>
+<p>引用计数存储对每个对象的所有引用数，也就是说，当应用程序引用某一个对象时，JVM增加引用数。当某对象的引用数为0时，便可以进行垃圾收集。</p>
+<p>如图2-2所示，GC对每一个类的示例对象进行引用计数，当增加引用时计数加1，当减少引用时计数减1，从图中可以看出对象C的计数为0，那么C对象就可以被垃圾回收了。</p>
+<p><strong>2） 对象引用树</strong></p>
+<p>引用计数是早期的JVM所使用的技术，目前大多数JVM都采用对象引用树的方式。对象引用遍历树是将对象引用关系构建成一颗树，从一组根对象开始，沿着整个对象树上的每条链接，递归确定可达（reachable)对象。如果某对象是不能从根对象的一个（至少一个）可达，则将它作为垃圾收集起来。在对象遍历阶段，GC必须记住哪些对象可以到达，以便删除不可到达的对象，这称为标记(marking)对象。</p>
+<p><img src="/upload/引用遍历.jpg" alt="引用遍历"></p>
+<p>如图2-3所示，对象A被对A1引用，引用对象B被B1和B2引用，对象Z被对象Z1和Z2引用，但对象C没有被其它对象引用，即是不可到达对象。</p>
+<p>然后，JVM要删除不可达的对象。删除时，有些JVM只是简单地扫描堆栈，删除未标记的对象，并释放它们的内存以生成新的对象，这叫作清除（sweeping）。这种方法的问题在于内存会分为很多很多小段，而它们都不足以用于新的对象，但是组合起来却很大。因此许多JVM可以重新组织内存中的对象，并进行压缩（compact），形成可利用的空间。</p>
+<p>为了进行内存空间的重新组织，JVM需要停止其它的活动。这种方法意味着所有与应用程序相关的工作停止，只有GC运行。这也导致了在响应期间增加了许多混杂请求，也有更复杂的GC不断增加或同时运行以减少或者清除应用程序的中断，这也造成了程序运行的复杂性。有的GC使用单线程完成这项工作，有的则采用多线程以增加效率。</p>
+<h3 id="垃圾收集器的7个类型"><a href="#垃圾收集器的7个类型" class="headerlink" title="垃圾收集器的7个类型"></a>垃圾收集器的7个类型</h3><ul>
+<li>标记——清除收集器</li>
+<li>标记——压缩收集器</li>
+<li>复制收集器</li>
+<li>增量收集器</li>
+<li>分代收集器</li>
+<li>并发收集器</li>
+<li>并行收集器</li>
+</ul>
+<p>1）标记——清除收集器</p>
+<p>标记——清除收集器是对遍历对象图进行遍历，并标记可到达的对象，然后扫描栈以寻找未标记对象并释放它们的内存。这种收集器一般使用单线程工作并停止其它操作。</p>
+<p>2）标记——压缩收集器</p>
+<p>也叫标记——清除——压缩收集器，它与标记——清除收集器有相同的标记阶段。在第二阶段，则把标记对象复制到堆栈的新域中以便压缩堆栈。这种收集器也会停止其它操作。</p>
+<p>3）复制收集器</p>
+<p>它将堆栈分为两个域，称为半空间，它每次仅使用一个半空间。GC运行时，JVM生成的新对象放在一个半空间中，将可到达对象复制到另一个半空间中，从而压缩了堆栈。这种方法适用于短生存期的对象，持续复制长生存周期的对象则导致效率降低。</p>
+<p>4）增量收集器</p>
+<p>增量收集器则把堆栈分为多个域，每次仅从一个域收集垃圾。这会造成较小的应用程序中断。</p>
+<p>5）分代收集器</p>
+<p>这种收集器把堆栈分为两个或多个域，用以存放不同寿命的对象。JVM生成的新对象一般放在其中的某个域中。过一段时间，继续存在的对象将获得使用期并转入更长寿的域中。分代收集器对不同的域使用不同的算法以优化性能。</p>
+<p>6）并发收集器</p>
+<p>顾名思义，并发就是同时发生，即它是与应用程序是同时运行的。该收集器在某一时刻（比如压缩时）一般都不得不停止其它操作以完成特定的任务，但是因为其它应用程序可进行其它的后台操作，所以，中断其它处理的实际时间大大降低。</p>
+<p>7）并行收集器</p>
+<p>并行收集器使用某种传统的算法，并使用多线程并行地执行它们的工作。在多CPU机器上使用多线程技术可以显著地提高Java应用程序的可扩展性。</p>
+<blockquote>
+<p>并发和并行收集器，只是针对整个整个应用程序或硬件CPU的，所以对内存的操作有更特殊的机制</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="CodeForGod Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM内存结构及其调优/" rel="tag">#JVM内存结构及其调优</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/08/java-lang/" rel="next" title="java.lang">
+                <i class="fa fa-chevron-left"></i> java.lang
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/10/MySQL-Step1/" rel="prev" title="MySQL_Step1">
+                MySQL_Step1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/10/JVM内存结构及其调优/"
+           data-title="JVM内存结构及其调优" data-url="http://codeforgod.github.io/2016/08/10/JVM内存结构及其调优/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar1.jpg"
+               alt="CodeForGod" />
+          <p class="site-author-name" itemprop="name">CodeForGod</p>
+          <p class="site-description motion-element" itemprop="description">记录生活点滴</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/codeforgod" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/codeforgod" target="_blank" title="新浪微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  新浪微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imooc.com/" title="慕课网" target="_blank">慕课网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.shiyanlou.com/" title="实验楼" target="_blank">实验楼</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dvd.boxuegu.com/" title="博学谷视频库" target="_blank">博学谷视频库</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.atguigu.com/" title="尚硅谷" target="_blank">尚硅谷</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.java1234.com/" title="java知识分享网" target="_blank">java知识分享网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://so.baiduyun.me/" title="百度云资源搜索" target="_blank">百度云资源搜索</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cmsblogs.com/" title="cmblog" target="_blank">cmblog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net" title="csdn博客" target="_blank">csdn博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn" title="新浪博客" target="_blank">新浪博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://edu.51cto.com/" title="51CTO学院" target="_blank">51CTO学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/" title="博客园" target="_blank">博客园</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java虚拟机结构与属性"><span class="nav-number">2.</span> <span class="nav-text">Java虚拟机结构与属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java虚拟机内存结构"><span class="nav-number">2.1.</span> <span class="nav-text">Java虚拟机内存结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM配置选项"><span class="nav-number">2.2.</span> <span class="nav-text">JVM配置选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java垃圾回收机制"><span class="nav-number">3.</span> <span class="nav-text">Java垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收的2种方法"><span class="nav-number">3.1.</span> <span class="nav-text">垃圾回收的2种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集器的7个类型"><span class="nav-number">3.2.</span> <span class="nav-text">垃圾收集器的7个类型</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CodeForGod</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeforgod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+</body>
+</html>
