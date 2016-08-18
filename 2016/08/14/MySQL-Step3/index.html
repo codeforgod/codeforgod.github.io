@@ -1,0 +1,1641 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|console:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MySQL_Step3," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="为上帝而编程" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="熟练掌握使用MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL-Step3">
+<meta property="og:url" content="http://codeforgod.github.io/2016/08/14/MySQL-Step3/index.html">
+<meta property="og:site_name" content="为上帝而编程">
+<meta property="og:description" content="熟练掌握使用MySQL">
+<meta property="og:updated_time" content="2016-08-16T10:44:31.390Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL-Step3">
+<meta name="twitter:description" content="熟练掌握使用MySQL">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://codeforgod.github.io/2016/08/14/MySQL-Step3/"/>
+
+  <title> MySQL-Step3 | 为上帝而编程 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">为上帝而编程</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">一人一生一信仰</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+	  
+	  <li> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//7xuupy.com1.z0.glb.clouddn.com/tongxingSibel%20-%20Im%20Sorry.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+    })()    '>High一下</a> </li>
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'eePJWPEw6AZxg-LM_ZC7','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                MySQL-Step3
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-14T15:08:57+08:00" content="2016-08-14">
+              2016-08-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/MySQL/" itemprop="url" rel="index">
+                    <span itemprop="name">MySQL</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/14/MySQL-Step3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/14/MySQL-Step3/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/14/MySQL-Step3/" class="leancloud_visitors" data-flag-title="MySQL-Step3">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>熟练掌握使用MySQL<br><a id="more"></a></p>
+<h2 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h2><p>本人使用的MySQL 5.1版本，图形化界面用的SQLyog，本文主要介绍有如下内容：</p>
+<ul>
+<li>MySQL常用函数</li>
+<li>触发器</li>
+<li>存储过程</li>
+</ul>
+<h2 id="MySQL常用函数"><a href="#MySQL常用函数" class="headerlink" title="MySQL常用函数"></a>MySQL常用函数</h2><h3 id="日期和时间函数"><a href="#日期和时间函数" class="headerlink" title="日期和时间函数"></a>日期和时间函数</h3><ol>
+<li>curdate() 返回当前日期（current date）</li>
+<li>curtime() 返回当前时间</li>
+<li>month(d) 返回日期d中的月份值，范围是1~12</li>
+</ol>
+<pre><code>SELECT CURDATE(),CURTIME(),MONTH(birthday)
+FROM t_user3;
+</code></pre><h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><ol>
+<li>char_length(s) 计算字符串s的字符数</li>
+<li>upper(s) 把字符串s中所有字母变成大写字母</li>
+<li>lower(s) 把所有字母变成小写字母</li>
+</ol>
+<pre><code>SELECT userName,CHAR_LENGTH(userName),UPPER(userName),LOWER(userName)
+FROM t_user3 GROUP BY id;
+</code></pre><h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><ol>
+<li>abs(x) 求绝对值</li>
+<li>sqrt(x) 求平方根</li>
+<li>mod(x,y) 求余</li>
+</ol>
+<pre><code>SELECT num,ABS(num),SQRT(4),MOD(9,2)
+FROM t_user3;
+</code></pre><h3 id="加密函数"><a href="#加密函数" class="headerlink" title="加密函数"></a>加密函数</h3><ol>
+<li>password(str) 一般对用户的密码加密 不可逆</li>
+<li>md5(str) 普通加密 不可逆</li>
+<li>encode(str,pswd_str) 加密函数，结果是一个二进制数，必须使用blob类型的字段来保存它</li>
+<li>decode(crypt_str,pswd_str) 解密函数</li>
+</ol>
+<pre><code>INSERT INTO t_user3 (PASSWORD,password2) VALUES(PASSWORD(&quot;123456&quot;),NULL);
+
+INSERT INTO t_user3 (PASSWORD,password2) VALUES(MD5(&quot;123456&quot;),ENCODE(&quot;123456&quot;,&quot;aa&quot;));
+
+SELECT DECODE(password2,&quot;aa&quot;) FROM t_user3 WHERE id=6;
+</code></pre><h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>触发器(trigger)是由事件来触发某个操作。这些事件包括insert语句、update语句和delete语句。当数据库系统执行这些事件时，就会激活触发器执行响应的操作。</p>
+<h3 id="创建与使用触发器"><a href="#创建与使用触发器" class="headerlink" title="创建与使用触发器"></a>创建与使用触发器</h3><h4 id="创建只有一个执行语句的触发器"><a href="#创建只有一个执行语句的触发器" class="headerlink" title="创建只有一个执行语句的触发器"></a>创建只有一个执行语句的触发器</h4><pre><code>create trigger 触发器名 before|after 触发事件
+    on 表名 for each row 执行语句
+
+/* 格式 */
+DELIMITER $$
+
+CREATE
+    /*[DEFINER = { user | CURRENT_USER }]*/
+    TRIGGER `db_book`.`trig_book` BEFORE/AFTER INSERT/UPDATE/DELETE
+    ON `db_book`.`&lt;Table Name&gt;`
+    FOR EACH ROW BEGIN
+
+    END$$
+
+DELIMITER ;
+
+
+/* 手动创建 */
+CREATE TRIGGER trig_book AFTER INSERT
+ON t_book FOR EACH ROW
+UPDATE t_booktype SET bookNum=bookNum+1 WHERE new.bookTypeId=t_booktype.id;
+
+/* 插入数据 */
+INSERT INTO t_book VALUES(NULL,&apos;sfasf&apos;,100,&apos;sf&apos;,1)
+</code></pre><h4 id="创建有多个执行语句的触发器"><a href="#创建有多个执行语句的触发器" class="headerlink" title="创建有多个执行语句的触发器"></a>创建有多个执行语句的触发器</h4><pre><code>create trigger 触发器名 before|after 触发事件
+    on 表名 for each row
+begin
+    执行语句列表
+end
+
+/* 手动创建 */
+DELIMITER |
+CREATE TRIGGER trig_book2 AFTER DELETE
+ON t_book FOR EACH ROW
+BEGIN
+    UPDATE t_bookType SET bookNum=bookNum-1 WHERE old.bookTypeId=t_bookType.id;
+    INSERT INTO t_log VALUES(NULL,NOW(),&apos;在book表里删除了一条数据&apos;);
+    DELETE FROM t_test WHERE old.bookTypeId=t_test.id;
+END
+|
+DELIMITER ;
+
+/* 数据库创建 */
+DELIMITER $$
+
+USE `db_book`$$
+
+DROP TRIGGER IF EXISTS `trig_book2`$$
+
+CREATE
+    /*!50017 DEFINER = &apos;root&apos;@&apos;localhost&apos; */
+    TRIGGER `trig_book2` AFTER DELETE ON `t_book` 
+    FOR EACH ROW BEGIN
+        UPDATE t_bookType SET bookNum=bookNum-1 WHERE old.bookTypeId=t_bookType.id;
+        INSERT INTO t_log VALUES(NULL,NOW(),&apos;在book表里删除了一条数据&apos;);
+        DELETE FROM t_test WHERE old.bookTypeId=t_test.id;
+    END;
+$$
+
+DELIMITER ;
+</code></pre><h3 id="查看触发器"><a href="#查看触发器" class="headerlink" title="查看触发器"></a>查看触发器</h3><h4 id="show-triggers-语句查看所有触发器信息"><a href="#show-triggers-语句查看所有触发器信息" class="headerlink" title="show triggers 语句查看所有触发器信息"></a>show triggers 语句查看所有触发器信息</h4><pre><code>SHOW TRIGGERS;
+SHOW CREATE TRIGGER trig_book2;
+</code></pre><h4 id="在trigger表中查看触发器信息"><a href="#在trigger表中查看触发器信息" class="headerlink" title="在trigger表中查看触发器信息"></a>在trigger表中查看触发器信息</h4><pre><code>USE information_schema;
+SELECT * FROM TRIGGERS;
+</code></pre><h3 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h3><pre><code>drop trigger 触发器名
+
+
+DROP TRIGGER trig_book;
+DROP TRIGGER trig_book2;
+</code></pre><h2 id="存储过程和函数"><a href="#存储过程和函数" class="headerlink" title="存储过程和函数"></a>存储过程和函数</h2><p>存储过程和函数是在数据库中定义一些SQL语句的集合，然后直接调用这些存储过程和函数来执行已经定义好的SQL语句。</p>
+<p>存储过程和函数可以避免开发人员重复编写相同的SQL语句，而且存储过程和函数是在MySQL服务器中存储和执行的，可以减少客户端和服务器端的数据传输。</p>
+<h3 id="创建存储过程和函数"><a href="#创建存储过程和函数" class="headerlink" title="创建存储过程和函数"></a>创建存储过程和函数</h3><h4 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h4><pre><code>create procedure sp_name([proc_parameter[,...]])
+    [characteristic...] routine_body
+
+sp_name: 存储过程的名称
+proc_parameter: 存储过程的参数列表
+characteristic: 存储过程的特性
+routine_body: 是SQL代码的内容，可以用begin...end来标志SQL代码的开始和结束。
+
+proc_parameter中的每个参数由3部分组成（输入输出类型、参数名称和参数类型）：
+[in|out|inout] param_name type
+in表示输入参数，out表示输出参数，inout表示既是输入也是输出参数；
+param_name参数是参数的名称；
+type是参数的类型。
+
+characteristic：    参数有多个取值，取值说明如下：
+
+LANGUAGE SQL：说明routine_body部分是由SQL语言的语句组成，这也是数据库系统默认的语言。
+
+[NOT] DETERMINISTIC：指明存储过程的执行结果是否是确定的。（相同输入，输出是否确定？）
+
+{ CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }：指明子程序使用的SQL的限制：
+CONTAINS SQL：表示子程序包含SQL语句，但不包含读或写数据的语句；
+NO SQL：表示子程序中不包含SQL语句；
+READS SQL DATA：表示子程序中包含读数据的语句；
+MODIFIES SQL：表示子程序中包含写数据的语句；
+默认情况下，系统会指定CONSTRAINT SQL；
+
+SQL SECURITY { DEFINER | INVOKER }：指明谁有权限来执行。
+DEFINER：表示只有定义者自己才能够执行；
+INVOKER：表示调用者可以执行。
+默认情况下的权限是DEFINER。
+
+COMMENT &apos;string&apos;：注释信息。
+
+/* 格式 */
+DELIMITER $$
+
+CREATE
+    /*[DEFINER = { user | CURRENT_USER }]*/
+    PROCEDURE `db_book`.`pro_book2`()
+    /*LANGUAGE SQL
+    | [NOT] DETERMINISTIC
+    | { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }
+    | SQL SECURITY { DEFINER | INVOKER }
+    | COMMENT &apos;string&apos;*/
+    BEGIN
+
+    END$$
+
+DELIMITER ;    
+
+
+/* 手动创建 */
+DELIMITER $$
+CREATE PROCEDURE pro_book(IN bt INT, OUT coun_num INT)
+    READS SQL DATA
+    BEGIN
+        SELECT COUNT(*) FROM t_book WHERE booktypeId=bt;
+    END
+$$
+DELIMITER ;
+
+/* 调用存储过程 */
+CALL pro_book(1,@total)
+
+/* 数据库创建 */
+DELIMITER $$
+
+USE `db_book`$$
+
+DROP PROCEDURE IF EXISTS `pro_book`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_book`(IN bt INT, OUT coun_num INT)
+    READS SQL DATA
+    BEGIN
+        SELECT COUNT(*) FROM t_book WHERE booktypeId=bt;
+    END$$
+
+DELIMITER ;
+</code></pre><h4 id="创建存储函数"><a href="#创建存储函数" class="headerlink" title="创建存储函数"></a>创建存储函数</h4><pre><code>create function sp_name([func_parameter[,...]])
+    returns type
+    [characteristic...] routine_body
+
+sp_name：参数是存储函数的名称；
+func_parameter：表示存储函数的参数列表；
+returns type：指定返回值的类型；
+characteristic参数：指定存储过程的特性，该参数的取值与存储过程中的取值是一样的。
+routine_body参数：指SQL代码的内容，可以用begin...end来标志SQL代码的开始和结束；
+
+func_parameter：可以由多个参数组成，其中每个参数由参数名称和参数类型组成，其形式如下：
+param_name type    其中，param_name是参数名称，type是参数的类型，该类型可以是MySQL数据库的任意数据类型。
+
+/* 数据库创建 */
+DELIMITER $$
+
+CREATE
+    /*[DEFINER = { user | CURRENT_USER }]*/
+    FUNCTION `db_book`.`func_book`()
+    RETURNS TYPE
+    /*LANGUAGE SQL
+    | [NOT] DETERMINISTIC
+    | { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }
+    | SQL SECURITY { DEFINER | INVOKER }
+    | COMMENT &apos;string&apos;*/
+    BEGIN
+
+    END$$
+
+DELIMITER ;    
+
+/* 手动创建 */
+DELIMITER $$
+CREATE FUNCTION func_book (bookId INT)
+    RETURNS VARCHAR(20)
+    BEGIN
+        RETURN (SELECT bookName FROM t_book WHERE id=bookId);
+    END
+$$
+DELIMITER ;
+
+/* 调用存储函数 */
+SELECT func_book(2);
+
+/* 数据库修改存储函数 */
+DELIMITER $$
+
+USE `db_book`$$
+
+DROP FUNCTION IF EXISTS `func_book`$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `func_book`(bookId INT) RETURNS VARCHAR(20) CHARSET utf8
+BEGIN
+        RETURN (SELECT bookName FROM t_book WHERE id=bookId);
+    END$$
+
+DELIMITER ;
+</code></pre><h4 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h4><h5 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h5><p>declare var_name[,…] type [default value]</p>
+<pre><code>/* 创建存储过程并定义变量 */
+DELIMITER $$
+CREATE PROCEDURE pro_user()
+    BEGIN
+        DECLARE a,b VARCHAR(20);
+        INSERT INTO t_user VALUES (NULL,a,b);
+    END
+$$
+DELIMITER ;
+
+/* 调用存储过程 */
+CALL pro_user();
+</code></pre><h5 id="为变量赋值"><a href="#为变量赋值" class="headerlink" title="为变量赋值"></a>为变量赋值</h5><p>1）<br>set var_name=expr[,var_name=expr]…</p>
+<pre><code>/* 创建存储过程，定义变量并为通过set为变量赋值 */
+DELIMITER $$
+    CREATE PROCEDURE pro_user2()
+        BEGIN
+            DECLARE a,b VARCHAR(20);
+            SET a=&quot;Hello&quot;,b=&quot;World&quot;;
+            INSERT INTO t_user VALUES (NULL,a,b);
+        END
+$$
+DELIMITER ;
+
+/* 调用存储过程 */
+CALL pro_user2();
+</code></pre><p>2）<br>select col_name[,…] into var_name[,…]<br>from table name<br>where condition</p>
+<pre><code>/* 创建存储过程，定义变量并为通过select为变量赋值 */
+DELIMITER $$
+CREATE PROCEDURE pro_user2_2()
+    BEGIN
+        DECLARE a,b VARCHAR(20);
+        SELECT userName2,password2 INTO a,b 
+        FROM t_user2_2 WHERE id2=1;
+        INSERT INTO t_user VALUES (NULL,a,b);
+    END
+$$
+DELIMITER ;
+
+CALL pro_user2_2();
+</code></pre><h4 id="游标的使用"><a href="#游标的使用" class="headerlink" title="游标的使用"></a>游标的使用</h4><p>查询语句可能查询到多条记录，在存储过程和函数中使用游标来逐条读取查询结果集中的记录。</p>
+<p>游标的使用包括声明游标、打开游标、使用游标和关闭游标。</p>
+<p>游标必须声明在处理程序之前，并且声明在变量和条件之后。</p>
+<p>1） 声明游标</p>
+<p>declare cursor_name cursor for select_statement;</p>
+<p>2） 打开游标</p>
+<p>open cursor_name;</p>
+<p>3） 使用游标</p>
+<p>fetch cursor_name into var_name[,var_name…];</p>
+<p>4） 关闭游标</p>
+<p>close cursor_name;</p>
+<pre><code>/* 创建存储过程演示游标的使用 */
+DELIMITER $$
+CREATE PROCEDURE pro_user3()
+    BEGIN
+        DECLARE a,b VARCHAR(20);
+        /* 声明游标 */
+        DECLARE cur_user2 CURSOR FOR
+            SELECT userName2,password2 FROM t_user2_2;
+        /* 打开游标 */
+        OPEN cur_user2;
+        /* 使用游标，从游标中取数据 */
+        FETCH cur_user2 INTO a,b;
+        INSERT INTO t_user VALUES(NULL,a,b);
+        /* 关闭游标 */
+        CLOSE cur_user2;
+    END
+$$
+DELIMITER ;
+
+/* 调用存储过程 */
+CALL pro_user3();
+</code></pre><h4 id="流程控制的使用"><a href="#流程控制的使用" class="headerlink" title="流程控制的使用"></a>流程控制的使用</h4><p>存储过程和函数中可以使用流程控制来控制语句的执行。</p>
+<p>MySQL中可以使用IF语句、CASE语句、LOOP语句、LEAVE语句、ITERATE语句、REPEAT语句和WHILE语句来进行流程控制。</p>
+<h5 id="IF语句"><a href="#IF语句" class="headerlink" title="IF语句"></a>IF语句</h5><p>if search_condition then statement_list<br>[else if search_condition then statement_list]<br>…<br>[else statement_list]<br>end if</p>
+<pre><code>DELIMITER $$
+CREATE PROCEDURE pro_user4(IN bookId INT)
+    BEGIN
+        SELECT COUNT(*) INTO @num FROM t_user WHERE id=bookId;
+        IF @num&gt;0 THEN  UPDATE t_user SET userName=&apos;yyy&apos;,PASSWORD=&apos;yyy&apos; WHERE id=bookId;
+        ELSE
+            INSERT INTO t_user VALUES(NULL,&apos;nnn&apos;,&apos;nnn&apos;);
+        END IF ;
+    END
+$$
+DELIMITER ;
+</code></pre><h5 id="CASE语句"><a href="#CASE语句" class="headerlink" title="CASE语句"></a>CASE语句</h5><p>case case_value<br>when when_value then statement_list<br>[when when_value then statement_list]<br>…<br>[else statement_list]<br>end case</p>
+<pre><code>DELIMITER $$
+CREATE PROCEDURE pro_user5(IN bookId INT)
+    BEGIN
+        CASE bookId
+        WHEN 1 THEN
+            UPDATE t_user SET userName=&quot;1&quot;,PASSWORD=&quot;1&quot; WHERE id=bookId;
+        WHEN 2 THEN
+            INSERT INTO t_user VALUES(NULL,&quot;2&quot;,&quot;2&quot;);
+        ELSE
+            INSERT INTO t_user VALUES(NULL,&quot;other&quot;,&quot;other&quot;);
+        END CASE ;
+    END
+$$
+DELIMITER ;
+</code></pre><h5 id="LOOP，LEAVE语句"><a href="#LOOP，LEAVE语句" class="headerlink" title="LOOP，LEAVE语句"></a>LOOP，LEAVE语句</h5><p>loop语句可以使某些特定的语句重复执行，实现一个简单的循环。但是loop语句本身没有停止循环的语句，必须是遇到leave语句才能停止循环。</p>
+<p>[begin_label:] loop<br>statement_list;<br>end loop [end_label]</p>
+<p>leave 语句主要用于跳出循环控制，语法如下：<br>leave label</p>
+<pre><code>DELIMITER $$
+CREATE PROCEDURE pro_user6(IN totalNum INT)
+    BEGIN
+        a:LOOP
+            IF totalNum=0
+                THEN LEAVE a;
+            ELSE
+                INSERT INTO t_user VALUES(totalNum,&quot;afa&quot;,&quot;faf&quot;);
+            END IF ;
+            SET totalNum=totalNum-1;
+        END LOOP a;
+    END
+$$
+DELIMITER ;
+</code></pre><h5 id="ITERATE语句"><a href="#ITERATE语句" class="headerlink" title="ITERATE语句"></a>ITERATE语句</h5><p>iterate 语句也是用来跳出循环的语句，但是，iterate 语句是跳出本次循环，然后直接进入下一次循环，语法如下：<br>iterate label;</p>
+<h5 id="REPEAT语句"><a href="#REPEAT语句" class="headerlink" title="REPEAT语句"></a>REPEAT语句</h5><p>repeat 语句是有条件控制的循环语句。<br>当满足特定条件时，就会跳出循环语句。<br>repeat语句的基本语法如下：</p>
+<p>[begin_label:]repeat<br>statement_list<br>until search_condition<br>end repeat[end_label]</p>
+<h5 id="WHILE语句"><a href="#WHILE语句" class="headerlink" title="WHILE语句"></a>WHILE语句</h5><p>[begin_label:]while search_condition do<br>statement_list<br>end while[end_label]</p>
+<h3 id="调用存储过程和函数"><a href="#调用存储过程和函数" class="headerlink" title="调用存储过程和函数"></a>调用存储过程和函数</h3><h4 id="调用存储过程"><a href="#调用存储过程" class="headerlink" title="调用存储过程"></a>调用存储过程</h4><h4 id="调用存储函数"><a href="#调用存储函数" class="headerlink" title="调用存储函数"></a>调用存储函数</h4><h3 id="查看存储过程和函数"><a href="#查看存储过程和函数" class="headerlink" title="查看存储过程和函数"></a>查看存储过程和函数</h3><h4 id="SHOW-STATUS-语句查看存储过程和函数的状态"><a href="#SHOW-STATUS-语句查看存储过程和函数的状态" class="headerlink" title="SHOW STATUS 语句查看存储过程和函数的状态"></a>SHOW STATUS 语句查看存储过程和函数的状态</h4><h4 id="SHOW-CREATE-语句查看存储过程和函数的定义"><a href="#SHOW-CREATE-语句查看存储过程和函数的定义" class="headerlink" title="SHOW CREATE 语句查看存储过程和函数的定义"></a>SHOW CREATE 语句查看存储过程和函数的定义</h4><h4 id="从information-schema-Routines-表中查看存储过程和函数的信息"><a href="#从information-schema-Routines-表中查看存储过程和函数的信息" class="headerlink" title="从information_schema.Routines 表中查看存储过程和函数的信息"></a>从information_schema.Routines 表中查看存储过程和函数的信息</h4><h3 id="修改存储过程和函数"><a href="#修改存储过程和函数" class="headerlink" title="修改存储过程和函数"></a>修改存储过程和函数</h3><h3 id="删除存储过程和函数"><a href="#删除存储过程和函数" class="headerlink" title="删除存储过程和函数"></a>删除存储过程和函数</h3>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="CodeForGod Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL-Step3/" rel="tag">#MySQL_Step3</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/13/MySQL-Step2/" rel="next" title="MySQL-Step2">
+                <i class="fa fa-chevron-left"></i> MySQL-Step2
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/14/MySQL-Step3/"
+           data-title="MySQL-Step3" data-url="http://codeforgod.github.io/2016/08/14/MySQL-Step3/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar1.jpg"
+               alt="CodeForGod" />
+          <p class="site-author-name" itemprop="name">CodeForGod</p>
+          <p class="site-description motion-element" itemprop="description">记录生活点滴</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/codeforgod" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/codeforgod" target="_blank" title="新浪微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  新浪微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imooc.com/" title="慕课网" target="_blank">慕课网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.jikexueyuan.com/" title="极客学院" target="_blank">极客学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.shiyanlou.com/" title="实验楼" target="_blank">实验楼</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://dvd.boxuegu.com/" title="博学谷视频库" target="_blank">博学谷视频库</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.atguigu.com/" title="尚硅谷" target="_blank">尚硅谷</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.java1234.com/" title="java知识分享网" target="_blank">java知识分享网</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://so.baiduyun.me/" title="百度云资源搜索" target="_blank">百度云资源搜索</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://cmsblogs.com/" title="cmblog" target="_blank">cmblog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net" title="csdn博客" target="_blank">csdn博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.sina.com.cn" title="新浪博客" target="_blank">新浪博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://edu.51cto.com/" title="51CTO学院" target="_blank">51CTO学院</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.cnblogs.com/" title="博客园" target="_blank">博客园</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL常用函数"><span class="nav-number">2.</span> <span class="nav-text">MySQL常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#日期和时间函数"><span class="nav-number">2.1.</span> <span class="nav-text">日期和时间函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串函数"><span class="nav-number">2.2.</span> <span class="nav-text">字符串函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数学函数"><span class="nav-number">2.3.</span> <span class="nav-text">数学函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加密函数"><span class="nav-number">2.4.</span> <span class="nav-text">加密函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#触发器"><span class="nav-number">3.</span> <span class="nav-text">触发器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建与使用触发器"><span class="nav-number">3.1.</span> <span class="nav-text">创建与使用触发器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建只有一个执行语句的触发器"><span class="nav-number">3.1.1.</span> <span class="nav-text">创建只有一个执行语句的触发器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建有多个执行语句的触发器"><span class="nav-number">3.1.2.</span> <span class="nav-text">创建有多个执行语句的触发器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看触发器"><span class="nav-number">3.2.</span> <span class="nav-text">查看触发器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#show-triggers-语句查看所有触发器信息"><span class="nav-number">3.2.1.</span> <span class="nav-text">show triggers 语句查看所有触发器信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在trigger表中查看触发器信息"><span class="nav-number">3.2.2.</span> <span class="nav-text">在trigger表中查看触发器信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除触发器"><span class="nav-number">3.3.</span> <span class="nav-text">删除触发器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储过程和函数"><span class="nav-number">4.</span> <span class="nav-text">存储过程和函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建存储过程和函数"><span class="nav-number">4.1.</span> <span class="nav-text">创建存储过程和函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建存储过程"><span class="nav-number">4.1.1.</span> <span class="nav-text">创建存储过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建存储函数"><span class="nav-number">4.1.2.</span> <span class="nav-text">创建存储函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量的使用"><span class="nav-number">4.1.3.</span> <span class="nav-text">变量的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义变量"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">定义变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#为变量赋值"><span class="nav-number">4.1.3.2.</span> <span class="nav-text">为变量赋值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#游标的使用"><span class="nav-number">4.1.4.</span> <span class="nav-text">游标的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程控制的使用"><span class="nav-number">4.1.5.</span> <span class="nav-text">流程控制的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#IF语句"><span class="nav-number">4.1.5.1.</span> <span class="nav-text">IF语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CASE语句"><span class="nav-number">4.1.5.2.</span> <span class="nav-text">CASE语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LOOP，LEAVE语句"><span class="nav-number">4.1.5.3.</span> <span class="nav-text">LOOP，LEAVE语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ITERATE语句"><span class="nav-number">4.1.5.4.</span> <span class="nav-text">ITERATE语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#REPEAT语句"><span class="nav-number">4.1.5.5.</span> <span class="nav-text">REPEAT语句</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WHILE语句"><span class="nav-number">4.1.5.6.</span> <span class="nav-text">WHILE语句</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用存储过程和函数"><span class="nav-number">4.2.</span> <span class="nav-text">调用存储过程和函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#调用存储过程"><span class="nav-number">4.2.1.</span> <span class="nav-text">调用存储过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用存储函数"><span class="nav-number">4.2.2.</span> <span class="nav-text">调用存储函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看存储过程和函数"><span class="nav-number">4.3.</span> <span class="nav-text">查看存储过程和函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SHOW-STATUS-语句查看存储过程和函数的状态"><span class="nav-number">4.3.1.</span> <span class="nav-text">SHOW STATUS 语句查看存储过程和函数的状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SHOW-CREATE-语句查看存储过程和函数的定义"><span class="nav-number">4.3.2.</span> <span class="nav-text">SHOW CREATE 语句查看存储过程和函数的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从information-schema-Routines-表中查看存储过程和函数的信息"><span class="nav-number">4.3.3.</span> <span class="nav-text">从information_schema.Routines 表中查看存储过程和函数的信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改存储过程和函数"><span class="nav-number">4.4.</span> <span class="nav-text">修改存储过程和函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除存储过程和函数"><span class="nav-number">4.5.</span> <span class="nav-text">删除存储过程和函数</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CodeForGod</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"codeforgod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+  
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("RL6dbACqdveogNUuAQpK8IzY-gzGzoHsz", "l2fULAb50DaWJKMRj6M3Fjeh");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+</body>
+</html>

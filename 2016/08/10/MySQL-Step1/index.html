@@ -99,7 +99,11 @@
 <meta property="og:site_name" content="为上帝而编程">
 <meta property="og:description" content="熟练掌握使用MySQL">
 <meta property="og:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
-<meta property="og:updated_time" content="2016-08-10T13:19:55.528Z">
+<meta property="og:image" content="http://codeforgod.github.io/upload/MySQL字符串类型.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/MySQL二进制类型.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/MySQL表约束条件.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/MySQLt_grade.jpg">
+<meta property="og:updated_time" content="2016-08-16T01:45:07.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL_Step1">
 <meta name="twitter:description" content="熟练掌握使用MySQL">
@@ -523,12 +527,12 @@
 
       
         <p><img src="/upload/hardwork.jpg" alt="hardwork"><br>熟练掌握使用MySQL<br><a id="more"></a></p>
-<h2 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h2><p>本文主要内容如下（MySQL 5.1 &amp; SQLyog）：</p>
+<h2 id="前面的话"><a href="#前面的话" class="headerlink" title="前面的话"></a>前面的话</h2><p>本人使用的MySQL 5.1版本，图形化界面用的SQLyog，本文主要介绍有如下内容：</p>
 <ul>
-<li>Java虚拟机结构</li>
-<li>JVM垃圾回收机制： 包括2种垃圾回收方法， 7种垃圾收集器。</li>
-<li>JVM内存区域配置： 包括堆区域、新域与旧域、永久区域、新域子空间</li>
-<li>JVM性能调优实战：调优配置参考和调优实战</li>
+<li>MySQL数据类型：整数类型、浮点数类型和定点数类型；日期和时间类型；字符串类型；二进制类型；</li>
+<li>数据库基本操作</li>
+<li>数据库表的基本操作</li>
+<li>数据库表的基本操作（SQL）</li>
 </ul>
 <h2 id="MySQL数据类型"><a href="#MySQL数据类型" class="headerlink" title="MySQL数据类型"></a>MySQL数据类型</h2><p>一、整数类型、浮点数类型和定点数类型</p>
 <p>1). 整数类型</p>
@@ -626,7 +630,7 @@
 <td style="text-align:center">0000</td>
 </tr>
 <tr>
-<td style="text-align:center">double</td>
+<td style="text-align:center">date</td>
 <td style="text-align:center">4</td>
 <td style="text-align:center">1000-01-01~9999-12-31</td>
 <td style="text-align:center">0000-00-00</td>
@@ -651,7 +655,249 @@
 </tr>
 </tbody>
 </table>
-<p>bigint111111111111111111111111111111111<br>binary<br>bit<br>blob<br>bool<br>boolean<br>char<br>date<br>datetime<br>decimal<br>double<br>enum<br>float22222222222222222222222222222222222<br>int1111111111111111111111111111111111111<br>longblob<br>longtext<br>mediumblob<br>mediumint1111111111111111111111111111111<br>midiumtext<br>numeric<br>real<br>set<br>smallint11111111111111111111111111111111<br>text<br>time<br>timestamp<br>tinyblob<br>tinyint111111111111111111111111111111111<br>tinytext<br>varbinary<br>varchar<br>year</p>
+<p>三、字符串类型</p>
+<p><img src="/upload/MySQL字符串类型.jpg" alt="MySQL字符串类型"></p>
+<p>四、二进制类型</p>
+<p><img src="/upload/MySQL二进制类型.jpg" alt="MySQL二进制类型"></p>
+<h2 id="数据库基本操作"><a href="#数据库基本操作" class="headerlink" title="数据库基本操作"></a>数据库基本操作</h2><p>一、数据库概念</p>
+<p>数据库（Database）是按照数据结构来组织、存储和管理数据的仓库</p>
+<p>二、显示所有数据库</p>
+<pre><code>show databases;
+</code></pre><p>三、创建数据库</p>
+<pre><code>create database 数据库名;
+</code></pre><p>四、删除数据库</p>
+<pre><code>drop database 数据库名；
+</code></pre><h2 id="数据库表基本操作"><a href="#数据库表基本操作" class="headerlink" title="数据库表基本操作"></a>数据库表基本操作</h2><p>一、创建表</p>
+<p>1）表的概念</p>
+<p>表是数据库存储数据的基本单位，一张表包含若干条字段或记录。</p>
+<p>2）创建表的语法</p>
+<pre><code>create table 表名（
+    属性名 数据类型 [完整性约束条件],
+    属性名 数据类型 [完整性约束条件],
+    ...
+    属性名 数据类型 [完整性约束条件]
+);
+</code></pre><p>3）约束条件</p>
+<p><img src="/upload/MySQL表约束条件.jpg" alt="MySQL表约束条件"></p>
+<ul>
+<li>创建图书类别表：</li>
+</ul>
+<pre><code>create table t_bookType(
+    id int primary key auto_increment,
+    bookTypeName varchar(20),
+    bookTypeDesc varchar(200)
+);
+</code></pre><ul>
+<li>创建图书表：</li>
+</ul>
+<pre><code>create table t_book(
+    id int primary key auto_increment,
+    bookName varchar(20),
+    author varchar(200),
+    price decimal(6,2),
+    bookTypeId int,
+    constraint `fk` foreign key (`bookTypeId`) references `t_bookType`(id)
+);
+</code></pre><p>二、查看表结构</p>
+<p>1） 查看基本表结构</p>
+<pre><code>describe 表名；
+或者：desc 表名
+</code></pre><p>2） 查看表详细结构</p>
+<pre><code>show create table 表名
+</code></pre><p>三、修改表</p>
+<ul>
+<li>修改表名</li>
+</ul>
+<pre><code>alter table 旧表名 rename 新表名
+</code></pre><ul>
+<li>修改字段</li>
+</ul>
+<pre><code>alter table 表名 change 旧属性名 新属性名 新数据类型
+</code></pre><ul>
+<li>增加字段</li>
+</ul>
+<pre><code>alter table 表名 add 属性1 数据类型 [完整性约束条件] [first|after 属性名2]
+first； 指添加的字段在第一个位置
+after 属性名2； 指添加的字段在已有属性名2之后
+</code></pre><ul>
+<li>删除字段</li>
+</ul>
+<pre><code>alter table 表名 drop 属性名
+</code></pre><p>四、删除表</p>
+<pre><code>drop table 表名
+</code></pre><h2 id="查询表数据"><a href="#查询表数据" class="headerlink" title="查询表数据"></a>查询表数据</h2><h3 id="单表查询"><a href="#单表查询" class="headerlink" title="单表查询"></a>单表查询</h3><p>1） 查询所有字段</p>
+<pre><code>select * from 表名;
+</code></pre><p>2） 查询指定字段</p>
+<pre><code>select 字段1,字段2,... from 表名;
+</code></pre><p>3） where条件查询</p>
+<pre><code>select 字段1,字段2,... from 表名 where 条件表达式;
+</code></pre><p>4） 带in关键字查询</p>
+<pre><code>select 字段1,字段2,... from 表名 where 字段 [not] in (元素1， 元素2， ...);
+</code></pre><p>5） 带between and的范围查询</p>
+<pre><code>select 字段1,字段2,... from 表名 where 字段 [not] between 取值1 and 取值2;
+</code></pre><p>6） 带like的模糊查询</p>
+<pre><code>select 字段1,字段2,... from 表名 where 字段 [not] like ‘字符串’;
+% 代表任意字符
+_ 代表单个字符
+</code></pre><p>7） 空值查询</p>
+<pre><code>select 字段1,字段2,... from 表名 where 字段 is [not] null;
+</code></pre><p>8） 带and的多条件查询</p>
+<pre><code>select 字段1,字段2,... from 表名 where 条件表达式1 and 条件表达式2 [...and 条件表达式n];
+</code></pre><p>9） 带or的多条件查询</p>
+<pre><code>select 字段1,字段2,... from 表名 where 条件表达式1 or 条件表达式2 [...or 条件表达式n];
+</code></pre><p>10） distinct去重复查询</p>
+<pre><code>select distinct 字段名 from 表名;
+</code></pre><p>11） 对查询结果排序</p>
+<pre><code>select 字段1,字段2... from 表名 order by 属性名 [asc|desc];
+</code></pre><p>12） group by分组查询</p>
+<pre><code>group by 属性名 [having 条件表达式][with rollup]
+1.单独使用毫无意义；
+2.与group_concat()函数一起使用；
+3.与聚合函数一起使用
+4.与having一起使用（限制输出结果）；
+5.与with rollup一起使用(最后加入一个总和行)；
+</code></pre><p>举例：</p>
+<pre><code>select gradeName,group_concat(stuName) from t_student group by gradeName;
+
+select gradeName,count(stuName) from t_student group by gradeName;
+
+select gradeName,count(stuName) from t_student group by gradeName having count(stuName)&gt;3;
+
+select gradeName,count(stuName) from t_student group by gradeName with rollup;
+</code></pre><p>13） limit分页查询</p>
+<pre><code>select 字段1,字段2... from 表名 limit 起始位置,记录数;
+</code></pre><h3 id="使用聚合函数查询"><a href="#使用聚合函数查询" class="headerlink" title="使用聚合函数查询"></a>使用聚合函数查询</h3><p>1）count() 函数</p>
+<pre><code>1.count() 函数是用来统计记录条数的函数
+2.与group by 关键字一起使用
+</code></pre><p>2）sum() 函数</p>
+<pre><code>1.sum() 函数是用来求和的函数
+2.与group by 关键字一起使用
+</code></pre><p>3）avg() 函数</p>
+<pre><code>1.avg() 函数是用来求平均值的函数
+2.与group by 关键字一起使用
+</code></pre><p>4）max() 函数</p>
+<pre><code>1.max() 函数是用来求最大值的函数
+2.与group by 关键字一起使用
+</code></pre><p>5）min() 函数</p>
+<pre><code>1.min() 函数是用来求最小值的函数
+2.与group by 关键字一起使用
+</code></pre><p><strong>应用举例</strong></p>
+<p><img src="/upload/MySQLt_grade.jpg" alt="MySQLt_grade"></p>
+<pre><code>/* 查询成绩表中共有多少条记录 */
+SELECT COUNT(*) FROM t_grade;
+
+/* 查询成绩表中共有多少条记录，并取别名为total */
+SELECT COUNT(*) AS total FROM t_grade;
+
+/* 查询每个学生有几门课程 */
+SELECT stuName,COUNT(*) FROM t_grade GROUP BY stuName;
+
+/* 查询张三的总分 */
+SELECT stuName,SUM(score) FROM t_grade WHERE stuName=&quot;张三&quot;;
+
+/* 查询每个学生的平均分 */
+SELECT stuName,AVG(score) FROM t_grade GROUP BY stuName;
+
+/* 查询张三的最高分并取得最高分的课程 */
+SELECT stuName,course,MAX(score) FROM t_grade WHERE stuName = &apos;张三&apos;;
+
+/* 这样的查询是错误的，不可以带课程 */
+SELECT stuName,course,MAX(score) FROM t_grade GROUP BY stuName;
+
+/* 查询每个学生的所有课程得分中的最低分 */
+SELECT stuName,MIN(score) FROM t_grade GROUP BY stuName;
+</code></pre><h3 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>连接查询是将两个或两个以上的表按照某个条件连接起来，从中选取需要的数据</p>
+<h4 id="内连接查询"><a href="#内连接查询" class="headerlink" title="内连接查询"></a>内连接查询</h4><p>内连接查询是一种最常用的连接查询，内连接查询可以查询两张或两张以上的表</p>
+<pre><code>/* 查询t_book和t_booktype表中的数据的三种方式
+ * 条件是t_book.bookTypeId=t_booktype.id 
+ */
+/* 1 */
+SELECT * FROM t_book,t_booktype WHERE t_book.bookTypeId=t_booktype.id;
+
+/* 2 */
+SELECT bookName,author,bookTypeName
+FROM t_book,t_booktype
+WHERE t_book.bookTypeId=t_booktype.id
+
+/* 3 */
+SELECT tb.bookName,tb.author,tbt.bookTypeName
+FROM t_book AS tb,t_booktype AS tbt
+WHERE tb.bookTypeId=tbt.id
+</code></pre><h4 id="外连接查询"><a href="#外连接查询" class="headerlink" title="外连接查询"></a>外连接查询</h4><p>外连接可以查询某一张表的所有信息：<br>select 属性名列表 from 表名 t1 left|right join 表名 t2 on t1.属性名=t2.属性名;</p>
+<h5 id="左外连接查询"><a href="#左外连接查询" class="headerlink" title="左外连接查询"></a>左外连接查询</h5><p>可以查询出表1的所有记录，而表2中，只能查询出匹配的记录</p>
+<pre><code>/* 查询出t_book的所有记录
+ * 并查询出t_bookType匹配的记录
+ * 不匹配的用null填充 */
+SELECT *
+FROM t_book AS tb LEFT JOIN t_booktype AS tbt
+ON tb.bookTypeId=tbt.id;
+</code></pre><h5 id="右外连接查询"><a href="#右外连接查询" class="headerlink" title="右外连接查询"></a>右外连接查询</h5><p>可以查询出表2的所有记录，而表1中，只能查询出匹配的记录</p>
+<pre><code>/* 查询出t_bookType的所有记录
+ * 并查询出t_book匹配的记录
+ * 不匹配的用null填充 */
+SELECT *
+FROM t_book AS tb RIGHT JOIN t_booktype AS tbt
+ON tb.bookTypeId=tbt.id;
+</code></pre><h4 id="多条件连接查询"><a href="#多条件连接查询" class="headerlink" title="多条件连接查询"></a>多条件连接查询</h4><pre><code>/* 查询出t_bookType和t_book的所有数据
+ * 条件是tb.bookTypeId=tbt.id AND tb.price&gt;70 */
+SELECT bookName,author,bookTypeName
+FROM t_book AS tb,t_booktype tbt
+WHERE tb.bookTypeId=tbt.id
+AND tb.price&gt;70
+</code></pre><h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><p>1） 带in关键字</p>
+<p>一个查询语句的条件可能在另一个select语句的查询语句中</p>
+<pre><code>/* 查询图书所有信息，条件是bookTypeId在t_bookType中 */
+SELECT * FROM t_book
+WHERE bookTypeId IN (
+    SELECT id FROM t_booktype
+)
+</code></pre><p>2） 带比较运算符的子查询</p>
+<p>子查询可以使用比较运算符</p>
+<pre><code>/* 查询图书所有信息
+ * 条件是price&gt;=（对应于t_priceLevel中priceLevel=1的price） */
+SELECT * FROM t_book
+WHERE price&gt;=(
+    SELECT price FROM t_pricelevel
+    WHERE priceLevel=1
+)
+</code></pre><p>3） 带exists关键字的子查询</p>
+<p>假如子查询查询到记录，则进行外层查询，否则不执行外层查询</p>
+<pre><code>/* 查询图书所有信息
+ * 条件是t_booktype存在记录 */
+SELECT * FROM t_book
+WHERE EXISTS (
+    SELECT * FROM t_booktype
+)
+</code></pre><p>4） 带any关键字的子查询</p>
+<p>any 表示满足其中任一条件</p>
+<pre><code>/* 查询图书所有信息
+ * 条件是price大于表t_priceLevel的price中的任何一个price */
+SELECT * FROM t_book
+WHERE price&gt;=ANY(
+    SELECT price FROM t_pricelevel
+)
+</code></pre><p>5） 带all关键字的子查询</p>
+<p>all 表示满足其中所有条件</p>
+<pre><code>/* 查询图书所有信息
+ * 条件是price大于表t_priceLevel的price中的所有price */
+SELECT * FROM t_book
+WHERE price&gt;=ALL(
+    SELECT price FROM t_pricelevel
+)
+</code></pre><h3 id="合并查询结果"><a href="#合并查询结果" class="headerlink" title="合并查询结果"></a>合并查询结果</h3><h4 id="union"><a href="#union" class="headerlink" title="union"></a>union</h4><p>使用union关键字，数据库系统会将所有的查询结果合并到一起，然后除掉相同的记录</p>
+<pre><code>select id from t_book union
+select id from t_bookType;
+</code></pre><h4 id="union-all"><a href="#union-all" class="headerlink" title="union all"></a>union all</h4><p>使用union all，不会去除掉系统的记录</p>
+<pre><code>select id from t_book union all 
+select id from t_bookType;
+</code></pre><h3 id="为表和字段取别名"><a href="#为表和字段取别名" class="headerlink" title="为表和字段取别名"></a>为表和字段取别名</h3><pre><code>/* way 1 */
+表名 别名
+属性名 别名
+
+/* way 2 */
+表名 as 表的别名
+属性名 as 别名
+</code></pre><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>建表和查询表是很重要的也是很繁杂的，需要多加练习，熟练掌握。</p>
 
       
     </div>
@@ -705,6 +951,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/13/MySQL-Step2/" rel="prev" title="MySQL-Step2">
+                MySQL-Step2 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -776,7 +1026,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -784,7 +1034,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -793,7 +1043,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -907,7 +1157,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL数据类型"><span class="nav-number">2.</span> <span class="nav-text">MySQL数据类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL数据类型"><span class="nav-number">2.</span> <span class="nav-text">MySQL数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库基本操作"><span class="nav-number">3.</span> <span class="nav-text">数据库基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库表基本操作"><span class="nav-number">4.</span> <span class="nav-text">数据库表基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询表数据"><span class="nav-number">5.</span> <span class="nav-text">查询表数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单表查询"><span class="nav-number">5.1.</span> <span class="nav-text">单表查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用聚合函数查询"><span class="nav-number">5.2.</span> <span class="nav-text">使用聚合函数查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接查询"><span class="nav-number">5.3.</span> <span class="nav-text">连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">5.3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内连接查询"><span class="nav-number">5.3.2.</span> <span class="nav-text">内连接查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外连接查询"><span class="nav-number">5.3.3.</span> <span class="nav-text">外连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#左外连接查询"><span class="nav-number">5.3.3.1.</span> <span class="nav-text">左外连接查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#右外连接查询"><span class="nav-number">5.3.3.2.</span> <span class="nav-text">右外连接查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多条件连接查询"><span class="nav-number">5.3.4.</span> <span class="nav-text">多条件连接查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子查询"><span class="nav-number">5.4.</span> <span class="nav-text">子查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#合并查询结果"><span class="nav-number">5.5.</span> <span class="nav-text">合并查询结果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#union"><span class="nav-number">5.5.1.</span> <span class="nav-text">union</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#union-all"><span class="nav-number">5.5.2.</span> <span class="nav-text">union all</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为表和字段取别名"><span class="nav-number">5.6.</span> <span class="nav-text">为表和字段取别名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">6.</span> <span class="nav-text">结束语</span></a></li></ol></div>
             
           </div>
         </section>

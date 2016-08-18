@@ -100,9 +100,12 @@
 <meta property="og:description" content="这是关于JVM入门的一篇文章">
 <meta property="og:image" content="http://codeforgod.github.io/upload/hardwork.jpg">
 <meta property="og:image" content="http://codeforgod.github.io/upload/JVM内存结构.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/JVM性能调优属性1.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/JVM性能调优属性2.jpg">
+<meta property="og:image" content="http://codeforgod.github.io/upload/JVMDebug属性.jpg">
 <meta property="og:image" content="http://codeforgod.github.io/upload/引用计数.jpg">
 <meta property="og:image" content="http://codeforgod.github.io/upload/引用遍历.jpg">
-<meta property="og:updated_time" content="2016-08-11T13:54:41.832Z">
+<meta property="og:updated_time" content="2016-08-14T05:26:09.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM内存结构及其调优">
 <meta name="twitter:description" content="这是关于JVM入门的一篇文章">
@@ -718,7 +721,12 @@
 </tbody>
 </table>
 <p>2）JVM性能调优属性</p>
+<p>如下图所示的属性用于JVM的性能进行调优，比如永久域大小、新域大小和上限等。</p>
+<p><img src="/upload/JVM性能调优属性1.jpg" alt="JVM性能调优属性1"></p>
+<p><img src="/upload/JVM性能调优属性2.jpg" alt="JVM性能调优属性2"></p>
 <p>3）JVM Debug属性</p>
+<p>如下图所示的属性用于进行JVM的调试输出，便于进行Debug调试。</p>
+<p><img src="/upload/JVMDebug属性.jpg" alt="JVMDebug属性"></p>
 <h2 id="Java垃圾回收机制"><a href="#Java垃圾回收机制" class="headerlink" title="Java垃圾回收机制"></a>Java垃圾回收机制</h2><ul>
 <li>垃圾回收的2种方法：引用计数、对象引用遍历。</li>
 <li>垃圾收集器的7中类型：标记——清除收集器、标记——压缩收集器、复制收集器、增量收集器、分代收集器、并发收集器、并行收集器。</li>
@@ -761,6 +769,119 @@
 <blockquote>
 <p>并发和并行收集器，只是针对整个整个应用程序或硬件CPU的，所以对内存的操作有更特殊的机制</p>
 </blockquote>
+<h2 id="JVM内存区域配置"><a href="#JVM内存区域配置" class="headerlink" title="JVM内存区域配置"></a>JVM内存区域配置</h2><p>在充分理解垃圾收集算法执行过程后，才能有效地优化GC的性能。有些垃圾收集专用于特殊的应用程序。比如，实时应用程序主要是为了避免垃圾收集中断，而大多数OLTP应用程序则注重整体效率。理解了应用程序的工作负荷和JVM支持的垃圾收集算法，便可以进行优化配置GC。</p>
+<p>Sun的JVM使用的是分代收集器，它把堆分为3个主要的域：新域、旧域和永久域。JVM生成的所有新对象放在新域中，一旦对象经历了一定数量的垃圾收集循环后，便获得使用期并进入旧域。在永久域中JVM则存储类和方法。就配置而言，永久域是一个独立域并且不认为是堆的一部分。</p>
+<p>JVM的配置选项中有一些专门用于对这些域进行配置的属性，首先我们通过如下图展示各部分属性的相应配置对象。</p>
+<p>！<a href="/upload/JVM内存配置属性.jpg">JVM内存配置属性</a></p>
+<h3 id="配置堆区域"><a href="#配置堆区域" class="headerlink" title="配置堆区域"></a>配置堆区域</h3><p>JVM中通常所说的堆（Heap），实质上是新域和旧域的和，它代表了两个区域的内存大小。</p>
+<p>一、设置堆的初始大小（Xms，其中s为start）</p>
+<pre><code>java -Xms128m    // 将堆的初始大小设置为128MB
+</code></pre><p>二、设置堆的最大大小（Xmx，其中x为max）</p>
+<pre><code>java -Xmx128m    // 将堆的最大大小设置为128MB
+</code></pre><blockquote>
+<p><strong>TIPS:</strong><br>1) 初始大小必须小于最大大小<br>2) 通常可以将初始大小设置为最大大小，这样就可以避免程序动态增加堆的大小。</p>
+</blockquote>
+<h3 id="配置新域和旧域"><a href="#配置新域和旧域" class="headerlink" title="配置新域和旧域"></a>配置新域和旧域</h3><p>有3种方法用来设置新域和旧域的大小：</p>
+<p>1） 设置新域大小（Xmn，其中n为new）</p>
+<pre><code>java -Xms256m -Xmx256m -Xmn64m    
+// 将新域的初始值和最大值设置为64MB
+</code></pre><p>2） 设置新域的初始值和最大值</p>
+<p>可以使用-XX:NewSize 和 -XX:MaxNewsize 设置新域的初始值和最大值</p>
+<pre><code>java -Xms256m -Xmx256m -XX:NewSize 64m -XX:MaxNewSize=64m
+</code></pre><p>3）设置新域和旧域的比例</p>
+<p>下面的命令把整个堆设置成128MB，新域比例设置为3，即新域和旧域比例为1:3，新域为堆的1/4即32MB。</p>
+<pre><code>java -Xms128m -Xmx128m -XX:NewRatio=3
+</code></pre><blockquote>
+<p>设置了新域大小，旧域大小即为堆的大小减去新域的大小，因此对旧域不需要进行设置，JVM也因此没有提供对旧域的设置属性。</p>
+</blockquote>
+<h3 id="配置永久区域"><a href="#配置永久区域" class="headerlink" title="配置永久区域"></a>配置永久区域</h3><p>1） 永久域大小</p>
+<p>永久域默认大小为4MB。运行程序时，JVM会调整永久域大小以满足需要。每次调整时，JVM会对堆进行一次完全的垃圾收集。使用-XX:MaxPermSize标志来增加永久域的大小。</p>
+<pre><code>java -XX:MaxPermSize=64MB
+</code></pre><p>2） 永久域初始大小</p>
+<p>当JVM加载类时，永久域中的对象急剧增加，从而使JVM不断调整永久域大小。为了避免调整，可使用-XX:PermSize标志设置初始值。</p>
+<p>下面把永久域初始值设置成32MB，最大值设置成64MB:</p>
+<pre><code>java -Xms512m -Xmx512m -Xmn128m -XX:PermSize=32m -XX:MaxPermSize=64m
+</code></pre><h3 id="配置新域子空间"><a href="#配置新域子空间" class="headerlink" title="配置新域子空间"></a>配置新域子空间</h3><p>在默认状态下，JVM在新域中使用复制收集器，对旧域使用标记——清除——压缩收集器。在新域中使用复制收集器有很多意义，因为应用程序生成的大部分对象是生命周期较短的。新域一般分为3个部分：</p>
+<ul>
+<li>第一部分为Eden，用于生成新的对象；</li>
+<li>另两个部分称为救助空间（Survivor）：from救助空间 和 to救助空间；</li>
+</ul>
+<p>当Eden被充满时，收集器停止执行应用程序，把所有可到达的对象复制到当前的from救助空间；</p>
+<p>当from救助空间被充满时，收集器则把可到达的对象复制到当前的to救助空间。</p>
+<p>维持活动的对象在救助空间中不断复制，知道它们获得使用期并转入旧域。</p>
+<p>使用-XX:SurvivorRatio可控制新域子空间的大小。</p>
+<p>同NewRatio一样，SurvivorRatio规定某救助空间与Eden空间的比值。比如，以下命令把新域设置成64MB，Eden占32MB，每个救助空间各占16MB：</p>
+<pre><code>java -Xms256m -Xmx256m Xmn64m -XX:SurvivorRatio=2
+</code></pre><p>通常所有过渡对象在移出Eden空间时将被收集。如果能够这样的话，并且移出Eden空间的对象是长寿命的，那么理论上可以立即把它们移进旧域，避免在救助空间中被反复复制。</p>
+<p>但是应用程序不能适应这种理想状态，因为它们中有一小部分中长寿命的对象。最好将这些中长寿命的对象放在新域中，因为复制小部分的对象比压缩旧域廉价。</p>
+<p>为控制新域中对象的复制，可用-XX:TargetSurvivorRatio 控制救助空间的比例。该值时设置救助空间的使用比例，是一个百分比，默认值是50。</p>
+<p>如救助空间为1M，该值为50表示可用500K。当较大的堆栈使用较低的SurvivorRatio 时，应增加该值到80~90，以更好利用救助空间。用-XX:maxtenuring threshold 可控制上限。</p>
+<p>为防止所有的复制全部发生，以及希望对象从Eden扩展到旧域，可以把MaxTenuringThreshold 设置为0。设置完成后，实际上就不再使用救助空间了，因此应把SurvivorRatio设成最大值以最大化Eden空间，设置如下：</p>
+<pre><code>java -XX:MaxTenuringThreshold=0 -XX:SurvivroRatio=50000
+</code></pre><h2 id="JVM性能调优实战"><a href="#JVM性能调优实战" class="headerlink" title="JVM性能调优实战"></a>JVM性能调优实战</h2><p>通过JVM内存区域的分配即学会了如何使用JVM属性来设置JVM内存大小。那么设置为多少才算是最优的呢？</p>
+<h3 id="调优配置参考"><a href="#调优配置参考" class="headerlink" title="调优配置参考"></a>调优配置参考</h3><p>JVM的堆大小决定了JVM花费在收集垃圾的时间和频度。</p>
+<p>你的应用建立和释放对象的速度决定了垃圾收集的频度。</p>
+<p>因此，在编程时，应注意使用对象的缓存，而不是创建新的对象。</p>
+<p>对象生存的时间越长，需要收集时间也越长，收集也会变慢。一次完全的垃圾收集应该不超过3~5秒，如果系统花费很多的时间收集垃圾，请减小堆大小。</p>
+<p>一般来说，你应该使用物理内存的80% 作为堆大小。对于1GB内存、单CPU的机器来说，下面是一组参考配置：</p>
+<pre><code>-Xms800m -Xmx800m    // 一般设为同样大小
+-Xmn200m                // 将NewSize与MaxNewSize设为一致
+-XX:PermSize=128m    // 设置永久域初始大小
+-XX:MaxPermSize=128m    // 设置永久域最大大小
+-XX:NewSize=200m        // 此值设大可调大新对象区减少Full GC次数
+-XX:MaxNewSize=200m    // 新域最大值
+-XX:NewRatio=3        // 设置了该值后可不设NewSize
+-XX:SurivivorRatio=4    // 设置救助空间大小
+-XX:userParNewGC        // 可用来设置并行收集
+-XX:ParallelGCThreads    // 可用增加并行度
+-XX:UseParallelGC    // 设置后可以使用并行清除收集器
+-XX:UseAdaptiveSizePolicy    // 上面一个联合使用效果更好，利用它可以自动优化新域大小及救助空间比值
+</code></pre><p>通常当我们遇到<code>java.lang.OutOfMemoryError:Java heap space</code>的错误，这个问题的根源是JVM虚拟机的默认Heap大小是64MB，可以通过设置其最大和最小值来实现。解决办法有如下：</p>
+<p>1） 可以在Windows中更改系统环境变量</p>
+<pre><code>加上JAVA_OPTS=-Xms800m -Xmx800m
+</code></pre><p>2） 如果用的Tomcat，在Windows下可以在Tomcat主目录\bin\catalina.bat 中加上：</p>
+<pre><code>set JAVA_OPTS=&apos;Xms800m -Xmx800m&apos;
+</code></pre><p>3） 如果是Linux系统，在Tomcat主目录的/bin/catalina.sh 的前面加上：</p>
+<pre><code>set JAVA_OPTS=&apos;Xms800m -Xmx800m&apos;
+</code></pre><h3 id="调优实战"><a href="#调优实战" class="headerlink" title="调优实战"></a>调优实战</h3><p>为了能够将JVM GC的调优应用在具体的实践当中，下面通过5个例子来说明GC的调优。</p>
+<h4 id="堆区域设置"><a href="#堆区域设置" class="headerlink" title="堆区域设置"></a>堆区域设置</h4><p>堆即Heap Size，堆的大小是新域和旧域之和。设置JVM堆，即使在Java程序运行过程中，设置JVM可以使用的内存空间的大小。</p>
+<p>JVM在启动时会自动设置堆的值，其初始空间（-Xms）是物理内存的1/64，最大空间(-Xmx）是物理内存的1/4。可以利用JVM提供的-Xmn、-Xms、-Xmx等选项进行设置。</p>
+<blockquote>
+<p>在JVM中如果98%的时间是用于GC且可用的Heap Size不足2%的时候将抛出java.lang.OutOfMemoryError:Java heap space，此时需要调大最大堆空间。</p>
+<p>Heap Size最大不要超过可用物理内存的80%，一般要将-Xms 和 -Xmx选项设置为相同，而-Xmn 为1/4的-Xmx值。</p>
+</blockquote>
+<h4 id="新域设置"><a href="#新域设置" class="headerlink" title="新域设置"></a>新域设置</h4><blockquote>
+<p>一般的新域的大小是整个Heap Size的1/4。<br>新域的Minor收集率一般在70%以上。<br>当然在实际应用场景中要根据具体情况进行调整。</p>
+</blockquote>
+<h4 id="新域对应用响应速度的影响"><a href="#新域对应用响应速度的影响" class="headerlink" title="新域对应用响应速度的影响"></a>新域对应用响应速度的影响</h4><p>新域的Minor收集占用的时间计算如下：应用线程被中断的总时长/（应用执行总时间+应用线程被中断的总时长）。</p>
+<blockquote>
+<p>对于互联网应用系统的响应稍微慢一些是可以被接受的，但是对于GUI类型的应用响应速度慢将会给用户带来非常糟糕的体验。</p>
+</blockquote>
+<h4 id="新域对应用响应时间的选择"><a href="#新域对应用响应时间的选择" class="headerlink" title="新域对应用响应时间的选择"></a>新域对应用响应时间的选择</h4><p>在GUI应用的Heap Size设置为32MB的时候系统等待时间约为0.02秒左右，而设置为64MB的时候等待时间则变成0秒左右。但是32MB的时候系统的Major收集间隔为0.45秒左右，而Heap Size 增加到64MB的时候为1.06秒。</p>
+<p>那么应用在运行的时候是选择32MB还是64MB呢？如果应用是Web类型（即要求有较大吞吐量）的应用则使用64MB（即Heap Size 大一些）比较好；对于要求实时响应较高的场合（如GUI型应用）则使用32MB较好一些。</p>
+<blockquote>
+<p>Heap Size 的 -Xms -Xmn 设置不要超出物理内存的大小，否则会提示<code>Error occurred during initialization of VM Could not reserve enough space for object heap</code>。</p>
+</blockquote>
+<h4 id="使用-XX-UserParNewGC-属性设置并行收集器"><a href="#使用-XX-UserParNewGC-属性设置并行收集器" class="headerlink" title="使用-XX:+UserParNewGC 属性设置并行收集器"></a>使用-XX:+UserParNewGC 属性设置并行收集器</h4><p>使用-XX:+UserParNewGC 选项的minor 收集的时间要比不使用的短。</p>
+<p>如果要进一步深入研究JVM设置，可以参考Sun的网站：<a href="http://java.sun.com/javase/technologies/hotspot/gc/gc_tuning_6.html（现在已经移入Oracle旗下，可以去Oracle官网查找）" target="_blank" rel="external">http://java.sun.com/javase/technologies/hotspot/gc/gc_tuning_6.html（现在已经移入Oracle旗下，可以去Oracle官网查找）</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>JVM 内存组成：新域、旧域、永久域；新域由Eden和两个Survivor组成；永久域保存那些在虚拟机整个生存周期都生存的对象（类、方法等），因此该域不需被垃圾收集。</li>
+<li>JVM 配置选项有-X 选项和-XX 选项，可设置3中类型值：Boolean、Numeric、String。</li>
+<li>垃圾回收的2种方法：引用计数、对象引用遍历。</li>
+<li>垃圾收集器的7种类型：……</li>
+<li>设置JVM内存区域的方法<ul>
+<li>-Xms</li>
+<li>-Xmx</li>
+<li>-Xmn</li>
+<li>-XX:NewSize</li>
+<li>-XX:MaxNewSize</li>
+<li>-XX:NewRatio</li>
+<li>-XX:MaxPermSize</li>
+<li>-XX:PermSize</li>
+<li>-XX:SurivorRation</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -807,8 +928,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/08/java-lang/" rel="next" title="java.lang">
-                <i class="fa fa-chevron-left"></i> java.lang
+              <a href="/2016/08/08/Hibernate4Step8/" rel="next" title="Hibernate4Step8">
+                <i class="fa fa-chevron-left"></i> Hibernate4Step8
               </a>
             
           </div>
@@ -889,7 +1010,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -897,7 +1018,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -906,7 +1027,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -1020,7 +1141,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java虚拟机结构与属性"><span class="nav-number">2.</span> <span class="nav-text">Java虚拟机结构与属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java虚拟机内存结构"><span class="nav-number">2.1.</span> <span class="nav-text">Java虚拟机内存结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM配置选项"><span class="nav-number">2.2.</span> <span class="nav-text">JVM配置选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java垃圾回收机制"><span class="nav-number">3.</span> <span class="nav-text">Java垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收的2种方法"><span class="nav-number">3.1.</span> <span class="nav-text">垃圾回收的2种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集器的7个类型"><span class="nav-number">3.2.</span> <span class="nav-text">垃圾收集器的7个类型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前面的话"><span class="nav-number">1.</span> <span class="nav-text">前面的话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java虚拟机结构与属性"><span class="nav-number">2.</span> <span class="nav-text">Java虚拟机结构与属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java虚拟机内存结构"><span class="nav-number">2.1.</span> <span class="nav-text">Java虚拟机内存结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM配置选项"><span class="nav-number">2.2.</span> <span class="nav-text">JVM配置选项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java垃圾回收机制"><span class="nav-number">3.</span> <span class="nav-text">Java垃圾回收机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾回收的2种方法"><span class="nav-number">3.1.</span> <span class="nav-text">垃圾回收的2种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#垃圾收集器的7个类型"><span class="nav-number">3.2.</span> <span class="nav-text">垃圾收集器的7个类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM内存区域配置"><span class="nav-number">4.</span> <span class="nav-text">JVM内存区域配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置堆区域"><span class="nav-number">4.1.</span> <span class="nav-text">配置堆区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置新域和旧域"><span class="nav-number">4.2.</span> <span class="nav-text">配置新域和旧域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置永久区域"><span class="nav-number">4.3.</span> <span class="nav-text">配置永久区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置新域子空间"><span class="nav-number">4.4.</span> <span class="nav-text">配置新域子空间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM性能调优实战"><span class="nav-number">5.</span> <span class="nav-text">JVM性能调优实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调优配置参考"><span class="nav-number">5.1.</span> <span class="nav-text">调优配置参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调优实战"><span class="nav-number">5.2.</span> <span class="nav-text">调优实战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#堆区域设置"><span class="nav-number">5.2.1.</span> <span class="nav-text">堆区域设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新域设置"><span class="nav-number">5.2.2.</span> <span class="nav-text">新域设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新域对应用响应速度的影响"><span class="nav-number">5.2.3.</span> <span class="nav-text">新域对应用响应速度的影响</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#新域对应用响应时间的选择"><span class="nav-number">5.2.4.</span> <span class="nav-text">新域对应用响应时间的选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-XX-UserParNewGC-属性设置并行收集器"><span class="nav-number">5.2.5.</span> <span class="nav-text">使用-XX:+UserParNewGC 属性设置并行收集器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
